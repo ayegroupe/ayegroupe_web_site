@@ -1,0 +1,129 @@
+---
+import { translations, type Lang } from '../content/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = translations[lang].footer;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-brand-navy-dark border-t border-white/10 text-slate-400 text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      
+      <!-- Column 1: Brand & Slogan -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href={`/${lang}`} class="inline-block" aria-label="AYEGROUPE">
+          <img src="/logo/logo-ayegroupe-dark.svg" alt="AYEGROUPE Logo" class="h-11 w-auto" />
+        </a>
+        <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+          {t.baseline}
+        </p>
+        
+        <!-- Contact summary cards -->
+        <div class="pt-2 space-y-2 text-xs">
+          <div class="flex items-center gap-2 text-slate-300">
+            <svg class="w-4 h-4 text-brand-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span>{t.lomeAddress}</span>
+          </div>
+          <div class="flex items-center gap-2 text-slate-300">
+            <svg class="w-4 h-4 text-brand-blue-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <a href="mailto:contact@ayegroupe.com" class="hover:text-white transition-colors">contact@ayegroupe.com</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Pôle IT International -->
+      <div>
+        <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
+          {t.itPoleTitle}
+        </h4>
+        <ul class="space-y-2.5">
+          <li><a href={`/${lang}/services-it`} class="hover:text-white transition-colors">Développement sur mesure</a></li>
+          <li><a href={`/${lang}/services-it`} class="hover:text-white transition-colors">Conseil & Audit IT</a></li>
+          <li><a href={`/${lang}/services-it`} class="hover:text-white transition-colors">Intégration de Systèmes</a></li>
+          <li><a href={`/${lang}/services-it`} class="hover:text-white transition-colors">Réseaux & Infrastructures</a></li>
+          <li><a href={`/${lang}/services-it`} class="hover:text-white transition-colors">Solutions CAO / FAO / IAO</a></li>
+          <li><a href={`/${lang}/services-it`} class="hover:text-white transition-colors">Maintenance & Continuité SI</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Pôle Togo & Logistique -->
+      <div>
+        <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+          {t.togoPoleTitle}
+        </h4>
+        <ul class="space-y-2.5">
+          <li><a href={`/${lang}/togo/import-export`} class="hover:text-white transition-colors">Import / Export & Sourcing</a></li>
+          <li><a href={`/${lang}/togo/it-bureautique`} class="hover:text-white transition-colors">Équipements & Consommables IT</a></li>
+          <li><a href={`/${lang}/togo/it-bureautique`} class="hover:text-white transition-colors">Mobilier & Câblage réseau</a></li>
+          <li><a href={`/${lang}/togo/logistique`} class="hover:text-white transition-colors">Transport & Fret routier</a></li>
+          <li><a href={`/${lang}/togo/logistique`} class="hover:text-white transition-colors">Entreposage & Gestion des stocks</a></li>
+          <li><a href={`/${lang}/togo/logistique`} class="hover:text-white transition-colors">Location de Véhicules Lomé</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Nos SaaS Propriétaires -->
+      <div>
+        <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-brand-emerald"></span>
+          {t.saasProducts}
+        </h4>
+        <div class="space-y-4">
+          <!-- AyePrep -->
+          <div class="p-3 rounded-xl bg-white/5 border border-white/10 hover:border-brand-emerald/40 transition-colors">
+            <a
+              href="https://www.ayeprep.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center justify-between text-white font-bold hover:text-brand-emerald transition-colors"
+            >
+              <span>AyePrep</span>
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-emerald group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">{t.ayeprepDesc}</p>
+          </div>
+
+          <!-- AyeJob -->
+          <div class="p-3 rounded-xl bg-white/5 border border-white/10 hover:border-brand-blue/40 transition-colors">
+            <a
+              href="https://www.ayejob.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center justify-between text-white font-bold hover:text-brand-blue-light transition-colors"
+            >
+              <span>AyeJob</span>
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-blue-light group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">{t.ayejobDesc}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Legal Bar -->
+    <div class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <p>&copy; {currentYear} {t.rights}</p>
+      
+      <div class="flex items-center gap-6">
+        <a href={`/${lang}/mentions-legales`} class="hover:text-white transition-colors">{t.legal}</a>
+        <a href={`/${lang}/contact`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Support & Devis' : 'Support & Quotes'}</a>
+      </div>
+    </div>
+  </div>
+</footer>

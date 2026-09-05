@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const divisions = [
+  {
+    id: 'it-bureautique',
+    letter: 'A',
+    title: 'IT & Équipements de Bureau',
+    subtitle: 'Matériel informatique, mobilier professionnel & câblage réseau',
+    description: 'Fourniture complète, installation et maintenance d\'équipements pour entreprises, administrations et banques à Lomé et dans la région.',
+    items: [
+      'Fourniture et maintenance de matériel informatique (PC, serveurs, imprimantes)',
+      'Consommables bureautiques et mobilier ergonomique d\'entreprise',
+      'Câblage structuré, baies de brassage et réseaux locaux (LAN)',
+      'Migration Cloud, analyse de données métiers et solutions IoT',
+    ],
+    link: '/fr/togo/it-bureautique',
+    cta: 'Voir les équipements & services IT',
+  },
+  {
+    id: 'logistique',
+    letter: 'B',
+    title: 'Logistique, Stockage & Mobilité',
+    subtitle: 'Transport de fret, entreposage moderne et location de véhicules',
+    description: 'Solutions complètes de chaîne logistique : de l\'acheminement sécurisé de vos marchandises à la mise à disposition de véhicules de fonction et utilitaires à Lomé.',
+    items: [
+      'Acheminement et transport de marchandises (fournisseurs, entrepôts, clients)',
+      'Entreposage sécurisé (warehousing) et gestion moderne des stocks',
+      'Préparation de commandes, conditionnement (picking/packing) et distribution',
+      'Location de véhicules utilitaires, 4x4 et berlines de société avec ou sans chauffeur',
+    ],
+    link: '/fr/togo/logistique',
+    cta: 'Découvrir nos solutions logistiques',
+  },
+  {
+    id: 'import-export',
+    letter: 'C',
+    title: 'General Trade & Import / Export',
+    subtitle: 'Négoce international, approvisionnement et sourcing fournisseurs',
+    description: 'AYEGROUPE est votre passerelle de commerce général pour sourcer des produits certifiés à l\'international et les acheminer au Togo en toute conformité.',
+    items: [
+      'Import / Export de marchandises générales toutes destinations',
+      'Sourcing fournisseurs et négociation commerciale internationale',
+      'Accompagnement aux formalités de dédouanement et conformité douanière',
+      'Sécurisation des paiements et traçabilité des expéditions maritimes et aériennes',
+    ],
+    link: '/fr/togo/import-export',
+    cta: 'Consulter nos activités de négoce',
+  },
+];
+---
+
+<BaseLayout
+  title="Pôle Togo — Commerce Général, IT & Bureautique, Logistique"
+  description="Présence opérationnelle d'AYEGROUPE au Togo : Import/Export, fourniture de matériel informatique et mobilier de bureau, transport, stockage et location de véhicules à Lomé."
+  lang="fr"
+  canonicalPath="/fr/togo"
+>
+  <!-- Hero Section Togo -->
+  <section class="bg-brand-navy py-16 lg:py-24 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-gold/20 text-brand-gold border border-brand-gold/30 font-mono">
+          Présence Opérationnelle · Lomé, Togo
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+          Négoce, Fourniture IT & Logistique au Togo
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed">
+          AYEGROUPE est votre partenaire de confiance sur le terrain à Lomé et dans la sous-région pour l'approvisionnement en matériel bureautique/IT, le commerce international et la chaîne logistique complète.
+        </p>
+        
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a
+            href="https://wa.me/22890000000?text=Bonjour%20AYEGROUPE%2C%20je%20souhaite%20un%20devis%20pour%20le%20P%C3%B4le%20Togo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xl shadow-emerald-600/30 transition-all duration-200 inline-flex items-center gap-2"
+          >
+            <span>WhatsApp Lomé Direct</span>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.067-1.118-.067-.323-.102-.734-.239-1.266-.469-2.228-.962-3.682-3.23-3.794-3.379-.111-.148-.908-1.206-.908-2.302 0-1.096.575-1.636.78-1.859.183-.2.433-.277.674-.277.081 0 .153.004.218.008.192.008.318.038.459.378.175.422.597 1.455.65 1.562.053.107.088.232.018.373-.07.142-.105.231-.21.353-.105.123-.22.274-.314.368-.105.105-.215.22-.092.43.123.211.547.902 1.174 1.46 1.066.949 1.939 1.258 2.213 1.394.275.137.436.115.597-.07.162-.185.69-.803.874-1.079.183-.276.368-.231.614-.14.246.091 1.559.734 1.825.867.266.133.444.198.508.307.065.108.065.632-.079 1.037z"/>
+            </svg>
+          </a>
+          <a
+            href="/fr/contact"
+            class="px-8 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-gold-dark text-slate-950 font-bold text-sm shadow-xl shadow-brand-gold/25 transition-all duration-200"
+          >
+            Demander un devis local
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 Divisions Grid -->
+  <section class="py-20 bg-brand-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      {divisions.map((div) => (
+        <div class="rounded-3xl bg-white border border-slate-200/80 p-8 lg:p-12 shadow-sm hover:shadow-card-hover transition-all duration-300">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7 space-y-4">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-brand-gold/20 text-brand-gold-dark font-mono font-bold flex items-center justify-center text-sm">
+                  {div.letter}
+                </span>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider font-mono">
+                  Division Opérationnelle
+                </span>
+              </div>
+
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy">
+                {div.title}
+              </h2>
+              <p class="text-brand-gold-dark font-semibold text-sm">
+                {div.subtitle}
+              </p>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                {div.description}
+              </p>
+
+              <ul class="space-y-2.5 pt-2">
+                {div.items.map((item) => (
+                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                    <svg class="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="lg:col-span-5 flex flex-col justify-center items-center lg:items-end p-6 rounded-2xl bg-slate-50 border border-slate-100 text-center lg:text-right space-y-4">
+              <span class="text-xs text-slate-500 font-medium">Disponibilité immédiate sur Lomé et tout le Togo</span>
+              <a
+                href={div.link}
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-navy hover:bg-brand-navy-light text-white font-bold text-sm shadow-md transition-all duration-200"
+              >
+                <span>{div.cta}</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+              <a
+                href={`/fr/contact?division=${div.id}`}
+                class="text-xs text-brand-blue hover:underline font-semibold"
+              >
+                Demander une cotation personnalisée &rarr;
+              </a>
+            </div>
+
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </section>
+</BaseLayout>

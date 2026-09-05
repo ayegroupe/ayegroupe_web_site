@@ -1,0 +1,107 @@
+---
+interface Props {
+  lang?: 'fr' | 'en';
+}
+
+const { lang = 'fr' } = Astro.props;
+
+const activities = [
+  { code: '01', fr: 'Custom application / software programming services', en: 'Custom application / software programming services' },
+  { code: '02', fr: 'Custom computer programming services', en: 'Custom computer programming services' },
+  { code: '03', fr: 'Custom software developers', en: 'Custom software developers' },
+  { code: '04', fr: 'Software programming (custom)', en: 'Software programming (custom)' },
+  { code: '05', fr: 'Systems analysis and design (software)', en: 'Systems analysis and design (software)' },
+  { code: '06', fr: 'Computer consulting services', en: 'Computer consulting services' },
+  { code: '07', fr: 'IT consulting & enterprise architecture', en: 'IT consulting & enterprise architecture' },
+  { code: '08', fr: 'Computer hardware / software consulting', en: 'Computer hardware / software consulting' },
+  { code: '09', fr: 'Computer systems design consulting', en: 'Computer systems design consulting' },
+  { code: '10', fr: 'Requirements analysis (computer systems & hardware)', en: 'Requirements analysis (computer systems & hardware)' },
+  { code: '11', fr: 'Computer systems design and analysis', en: 'Computer systems design and analysis' },
+  { code: '12', fr: 'Management information systems (MIS) design', en: 'Management information systems (MIS) design' },
+  { code: '13', fr: 'Office automation system design & integration', en: 'Office automation system design & integration' },
+  { code: '14', fr: 'Systems engineering / systems integration', en: 'Systems engineering / systems integration' },
+  { code: '15', fr: 'Computer systems integrators', en: 'Computer systems integrators' },
+  { code: '16', fr: 'Local area network (LAN) design & integration', en: 'Local area network (LAN) design & integration' },
+  { code: '17', fr: 'Network systems integration & administration', en: 'Network systems integration & administration' },
+  { code: '18', fr: 'Computer-aided design (CAD) systems services', en: 'Computer-aided design (CAD) systems services' },
+  { code: '19', fr: 'Computer-aided manufacturing (CAM) systems services', en: 'Computer-aided manufacturing (CAM) systems services' },
+  { code: '20', fr: 'Computer-aided engineering (CAE) systems services', en: 'Computer-aided engineering (CAE) systems services' },
+  { code: '21', fr: 'Computer system maintenance & support', en: 'Computer system maintenance & support' },
+  { code: '22', fr: 'Computer facilities management & cloud hosting support', en: 'Computer facilities management & cloud hosting support' },
+  { code: '23', fr: 'Data processing facilities management', en: 'Data processing facilities management' },
+  { code: '24', fr: 'Computer disaster recovery & business continuity', en: 'Computer disaster recovery & business continuity' },
+  { code: '25', fr: 'Facilities support services (computer equipment)', en: 'Facilities support services (computer equipment)' },
+  { code: '26', fr: 'Internet & web page design and development', en: 'Internet & web page design and development' },
+  { code: '27', fr: 'Software installation & enterprise deployment', en: 'Software installation & enterprise deployment' },
+  { code: '28', fr: 'Conception et développement de solutions SaaS monétisées', en: 'Design & deployment of monetized SaaS platforms' },
+  { code: '29', fr: 'General Trade — Importation et exportation de marchandises générales', en: 'General Trade — Import and export of general merchandise' },
+  { code: '30', fr: 'Fourniture, installation et maintenance d\'équipements de bureau', en: 'Supply, installation and maintenance of office equipment' },
+  { code: '31', fr: 'Fourniture et maintenance de matériel informatique et consommables', en: 'Supply and maintenance of IT hardware and consumables' },
+  { code: '32', fr: 'Fourniture de mobilier de bureau et aménagements professionnels', en: 'Supply of office furniture and workspace fittings' },
+  { code: '33', fr: 'Câblage informatique, baies de brassage et réseaux locaux', en: 'Structured network cabling and server rack setups' },
+  { code: '34', fr: 'Analyse de données d\'entreprise, migration Cloud & IoT', en: 'Enterprise data analytics, Cloud migration & IoT' },
+  { code: '35', fr: 'Acheminement et transport de marchandises (fournisseurs, dépôts, clients)', en: 'Freight forwarding and logistics transport' },
+  { code: '36', fr: 'Entreposage (warehousing) et gestion des stocks', en: 'Warehousing and modern stock management' },
+  { code: '37', fr: 'Préparation de commandes et distribution (picking, packing, expédition)', en: 'Order fulfillment, packing and distribution' },
+  { code: '38', fr: 'Location de véhicules utilitaires et de fonction (Lomé & région)', en: 'Commercial and executive vehicle rental (Lomé & region)' },
+];
+---
+
+<div class="mt-8 bg-slate-900/90 border border-slate-700/80 rounded-2xl p-6 lg:p-8 backdrop-blur-xl shadow-2xl">
+  <details class="group">
+    <summary class="flex items-center justify-between cursor-pointer list-none text-white focus:outline-none">
+      <div class="flex items-center gap-3">
+        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-blue/20 text-brand-blue-light border border-brand-blue/30 font-mono text-sm font-bold">
+          38
+        </span>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-brand-blue-light transition-colors">
+            {lang === 'fr' 
+              ? 'Conformité légale — Nomenclature officielle des 38 activités déclarées' 
+              : 'Legal Compliance — Official nomenclature of the 38 declared business activities'}
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">
+            {lang === 'fr' 
+              ? 'Cliquez pour afficher l\'ensemble des prestations enregistrées et autorisées' 
+              : 'Click to expand the full legal registry of authorized operations'}
+          </p>
+        </div>
+      </div>
+      
+      <div class="p-2 rounded-xl bg-white/5 border border-white/10 group-open:rotate-180 transition-transform duration-300">
+        <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </div>
+    </summary>
+
+    <div class="mt-6 pt-6 border-t border-slate-800">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+        {activities.map((item) => (
+          <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-brand-blue/30 transition-colors flex items-start gap-3">
+            <span class="font-mono text-xs font-semibold text-brand-gold bg-brand-gold/10 px-2 py-0.5 rounded border border-brand-gold/20 flex-shrink-0">
+              #{item.code}
+            </span>
+            <span class="text-xs text-slate-300 leading-relaxed">
+              {lang === 'fr' ? item.fr : item.en}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-6 p-4 rounded-xl bg-brand-navy/60 border border-brand-blue/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-400">
+          {lang === 'fr'
+            ? 'Toutes ces activités sont habilitées et contractualisées selon les réglementations commerciales et fiscales en vigueur.'
+            : 'All these business activities are officially registered and compliant with international and local trade regulations.'}
+        </p>
+        <a
+          href={`/${lang}/contact`}
+          class="inline-flex items-center text-xs font-bold text-brand-blue-light hover:text-white transition-colors whitespace-nowrap"
+        >
+          {lang === 'fr' ? 'Demander une attestation ou un devis →' : 'Request compliance certificate or quote →'}
+        </a>
+      </div>
+    </div>
+  </details>
+</div>

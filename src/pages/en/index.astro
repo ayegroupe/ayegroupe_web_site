@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PoleSelector from '../../components/PoleSelector.astro';
+import SaasShowcase from '../../components/SaasShowcase.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import LegalAccordion from '../../components/LegalAccordion.astro';
+
+const metrics = [
+  { value: '2', label: 'Centers of Excellence', sub: 'Global IT & Togo Regional Hub' },
+  { value: '2', label: 'Live SaaS Products', sub: 'AyePrep & AyeJob' },
+  { value: '38', label: 'Certified Activities', sub: 'Official trade nomenclature' },
+  { value: '100%', label: 'Support & Uptime', sub: 'Lomé & Global Remote' },
+];
+---
+
+<BaseLayout
+  title="Software Engineering, Trade & Logistics"
+  description="AYEGROUPE combines cutting-edge international software engineering with regional trade and logistics excellence in Togo."
+  lang="en"
+  canonicalPath="/en"
+>
+  <!-- Hero Section -->
+  <section class="relative bg-brand-navy overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32">
+    <div class="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-brand-blue/30 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-brand-gold/20 blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center space-y-8">
+        
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200">
+          <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
+          <span>Sole Proprietorship · Dual Core Divisions</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+          Technological <span class="text-gradient-tech">Excellence</span> & Logistics <span class="text-gradient-gold">Power</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+          <strong class="text-white font-semibold">AYEGROUPE</strong> empowers organizations through a unique synergy: bespoke international software development alongside established ground operations in Togo (General Trade, IT supply, and Logistics).
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/en/services-it"
+            class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-sm shadow-xl shadow-brand-blue/30 transition-all duration-200 hover:-translate-y-0.5"
+          >
+            Explore IT & Software Hub
+          </a>
+          <a
+            href="/en/togo"
+            class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-gold hover:bg-brand-gold-dark text-slate-950 font-bold text-sm shadow-xl shadow-brand-gold/25 transition-all duration-200 hover:-translate-y-0.5"
+          >
+            Explore Togo & Logistics Hub
+          </a>
+          <a
+            href="/en/saas"
+            class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/20 transition-all duration-200"
+          >
+            Live SaaS Products &rarr;
+          </a>
+        </div>
+
+        <!-- Metrics ribbon -->
+        <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-white/10 mt-12">
+          {metrics.map((m) => (
+            <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-center">
+              <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white mb-1">{m.value}</div>
+              <div class="text-xs sm:text-sm font-bold text-brand-gold">{m.label}</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">{m.sub}</div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divisions -->
+  <section class="py-20 lg:py-28 bg-brand-surface relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="text-xs font-bold text-brand-blue uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+          Group Architecture
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-navy tracking-tight">
+          Two Distinct Markets, One Standard of Excellence
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+          Tailored communication and execution models to address the precise demands of global tech partners and West African trade operations.
+        </p>
+      </div>
+
+      <PoleSelector lang="en" />
+
+    </div>
+  </section>
+
+  <!-- Section SaaS Vitrine (AyePrep & AyeJob) -->
+  <section class="py-20 lg:py-28 bg-brand-navy relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-dark opacity-20 pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+          Engineering Track Record
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Our Proprietary SaaS in Production
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+          We don't just build software for clients: we engineer, scale, and monetize our own high-traffic digital platforms.
+        </p>
+      </div>
+
+      <SaasShowcase lang="en" showCta={true} />
+    </div>
+  </section>
+
+  <!-- Section Legal & Declared activities -->
+  <section class="py-16 lg:py-20 bg-slate-950 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-8 space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+          Transparency & Legal Framework
+        </h2>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Review the full statutory register of 38 authorized software engineering, trade, and logistics activities.
+        </p>
+      </div>
+
+      <LegalAccordion lang="en" />
+    </div>
+  </section>
+
+  <!-- Quick Contact Section -->
+  <section class="py-20 lg:py-28 bg-brand-surface relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs font-bold text-brand-gold uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+            Contact & Fast Quotations
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+            Ready to Accelerate Your Operations?
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Whether you need a dedicated software engineering squad, IT equipment delivery in Lomé, or regional freight transport, AYEGROUPE is your trusted execution partner.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center font-bold flex-shrink-0">
+                IT
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-brand-navy">Global Engineering & Consulting</h4>
+                <p class="text-xs text-slate-500 mt-0.5">Agile delivery, enterprise cloud systems & custom SaaS.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-brand-gold-dark flex items-center justify-center font-bold flex-shrink-0">
+                TG
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-brand-navy">Togo Ground Operations & Logistics</h4>
+                <p class="text-xs text-slate-500 mt-0.5">Hardware procurement, maintenance, warehousing & vehicle leasing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <ContactForm lang="en" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>

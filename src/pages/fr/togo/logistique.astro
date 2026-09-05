@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: 'Transport & Fret Terrestre de Marchandises',
+    desc: 'Acheminement fiable et sécurisé de vos marchandises entre le Port Autonome de Lomé, vos entrepôts, vos distributeurs et clients finaux sur tout le territoire togolais et les corridors régionaux.',
+    bullets: ['Flotte de camions et utilitaires entretenus et géolocalisés', 'Transferts portuaires et livraisons express sur Lomé', 'Lignes régulières vers l\'intérieur du pays et pays de l\'hinterland', 'Assurance marchandise et bordereaux de suivi rigoureux'],
+  },
+  {
+    title: 'Entreposage Sécurisé & Gestion des Stocks (Warehousing)',
+    desc: 'Espaces de stockage modernes, ventilés et gardés 24h/24 pour entreposer vos produits, matières premières ou équipements sensibles.',
+    bullets: ['Surveillance vidéo 24h/24 et gardiennage sur site', 'Gestion informatisée des entrées/sorties de stock (FIFO, traçabilité)', 'Contrôle qualité et inventaires périodiques certifiés', 'Zones dédiées pour matériel technologique et sensible'],
+  },
+  {
+    title: 'Préparation de Commandes & Distribution',
+    desc: 'Externalisez votre chaîne de préparation pour gagner en réactivité : picking, packing, étiquetage personnalisé et expédition rapide.',
+    bullets: ['Colisage sur mesure et conditionnement sécurisé', 'Traitement accéléré des commandes B2B et institutionnelles', 'Gestion des retours et reverse logistics', 'Intégration d\'alertes de livraison par SMS / WhatsApp'],
+  },
+  {
+    title: 'Location de Véhicules de Société & Utilitaires',
+    desc: 'Mise à disposition de véhicules récents pour vos missions professionnelles, déplacements d\'équipes, navettes aéroport ou transports logistiques.',
+    bullets: ['Véhicules 4x4 robustes pour déplacements en province', 'Berlines et SUV de standing pour cadres et délégations', 'Camionnettes et fourgons utilitaires de livraison', 'Formules court, moyen et long terme avec ou sans chauffeur'],
+  },
+  {
+    title: 'Maintenance & Entretien de Locaux Professionnels',
+    desc: 'Services professionnels d\'entretien, hygiène et nettoyage de bâtiments tertiaires, agences bancaires et bureaux pour un environnement de travail irréprochable.',
+    bullets: ['Nettoyage quotidien ou périodique de bureaux d\'entreprise', 'Désinfection et entretien des sols et surfaces techniques', 'Maintenance courante des installations (plomberie, électricité de base)', 'Personnel formé, discret et encadré avec rigueur'],
+  },
+];
+---
+
+<BaseLayout
+  title="Logistique, Stockage & Location de Véhicules à Lomé | AYEGROUPE"
+  description="Solutions logistiques intégrées au Togo : transport de fret, entreposage sécurisé, préparation de commandes et location de véhicules avec chauffeur à Lomé."
+  lang="fr"
+  canonicalPath="/fr/togo/logistique"
+>
+  <section class="bg-brand-navy py-16 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <a href="/fr/togo" class="text-xs font-bold text-brand-gold hover:underline uppercase tracking-wider">&larr; Retour au Pôle Togo</a>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+          Logistique, Entreposage & Flotte de Véhicules
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg">
+          Optimisez votre supply chain au Togo grâce à des infrastructures de stockage modernes, un acheminement ponctuel et une flotte de véhicules adaptée.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((s) => (
+          <div class="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-brand-navy mb-3">{s.title}</h3>
+              <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">{s.desc}</p>
+              <ul class="space-y-2 border-t border-slate-100 pt-4 mb-6">
+                {s.bullets.map((b) => (
+                  <li class="flex items-start gap-2 text-xs text-slate-700">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-1 flex-shrink-0"></span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a
+              href={`/fr/contact?service=${encodeURIComponent(s.title)}`}
+              class="inline-flex items-center text-xs font-bold text-brand-blue hover:text-brand-blue-dark transition-colors"
+            >
+              Demander un devis &rarr;
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Vehicle rental highlight -->
+      <div class="mt-12 rounded-3xl bg-slate-900 text-white p-8 sm:p-12 border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="space-y-2 max-w-2xl">
+          <span class="text-xs font-bold text-brand-gold uppercase tracking-wider font-mono">Service Mobilité Entreprise</span>
+          <h3 class="text-2xl font-bold text-white">Besoin d'un véhicule utilitaire ou 4x4 à Lomé ?</h3>
+          <p class="text-slate-300 text-sm">
+            Disponibilité 7j/7, mise à disposition avec chauffeur expérimenté ou conduite autonome pour vos missions professionnelles au Togo.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="https://wa.me/22890000000?text=Bonjour%20AYEGROUPE%2C%20je%20souhaite%20r%C3%A9server%20un%20v%C3%A9hicule%20%C3%A0%20Lom%C3%A9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg flex items-center gap-2"
+          >
+            <span>Réserver via WhatsApp</span>
+          </a>
+          <a
+            href="/fr/contact?service=location-vehicule"
+            class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20"
+          >
+            Tarifs & Devis
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

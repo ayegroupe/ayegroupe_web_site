@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: 'Fourniture de Matériel Informatique & Consommables',
+    desc: 'Vente, livraison et garantie sur parcs d\'ordinateurs fixes et portables professionnels, serveurs en tour ou rack, imprimantes réseau multifonctions et consommables d\'origine.',
+    bullets: ['PC Portables & Stations de travail HP, Dell, Lenovo', 'Serveurs & baies de stockage sécurisées', 'Toners, encres et cartouches d\'origine garanties', 'Contrats de réapprovisionnement récurrent'],
+  },
+  {
+    title: 'Mobilier de Bureau & Aménagement d\'Espaces',
+    desc: 'Conception ergonomique de vos bureaux et espaces d\'accueil : bureaux de direction, tables de réunion modulaires, sièges ergonomiques et armoires métalliques blindées.',
+    bullets: ['Fauteuils et sièges de bureau ergonomiques certifiés', 'Bureaux de direction et stations de travail en open-space', 'Mobilier de stockage, classeurs et coffres sécurisés', 'Livraison et montage sur site par nos techniciens'],
+  },
+  {
+    title: 'Câblage Structuré & Réseaux Locaux (LAN)',
+    desc: 'Déploiement complet de votre réseau d\'entreprise : pose de goulottes, tirage de câbles Cat6/Cat7, installation de baies de brassage et certification de liens.',
+    bullets: ['Câblage cuivre et liaisons fibre optique inter-bâtiments', 'Installation et configuration de switches managés et routeurs', 'Points d\'accès Wi-Fi professionnels maillés haute densité', 'Audit de connectivité et schémas de câblage normalisés'],
+  },
+  {
+    title: 'Maintenance, Cloud & Solutions IoT',
+    desc: 'Assistance technique sur site et à distance pour entreprises togolaises. Migration de vos données vers le Cloud sécurisé et déploiement de capteurs intelligents.',
+    bullets: ['Contrats d\'infogérance et de maintenance préventive/curative', 'Sauvegardes automatiques externalisées et cybersécurité', 'Interconnexion de sites distants par VPN sécurisé', 'Systèmes IoT pour la télémétrie et la surveillance de locaux'],
+  },
+];
+---
+
+<BaseLayout
+  title="IT & Équipements de Bureau à Lomé | AYEGROUPE"
+  description="Fourniture, installation et maintenance de parcs informatiques, consommables, mobilier professionnel et réseaux d'entreprise au Togo."
+  lang="fr"
+  canonicalPath="/fr/togo/it-bureautique"
+>
+  <section class="bg-brand-navy py-16 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <a href="/fr/togo" class="text-xs font-bold text-brand-gold hover:underline uppercase tracking-wider">&larr; Retour au Pôle Togo</a>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+          IT & Équipements de Bureau au Togo
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg">
+          Équipez votre entreprise avec du matériel certifié, un aménagement bureautique de prestige et une infrastructure réseau robuste.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-brand-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {services.map((s) => (
+          <div class="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm hover:shadow-card-hover transition-all">
+            <h3 class="text-xl font-bold text-brand-navy mb-3">{s.title}</h3>
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">{s.desc}</p>
+            <ul class="space-y-2 border-t border-slate-100 pt-4">
+              {s.bullets.map((b) => (
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-slate-700">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0"></span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 p-8 rounded-3xl bg-brand-navy text-white text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-xl font-bold text-white">Besoin d'un devis pour équiper vos locaux à Lomé ?</h3>
+          <p class="text-slate-400 text-sm mt-1">Fourniture unitaire ou aménagement complet clé en main.</p>
+        </div>
+        <a
+          href="/fr/contact?service=it-bureautique"
+          class="px-6 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-gold-dark text-slate-950 font-bold text-sm shadow-lg whitespace-nowrap"
+        >
+          Demander une cotation immédiate
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,138 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { translations, type Lang } from '../content/i18n';
+
+interface Props {
+  lang: Lang;
+  currentPath?: string;
+}
+
+const { lang = 'fr', currentPath = '' } = Astro.props;
+const t = translations[lang].nav;
+
+const navItems = [
+  { label: t.home, href: `/${lang}` },
+  { label: t.servicesIt, href: `/${lang}/services-it` },
+  { label: t.togo, href: `/${lang}/togo` },
+  { label: t.saas, href: `/${lang}/saas` },
+  { label: t.about, href: `/${lang}/a-propos` },
+  { label: t.contact, href: `/${lang}/contact` },
+];
+
+const isActive = (href: string) => {
+  if (href === `/${lang}` && (currentPath === `/${lang}` || currentPath === `/${lang}/` || currentPath === '')) {
+    return true;
+  }
+  return href !== `/${lang}` && currentPath.startsWith(href);
+};
+---
+
+<header class="sticky top-0 z-40 w-full bg-brand-navy/90 backdrop-blur-xl border-b border-white/10 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand Logo -->
+      <a href={`/${lang}`} class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-blue rounded-lg py-1" aria-label="AYEGROUPE Accueil">
+        <img
+          src="/logo/logo-ayegroupe-dark.svg"
+          alt="AYEGROUPE Logo"
+          class="h-10 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+        />
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class={`px-3 py-2 text-sm font-semibold rounded-lg transition-colors duration-200 ${
+              isActive(item.href)
+                ? 'text-white bg-white/10 shadow-inner'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right Action Bar (Lang Switcher + CTA) -->
+      <div class="hidden sm:flex items-center gap-4">
+        <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
+
+        <a
+          href={`/${lang}/contact`}
+          class="relative inline-flex items-center justify-center px-4 py-2.5 text-sm font-bold text-white bg-brand-blue hover:bg-brand-blue-dark rounded-xl shadow-lg shadow-brand-blue/30 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+        >
+          {t.quote}
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex items-center gap-3 lg:hidden">
+        <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
+
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          class="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Ouvrir le menu de navigation"
+        >
+          <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-brand-navy-dark/95 border-b border-white/10 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-2">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
+          isActive(item.href)
+            ? 'bg-brand-blue text-white shadow-md'
+            : 'text-slate-300 hover:text-white hover:bg-white/5'
+        }`}
+      >
+        {item.label}
+      </a>
+    ))}
+    
+    <div class="pt-4 mt-2 border-t border-white/10">
+      <a
+        href={`/${lang}/contact`}
+        class="block w-full text-center px-4 py-3 text-base font-bold text-white bg-brand-blue hover:bg-brand-blue-dark rounded-xl shadow-lg shadow-brand-blue/40"
+      >
+        {t.quote}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (menuBtn && mobileMenu && iconOpen && iconClose) {
+    menuBtn.addEventListener('click', () => {
+      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+  }
+</script>

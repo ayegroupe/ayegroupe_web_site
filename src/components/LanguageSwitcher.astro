@@ -1,0 +1,43 @@
+---
+interface Props {
+  currentLang: 'fr' | 'en';
+  currentPath?: string;
+}
+
+const { currentLang, currentPath = '' } = Astro.props;
+
+// Determine target path when switching
+let targetPath = '';
+if (currentLang === 'fr') {
+  targetPath = currentPath.replace(/^\/fr(\/|$)/, '/en$1');
+  if (!targetPath.startsWith('/en')) targetPath = '/en';
+} else {
+  targetPath = currentPath.replace(/^\/en(\/|$)/, '/fr$1');
+  if (!targetPath.startsWith('/fr')) targetPath = '/fr';
+}
+---
+
+<div class="inline-flex items-center rounded-full bg-slate-800/80 border border-slate-700/60 p-1 text-xs font-semibold backdrop-blur-md">
+  <a
+    href={currentLang === 'fr' ? '#' : targetPath}
+    class={`px-2.5 py-1 rounded-full transition-all duration-200 ${
+      currentLang === 'fr'
+        ? 'bg-brand-blue text-white shadow-sm'
+        : 'text-slate-400 hover:text-white'
+    }`}
+    aria-label="Passer en Français"
+  >
+    FR
+  </a>
+  <a
+    href={currentLang === 'en' ? '#' : targetPath}
+    class={`px-2.5 py-1 rounded-full transition-all duration-200 ${
+      currentLang === 'en'
+        ? 'bg-brand-blue text-white shadow-sm'
+        : 'text-slate-400 hover:text-white'
+    }`}
+    aria-label="Switch to English"
+  >
+    EN
+  </a>
+</div>

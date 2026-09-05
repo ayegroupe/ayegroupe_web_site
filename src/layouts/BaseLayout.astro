@@ -1,0 +1,109 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import '../styles/global.css';
+import type { Lang } from '../content/i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Lang;
+  canonicalPath?: string;
+  ogType?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'fr',
+  canonicalPath = '',
+  ogType = 'website',
+} = Astro.props;
+
+const siteUrl = 'https://ayegroupe.com';
+const canonicalUrl = `${siteUrl}${canonicalPath || Astro.url.pathname}`;
+
+// Alternate hreflang
+const frUrl = `${siteUrl}${canonicalPath.replace(/^\/(en|fr)/, '/fr') || '/fr'}`;
+const enUrl = `${siteUrl}${canonicalPath.replace(/^\/(en|fr)/, '/en') || '/en'}`;
+
+// JSON-LD Structured Data
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ayegroupe.com/#organization",
+      "name": "AYEGROUPE",
+      "url": "https://ayegroupe.com",
+      "logo": "https://ayegroupe.com/logo/logo-ayegroupe-dark.svg",
+      "description": "Entreprise d'ingénierie logicielle internationale, de négoce et de logistique au Togo.",
+      "email": "contact@ayegroupe.com",
+      "sameAs": [
+        "https://www.ayeprep.com",
+        "https://www.ayejob.com"
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://ayegroupe.com/#togo-hub",
+      "name": "AYEGROUPE — Hub Togo",
+      "description": "Fourniture IT & Bureautique, Import/Export et Logistique à Lomé, Togo.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lomé",
+        "addressCountry": "TG"
+      },
+      "telephone": "+22890000000",
+      "parentOrganization": {
+        "@id": "https://ayegroupe.com/#organization"
+      }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | AYEGROUPE</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/logo/logo-icon.svg" />
+
+    <!-- Multilingual Hreflang SEO -->
+    <link rel="alternate" hreflang="fr" href={frUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={frUrl} />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={`${title} | AYEGROUPE`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://ayegroupe.com/logo/logo-icon.svg" />
+
+    <!-- Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-brand-surface text-slate-900 font-sans antialiased selection:bg-brand-blue selection:text-white">
+    <Header lang={lang} currentPath={Astro.url.pathname} />
+    
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+    <WhatsAppButton lang={lang} />
+  </body>
+</html>

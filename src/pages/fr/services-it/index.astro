@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LegalAccordion from '../../../components/LegalAccordion.astro';
+
+const categories = [
+  {
+    number: '01',
+    title: 'Développement Logiciel sur Mesure',
+    badge: 'Cœur d\'expertise',
+    summary: 'Conception et programmation sur mesure d\'applications web, mobiles et d\'entreprise adaptées à vos règles métiers spécifiques.',
+    items: [
+      'Custom application & software programming',
+      'Développement de backends scalables (APIs REST, GraphQL, microservices)',
+      'Développement d\'interfaces frontend réactives et modernes (React, Next.js, Astro)',
+      'Analyse et conception architecturale des systèmes logiciels',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Conseil & Audit IT',
+    badge: 'Stratégie',
+    summary: 'Analyse stratégique de vos besoins technologiques, cadrage technique et optimisation des investissements informatiques.',
+    items: [
+      'Conseil en architecture matérielle et logicielle (computer consulting)',
+      'Audit de performance, scalabilité et sécurité des applications',
+      'Analyse des exigences techniques (requirements analysis)',
+      'Schémas directeurs des systèmes d\'information',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Conception & Intégration de Systèmes',
+    badge: 'Interopérabilité',
+    summary: 'Unification des flux de données, interconnexion d\'outils métiers et refonte de systèmes d\'information pour PME et grandes structures.',
+    items: [
+      'Computer systems design & systems engineering',
+      'Intégration de systèmes de gestion (MIS - Management Information Systems)',
+      'Bureautique avancée et automatisation des processus d\'entreprise',
+      'Connexion d\'APIs tierces et synchronisation multi-plateformes',
+    ],
+  },
+  {
+    number: '04',
+    title: 'Réseaux & Infrastructure',
+    badge: 'Connectivité',
+    summary: 'Ingénierie de réseaux locaux et distribués, sécurisation des flux et administration d\'infrastructures connectées.',
+    items: [
+      'Conception et intégration de réseaux locaux d\'entreprise (LAN)',
+      'Configuration des commutateurs, pare-feux et liaisons VPN sécurisées',
+      'Monitoring proactif de la bande passante et tolérance aux pannes',
+      'Administration et intégration de systèmes réseaux distribués',
+    ],
+  },
+  {
+    number: '05',
+    title: 'Solutions CAO / FAO / IAO (CAD/CAM/CAE)',
+    badge: 'Industrie & Design',
+    summary: 'Prestations informatiques spécialisées pour l\'ingénierie assistée par ordinateur, l\'architecture et la modélisation technique.',
+    items: [
+      'Services informatiques appliqués aux systèmes de Conception Assistée (CAD)',
+      'Support et intégration de systèmes de Fabrication Assistée (CAM)',
+      'Assistance technique aux outils d\'Ingénierie Assistée par Ordinateur (CAE)',
+      'Dimensionnement de postes de travail haute performance et stations graphiques',
+    ],
+  },
+  {
+    number: '06',
+    title: 'Exploitation, Maintenance & Continuité',
+    badge: 'Haute Disponibilité',
+    summary: 'Supervision technique continue, infogérance et plans de reprise d\'activité pour garantir zéro interruption de vos services.',
+    items: [
+      'Maintenance préventive et corrective de parcs informatiques',
+      'Infogérance et gestion d\'installations informatiques (computer facilities management)',
+      'Plan de reprise et continuité d\'activité après sinistre (Disaster Recovery)',
+      'Gestion et sécurisation des centres de traitement de données',
+    ],
+  },
+  {
+    number: '07',
+    title: 'Web & Logiciels Applicatifs',
+    badge: 'Digitalisation',
+    summary: 'Création de portails web modernes, d\'intranets et déploiement de suites logicielles clés en main au sein du SI client.',
+    items: [
+      'Conception et développement de sites vitrines et plateformes web haute performance',
+      'Installation, configuration et paramétrage de suites applicatives d\'entreprise',
+      'Intégration transparente de multiples logiciels dans votre environnement existant',
+      'Formation des équipes et documentation technique détaillée',
+    ],
+  },
+  {
+    number: '08',
+    title: 'Développement de SaaS Monétisés',
+    badge: 'Produit & Monétisation',
+    summary: 'De l\'idée au produit rentable : nous concevons des logiciels SaaS complets avec gestion des abonnements, paiements et IA.',
+    items: [
+      'Architecture SaaS multi-tenant et gestion d\'abonnements récurrents',
+      'Intégration de passerelles de paiement (Stripe, FedaPay Mobile Money, PayPal)',
+      'Intégration de modèles d\'Intelligence Artificielle (OpenAI GPT-4o, Whisper vocal)',
+      'Preuve vivante de notre savoir-faire : nos SaaS propriétaires AyePrep et AyeJob',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Pôle IT & Ingénierie Logicielle Internationale"
+  description="Services d'ingénierie logicielle sur mesure, conseil IT, intégration de systèmes, cloud et développement de plateformes SaaS par AYEGROUPE."
+  lang="fr"
+  canonicalPath="/fr/services-it"
+>
+  <!-- Hero Section -->
+  <section class="bg-brand-navy py-16 lg:py-24 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-blue/20 text-brand-blue-light border border-brand-blue/30 font-mono">
+          Pôle International · Remote & Consulting
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+          Ingénierie Logicielle & Conseil Informatique
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed">
+          AYEGROUPE met son expertise d'architectes et de développeurs chevronnés au service de vos défis numériques les plus exigeants. Des applications sur mesure aux solutions SaaS rentables, découvrez nos 8 domaines d'intervention.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a
+            href="/fr/contact"
+            class="px-8 py-3.5 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-sm shadow-xl shadow-brand-blue/30 transition-all duration-200"
+          >
+            Discuter de mon projet
+          </a>
+          <a
+            href="/fr/saas"
+            class="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/20 transition-all duration-200"
+          >
+            Voir nos SaaS en production &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 Categories Section -->
+  <section class="py-20 bg-brand-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {categories.map((cat) => (
+          <div class="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm hover:shadow-card-hover hover:border-brand-blue/40 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <span class="font-mono text-2xl font-black text-brand-blue/30 group-hover:text-brand-blue transition-colors">
+                  {cat.number}
+                </span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-brand-blue border border-blue-100 font-mono">
+                  {cat.badge}
+                </span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl font-bold text-brand-navy mb-3 group-hover:text-brand-blue transition-colors">
+                {cat.title}
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                {cat.summary}
+              </p>
+
+              <ul class="space-y-2.5 mb-8 border-t border-slate-100 pt-6">
+                {cat.items.map((item) => (
+                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                    <svg class="w-4 h-4 text-brand-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <a
+                href={`/fr/contact?subject=${encodeURIComponent(cat.title)}`}
+                class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-blue-dark transition-colors"
+              >
+                <span>Demander un devis pour ce service</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Legal Registry Accordion -->
+  <section class="py-16 bg-brand-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-4">
+        <h2 class="text-2xl font-bold text-white">Nomenclature Légale Complète</h2>
+        <p class="text-slate-400 text-sm mt-1">Conformité officielle des 38 activités d'ingénierie et de services déclarées par AYEGROUPE.</p>
+      </div>
+      <LegalAccordion lang="fr" />
+    </div>
+  </section>
+</BaseLayout>

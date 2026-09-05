@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SaasShowcase from '../../../components/SaasShowcase.astro';
+---
+
+<BaseLayout
+  title="Nos Solutions SaaS en Production | AYEGROUPE"
+  description="Découvrez les plateformes logicielles propriétaires conçues et éditées par AYEGROUPE : AyePrep (EdTech) et AyeJob (Recrutement)."
+  lang="fr"
+  canonicalPath="/fr/saas"
+>
+  <!-- Hero Section -->
+  <section class="bg-brand-navy py-16 lg:py-24 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl space-y-6">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono">
+          Produits Propriétaires & Monétisés
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+          Nos Logiciels SaaS en Production
+        </h1>
+        <p class="text-lg text-slate-300 leading-relaxed">
+          AYEGROUPE conçoit, exploite et monétise ses propres produits technologiques. Nos plateformes servent des milliers d'utilisateurs au quotidien et illustrent notre savoir-faire d'ingénierie logicielle de classe mondiale.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase Section -->
+  <section class="py-20 bg-brand-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SaasShowcase lang="fr" showCta={true} />
+    </div>
+  </section>
+
+  <!-- Architecture & Stack Behind our SaaS -->
+  <section class="py-16 bg-slate-900 text-white border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-12">
+        <span class="text-xs font-mono font-bold text-brand-blue-light uppercase tracking-widest">
+          Stack Technique & Robustesse
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
+          La Technologie au Cœur de Nos Produits
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Des choix architecturaux modernes pour garantir scalabilité, disponibilité 99.9% et sécurité des données utilisateurs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-2xl font-black text-brand-blue-light mb-1">IA & LLM</div>
+          <div class="text-xs text-slate-400">OpenAI GPT-4o & Whisper vocal</div>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-2xl font-black text-emerald-400 mb-1">Global Pay</div>
+          <div class="text-xs text-slate-400">Stripe & FedaPay Mobile Money</div>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-2xl font-black text-brand-gold mb-1">Cloud Edge</div>
+          <div class="text-xs text-slate-400">Supabase, Vercel & Cloudflare</div>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-2xl font-black text-purple-400 mb-1">Multi-Plateforme</div>
+          <div class="text-xs text-slate-400">Web React PWA & Mobile Flutter</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
