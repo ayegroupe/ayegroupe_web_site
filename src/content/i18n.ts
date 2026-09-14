@@ -12,7 +12,7 @@ export const translations = {
       quote: 'Demander un devis',
     },
     footer: {
-      baseline: 'Ingénierie logicielle internationale & Hub commercial et logistique au Togo.',
+      baseline: 'Compagnie technologique basée à Surrey, Canada & Hub commercial et logistique au Togo.',
       quickLinks: 'Navigation rapide',
       poles: 'Nos Pôles d\'activité',
       itPoleTitle: 'Pôle IT & Ingénierie',
@@ -21,8 +21,10 @@ export const translations = {
       ayeprepDesc: 'Plateforme IA de préparation aux examens TCF / TEF Canada.',
       ayejobDesc: 'Portail intelligent de recrutement et carrières.',
       legal: 'Mentions Légales & Confidentialité',
-      rights: 'Tous droits réservés. AYEGROUPE — Entreprise Individuelle.',
-      lomeAddress: 'Lomé, République Togolaise',
+      rights: 'Tous droits réservés. AYEGROUPE.',
+      surreyAddress: 'Surrey, Colombie-Britannique, Canada',
+      lomeAddress: 'Hub Régional : Lomé, Togo',
+      emailAddress: 'ayegroupe@ayegroupe.com',
       directContact: 'Contact Direct & WhatsApp',
     },
     common: {
@@ -45,7 +47,7 @@ export const translations = {
       quote: 'Request a Quote',
     },
     footer: {
-      baseline: 'International software engineering & West Africa commercial & logistics hub.',
+      baseline: 'Technology company based in Surrey, Canada & West Africa commercial & logistics hub.',
       quickLinks: 'Quick Navigation',
       poles: 'Business Divisions',
       itPoleTitle: 'IT & Software Engineering',
@@ -54,8 +56,10 @@ export const translations = {
       ayeprepDesc: 'AI-powered preparation platform for TCF / TEF Canada exams.',
       ayejobDesc: 'Smart recruitment and career matchmaking portal.',
       legal: 'Legal Notice & Privacy Policy',
-      rights: 'All rights reserved. AYEGROUPE — Sole Proprietorship.',
-      lomeAddress: 'Lomé, Republic of Togo',
+      rights: 'All rights reserved. AYEGROUPE.',
+      surreyAddress: 'Surrey, British Columbia, Canada',
+      lomeAddress: 'Regional Hub: Lomé, Togo',
+      emailAddress: 'ayegroupe@ayegroupe.com',
       directContact: 'Direct Contact & WhatsApp',
     },
     common: {
