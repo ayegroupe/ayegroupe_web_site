@@ -25,6 +25,8 @@ export const translations = {
       surreyAddress: 'Surrey, Colombie-Britannique, Canada',
       lomeAddress: 'Hub Régional : Lomé, Togo',
       emailAddress: 'ayegroupe@ayegroupe.com',
+      whatsappPhone: '+1 778 809 1060',
+      whatsappUrl: 'https://wa.me/17788091060',
       directContact: 'Contact Direct & WhatsApp',
     },
     common: {
@@ -39,11 +41,11 @@ export const translations = {
   en: {
     nav: {
       home: 'Home',
-      servicesIt: 'IT Services',
-      togo: 'Togo Hub & Logistics',
-      saas: 'Our SaaS',
+      itServices: 'IT & Software',
+      saasProducts: 'SaaS Products',
+      togoHub: 'Togo & Africa Hub',
       about: 'About Us',
-      contact: 'Contact',
+      contact: 'Contact & Quote',
       quote: 'Request a Quote',
     },
     footer: {
@@ -51,8 +53,8 @@ export const translations = {
       quickLinks: 'Quick Navigation',
       poles: 'Business Divisions',
       itPoleTitle: 'IT & Software Engineering',
-      togoPoleTitle: 'Togo & West Africa Hub',
-      saasProducts: 'Live SaaS Products',
+      togoPoleTitle: 'Togo & Africa Hub',
+      saasProducts: 'Online SaaS Products',
       ayeprepDesc: 'AI-powered preparation platform for TCF / TEF Canada exams.',
       ayejobDesc: 'Smart recruitment and career matchmaking portal.',
       legal: 'Legal Notice & Privacy Policy',
@@ -60,6 +62,8 @@ export const translations = {
       surreyAddress: 'Surrey, British Columbia, Canada',
       lomeAddress: 'Regional Hub: Lomé, Togo',
       emailAddress: 'ayegroupe@ayegroupe.com',
+      whatsappPhone: '+1 778 809 1060',
+      whatsappUrl: 'https://wa.me/17788091060',
       directContact: 'Direct Contact & WhatsApp',
     },
     common: {
