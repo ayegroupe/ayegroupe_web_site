@@ -41,11 +41,11 @@ export const translations = {
   en: {
     nav: {
       home: 'Home',
-      itServices: 'IT & Software',
-      saasProducts: 'SaaS Products',
-      togoHub: 'Togo & Africa Hub',
+      servicesIt: 'IT Services',
+      togo: 'Togo Hub',
+      saas: 'Our SaaS',
       about: 'About Us',
-      contact: 'Contact & Quote',
+      contact: 'Contact',
       quote: 'Request a Quote',
     },
     footer: {
