@@ -36,32 +36,33 @@ const services = [
   lang="fr"
   canonicalPath="/fr/togo/logistique"
 >
-  <section class="bg-brand-navy py-16 text-white relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-20 text-[#0C2340] relative overflow-hidden border-b border-slate-200/80">
+    <div class="absolute inset-0 bg-grid-sky opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="max-w-3xl space-y-4">
-        <a href="/fr/togo" class="text-xs font-bold text-brand-gold hover:underline uppercase tracking-wider">&larr; Retour au Pôle Togo</a>
-        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+        <a href="/fr/togo" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider">&larr; Retour au Pôle Togo</a>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0C2340]">
           Logistique, Entreposage & Flotte de Véhicules
         </h1>
-        <p class="text-slate-300 text-base sm:text-lg">
+        <p class="text-[#2C3E50] text-base sm:text-lg font-normal">
           Optimisez votre supply chain au Togo grâce à des infrastructures de stockage modernes, un acheminement ponctuel et une flotte de véhicules adaptée.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-16 bg-brand-surface">
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((s) => (
-          <div class="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm hover:shadow-card-hover transition-all flex flex-col justify-between">
+          <div class="rounded-2xl bg-white border border-slate-200 p-8 shadow-sm hover:border-[#00A859] hover:shadow-md transition-all flex flex-col justify-between">
             <div>
-              <h3 class="text-lg font-bold text-brand-navy mb-3">{s.title}</h3>
-              <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">{s.desc}</p>
-              <ul class="space-y-2 border-t border-slate-100 pt-4 mb-6">
+              <h3 class="text-lg font-bold text-[#0C2340] mb-2">{s.title}</h3>
+              <p class="text-[#2C3E50] text-xs sm:text-sm mb-6 leading-relaxed">{s.desc}</p>
+              <ul class="space-y-2.5 border-t border-slate-100 pt-4 mb-6">
                 {s.bullets.map((b) => (
-                  <li class="flex items-start gap-2 text-xs text-slate-700">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-1 flex-shrink-0"></span>
+                  <li class="flex items-start gap-2.5 text-xs text-slate-700">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#00A859] mt-1 flex-shrink-0"></span>
                     <span>{b}</span>
                   </li>
                 ))}
@@ -69,7 +70,7 @@ const services = [
             </div>
             <a
               href={`/fr/contact?service=${encodeURIComponent(s.title)}`}
-              class="inline-flex items-center text-xs font-bold text-brand-blue hover:text-brand-blue-dark transition-colors"
+              class="inline-flex items-center text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider transition-colors"
             >
               Demander un devis &rarr;
             </a>
@@ -78,26 +79,26 @@ const services = [
       </div>
 
       <!-- Vehicle rental highlight -->
-      <div class="mt-12 rounded-3xl bg-slate-900 text-white p-8 sm:p-12 border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="mt-12 rounded-2xl bg-[#F4F6F9] text-[#0C2340] p-8 sm:p-12 border border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xs">
         <div class="space-y-2 max-w-2xl">
-          <span class="text-xs font-bold text-brand-gold uppercase tracking-wider font-mono">Service Mobilité Entreprise</span>
-          <h3 class="text-2xl font-bold text-white">Besoin d'un véhicule utilitaire ou 4x4 à Lomé ?</h3>
-          <p class="text-slate-300 text-sm">
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-[#00A859] border border-emerald-200 font-mono">Service Mobilité Entreprise</span>
+          <h3 class="text-2xl font-bold text-[#0C2340]">Besoin d'un véhicule utilitaire ou 4x4 à Lomé ?</h3>
+          <p class="text-[#2C3E50] text-xs sm:text-sm leading-relaxed">
             Disponibilité 7j/7, mise à disposition avec chauffeur expérimenté ou conduite autonome pour vos missions professionnelles au Togo.
           </p>
         </div>
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-3.5">
           <a
             href="https://wa.me/22890000000?text=Bonjour%20AYEGROUPE%2C%20je%20souhaite%20r%C3%A9server%20un%20v%C3%A9hicule%20%C3%A0%20Lom%C3%A9"
             target="_blank"
             rel="noopener noreferrer"
-            class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg flex items-center gap-2"
+            class="px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-2 transition-all"
           >
             <span>Réserver via WhatsApp</span>
           </a>
           <a
             href="/fr/contact?service=location-vehicule"
-            class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20"
+            class="px-6 py-3 rounded-full bg-white hover:bg-slate-50 text-[#0C2340] font-bold text-xs uppercase tracking-wider border border-slate-300 shadow-xs transition-colors"
           >
             Tarifs & Devis
           </a>

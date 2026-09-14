@@ -17,13 +17,13 @@ if (currentLang === 'fr') {
 }
 ---
 
-<div class="inline-flex items-center rounded-full bg-slate-800/80 border border-slate-700/60 p-1 text-xs font-semibold backdrop-blur-md">
+<div class="inline-flex items-center rounded-full bg-slate-100 border border-slate-200 p-0.5 text-[11px] font-bold tracking-wider">
   <a
     href={currentLang === 'fr' ? '#' : targetPath}
-    class={`px-2.5 py-1 rounded-full transition-all duration-200 ${
+    class={`px-3 py-1 rounded-full transition-all duration-150 ${
       currentLang === 'fr'
-        ? 'bg-brand-blue text-white shadow-sm'
-        : 'text-slate-400 hover:text-white'
+        ? 'bg-[#0C2340] text-white shadow-xs'
+        : 'text-slate-600 hover:text-[#0C2340] hover:bg-slate-200/70'
     }`}
     aria-label="Passer en Français"
   >
@@ -31,10 +31,10 @@ if (currentLang === 'fr') {
   </a>
   <a
     href={currentLang === 'en' ? '#' : targetPath}
-    class={`px-2.5 py-1 rounded-full transition-all duration-200 ${
+    class={`px-3 py-1 rounded-full transition-all duration-150 ${
       currentLang === 'en'
-        ? 'bg-brand-blue text-white shadow-sm'
-        : 'text-slate-400 hover:text-white'
+        ? 'bg-[#0C2340] text-white shadow-xs'
+        : 'text-slate-600 hover:text-[#0C2340] hover:bg-slate-200/70'
     }`}
     aria-label="Switch to English"
   >

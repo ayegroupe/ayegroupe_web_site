@@ -109,29 +109,29 @@ const categories = [
   canonicalPath="/fr/services-it"
 >
   <!-- Hero Section -->
-  <section class="bg-brand-navy py-16 lg:py-24 text-white relative overflow-hidden">
-    <div class="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none"></div>
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-24 text-[#0C2340] relative overflow-hidden border-b border-slate-200/80">
+    <div class="absolute inset-0 bg-grid-sky opacity-30 pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="max-w-3xl space-y-6">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-blue/20 text-brand-blue-light border border-brand-blue/30 font-mono">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-[#00A859] border border-emerald-200 font-mono">
           Pôle International · Remote & Consulting
         </span>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0C2340]">
           Ingénierie Logicielle & Conseil Informatique
         </h1>
-        <p class="text-lg text-slate-300 leading-relaxed">
+        <p class="text-base sm:text-lg text-[#2C3E50] leading-relaxed font-normal">
           AYEGROUPE met son expertise d'architectes et de développeurs chevronnés au service de vos défis numériques les plus exigeants. Des applications sur mesure aux solutions SaaS rentables, découvrez nos 8 domaines d'intervention.
         </p>
         <div class="flex flex-wrap gap-4 pt-2">
           <a
             href="/fr/contact"
-            class="px-8 py-3.5 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-sm shadow-xl shadow-brand-blue/30 transition-all duration-200"
+            class="px-8 py-3.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
           >
             Discuter de mon projet
           </a>
           <a
             href="/fr/saas"
-            class="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/20 transition-all duration-200"
+            class="px-8 py-3 rounded-full bg-white hover:bg-[#0C2340] text-[#0C2340] hover:text-white font-bold text-xs uppercase tracking-wider border-2 border-[#0C2340] transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
           >
             Voir nos SaaS en production &rarr;
           </a>
@@ -141,36 +141,36 @@ const categories = [
   </section>
 
   <!-- 8 Categories Section -->
-  <section class="py-20 bg-brand-surface">
+  <section class="py-20 bg-white border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {categories.map((cat) => (
-          <div class="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm hover:shadow-card-hover hover:border-brand-blue/40 transition-all duration-300 flex flex-col justify-between group">
+          <div class="rounded-2xl bg-white border border-slate-200 p-8 shadow-xs hover:border-[#00A859]/50 hover:shadow-md transition-all duration-200 flex flex-col justify-between group">
             <div>
               <div class="flex items-center justify-between gap-4 mb-4">
-                <span class="font-mono text-2xl font-black text-brand-blue/30 group-hover:text-brand-blue transition-colors">
+                <span class="font-mono text-2xl font-bold text-[#00A859] group-hover:text-[#008F4C] transition-colors">
                   {cat.number}
                 </span>
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-brand-blue border border-blue-100 font-mono">
+                <span class="px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-[#0C2340] border border-slate-200 font-mono">
                   {cat.badge}
                 </span>
               </div>
 
-              <h3 class="text-xl sm:text-2xl font-bold text-brand-navy mb-3 group-hover:text-brand-blue transition-colors">
+              <h3 class="text-xl sm:text-2xl font-bold text-[#0C2340] mb-2 group-hover:text-[#00A859] transition-colors">
                 {cat.title}
               </h3>
-              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
                 {cat.summary}
               </p>
 
               <ul class="space-y-2.5 mb-8 border-t border-slate-100 pt-6">
                 {cat.items.map((item) => (
-                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                    <svg class="w-4 h-4 text-brand-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <li class="flex items-start gap-2.5 text-xs text-slate-700">
+                    <svg class="w-4 h-4 text-[#00A859] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                     </svg>
-                    <span>{item}</span>
+                    <span class="font-medium">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -179,11 +179,11 @@ const categories = [
             <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
               <a
                 href={`/fr/contact?subject=${encodeURIComponent(cat.title)}`}
-                class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-blue-dark transition-colors"
+                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#00A859] hover:text-[#008F4C] transition-colors"
               >
                 <span>Demander un devis pour ce service</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                 </svg>
               </a>
             </div>
@@ -195,11 +195,11 @@ const categories = [
   </section>
 
   <!-- Legal Registry Accordion -->
-  <section class="py-16 bg-brand-navy text-white">
+  <section class="py-16 bg-slate-50/70 text-slate-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mb-4">
-        <h2 class="text-2xl font-bold text-white">Nomenclature Légale Complète</h2>
-        <p class="text-slate-400 text-sm mt-1">Conformité officielle des 38 activités d'ingénierie et de services déclarées par AYEGROUPE.</p>
+        <h2 class="text-2xl font-bold text-slate-900">Nomenclature Légale Complète</h2>
+        <p class="text-slate-600 text-xs sm:text-sm mt-1">Conformité officielle des 38 activités d'ingénierie et de services déclarées par AYEGROUPE.</p>
       </div>
       <LegalAccordion lang="fr" />
     </div>

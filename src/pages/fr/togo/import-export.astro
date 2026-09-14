@@ -31,31 +31,32 @@ const pillars = [
   lang="fr"
   canonicalPath="/fr/togo/import-export"
 >
-  <section class="bg-brand-navy py-16 text-white relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-20 text-[#0C2340] relative overflow-hidden border-b border-slate-200/80">
+    <div class="absolute inset-0 bg-grid-sky opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="max-w-3xl space-y-4">
-        <a href="/fr/togo" class="text-xs font-bold text-brand-gold hover:underline uppercase tracking-wider">&larr; Retour au Pôle Togo</a>
-        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+        <a href="/fr/togo" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider">&larr; Retour au Pôle Togo</a>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0C2340]">
           General Trade & Négoce International
         </h1>
-        <p class="text-slate-300 text-base sm:text-lg">
+        <p class="text-[#2C3E50] text-base sm:text-lg font-normal">
           Votre passerelle commerciale mondiale : nous sourçons, négocions, transportons et dédouanons vos marchandises au Togo avec une rigueur absolue.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-16 bg-brand-surface">
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {pillars.map((p) => (
-          <div class="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm hover:shadow-card-hover transition-all">
-            <h3 class="text-xl font-bold text-brand-navy mb-3">{p.title}</h3>
-            <p class="text-slate-600 text-sm mb-6 leading-relaxed">{p.desc}</p>
-            <ul class="space-y-2 border-t border-slate-100 pt-4">
+          <div class="rounded-2xl bg-white border border-slate-200 p-8 shadow-sm hover:border-[#00A859] hover:shadow-md transition-all">
+            <h3 class="text-xl font-bold text-[#0C2340] mb-2">{p.title}</h3>
+            <p class="text-[#2C3E50] text-xs sm:text-sm mb-6 leading-relaxed">{p.desc}</p>
+            <ul class="space-y-2.5 border-t border-slate-100 pt-4">
               {p.bullets.map((b) => (
-                <li class="flex items-center gap-2 text-xs sm:text-sm text-slate-700">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-gold flex-shrink-0"></span>
+                <li class="flex items-center gap-2.5 text-xs text-slate-700">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00A859] flex-shrink-0"></span>
                   <span>{b}</span>
                 </li>
               ))}
@@ -64,14 +65,14 @@ const pillars = [
         ))}
       </div>
 
-      <div class="mt-12 p-8 rounded-3xl bg-brand-navy text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="mt-12 p-8 rounded-2xl bg-[#F4F6F9] border border-slate-200 text-[#0C2340] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
         <div>
-          <h3 class="text-xl font-bold text-white">Un projet d'importation ou de sourcing spécifique ?</h3>
-          <p class="text-slate-400 text-sm mt-1">Échangez directement avec notre pôle commerce international.</p>
+          <h3 class="text-xl font-bold text-[#0C2340]">Un projet d'importation ou de sourcing spécifique ?</h3>
+          <p class="text-[#2C3E50] text-xs sm:text-sm mt-1">Échangez directement avec notre pôle commerce international.</p>
         </div>
         <a
           href="/fr/contact?service=import-export"
-          class="px-6 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-gold-dark text-slate-950 font-bold text-sm shadow-lg whitespace-nowrap"
+          class="px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm whitespace-nowrap transition-all"
         >
           Contacter notre pôle négoce
         </a>

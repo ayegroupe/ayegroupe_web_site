@@ -8,74 +8,77 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   lang="fr"
   canonicalPath="/fr/mentions-legales"
 >
-  <section class="bg-brand-navy py-16 text-white">
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-20 text-[#0C2340] border-b border-slate-200/80">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
+      <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-[#00A859] border border-emerald-200 font-mono mb-4">
+        Cadre Juridique & Conformité
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 text-[#0C2340]">
         Mentions Légales & Confidentialité
       </h1>
-      <p class="text-slate-300 text-sm sm:text-base">
+      <p class="text-[#2C3E50] text-sm sm:text-base">
         Informations légales obligatoires relatives à l'éditeur du site et à la politique de gestion des données personnelles.
       </p>
     </div>
   </section>
 
-  <section class="py-16 bg-white text-slate-700">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 text-sm leading-relaxed">
+  <section class="py-16 bg-white text-[#2C3E50]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-sm leading-relaxed">
       
       <!-- Section 1 -->
-      <div>
-        <h2 class="text-xl font-bold text-brand-navy mb-3">1. Identification de l'Éditeur</h2>
-        <p>
-          Le présent site web accessible à l'adresse <code>https://ayegroupe.com</code> est édité par :<br/>
-          <strong>AYEGROUPE</strong> — Entreprise Individuelle.<br/>
-          <strong>Siège social</strong> : Lomé, République Togolaise.<br/>
-          <strong>Email de contact</strong> : <a href="mailto:contact@ayegroupe.com" class="text-brand-blue underline">contact@ayegroupe.com</a><br/>
-          <strong>Téléphone / WhatsApp</strong> : +228 90 00 00 00<br/>
-          <strong>Directeur de la publication</strong> : Direction Générale d'AYEGROUPE.
+      <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-bold text-[#0C2340] mb-3">1. Identification de l'Éditeur</h2>
+        <p class="text-[#2C3E50]">
+          Le présent site web accessible à l'adresse <code class="text-[#0C2340] bg-slate-100 px-2 py-0.5 rounded border border-slate-200 font-mono text-xs">https://ayegroupe.com</code> est édité par :<br/>
+          <strong class="text-[#0C2340]">AYEGROUPE</strong> — Entreprise Individuelle.<br/>
+          <strong class="text-[#0C2340]">Siège social</strong> : Lomé, République Togolaise.<br/>
+          <strong class="text-[#0C2340]">Email de contact</strong> : <a href="mailto:contact@ayegroupe.com" class="text-[#00A859] font-semibold hover:underline">contact@ayegroupe.com</a><br/>
+          <strong class="text-[#0C2340]">Téléphone / WhatsApp</strong> : +228 90 00 00 00<br/>
+          <strong class="text-[#0C2340]">Directeur de la publication</strong> : Direction Générale d'AYEGROUPE.
         </p>
       </div>
 
       <!-- Section 2 -->
-      <div>
-        <h2 class="text-xl font-bold text-brand-navy mb-3">2. Objet & Activités Déclarées</h2>
-        <p>
+      <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-bold text-[#0C2340] mb-3">2. Objet & Activités Déclarées</h2>
+        <p class="text-[#2C3E50]">
           AYEGROUPE exerce légalement deux pôles d'activité majeurs :
         </p>
-        <ul class="list-disc list-inside space-y-1 mt-2 text-slate-600">
-          <li><strong>Pôle IT & Ingénierie logicielle</strong> : développement informatique sur mesure, conseil en systèmes d'information, infogérance, réseaux, CAO/FAO, et édition de logiciels SaaS (notamment les plateformes <a href="https://www.ayeprep.com" target="_blank" rel="noopener noreferrer" class="text-brand-blue underline">AyePrep</a> et <a href="https://www.ayejob.com" target="_blank" rel="noopener noreferrer" class="text-brand-blue underline">AyeJob</a>).</li>
-          <li><strong>Pôle Togo</strong> : General Trade (Import/Export de marchandises générales), fourniture et maintenance d'équipements informatiques et bureautiques, mobilier de bureau, transport logistique, entreposage et location de véhicules à Lomé.</li>
+        <ul class="list-disc list-inside space-y-1.5 mt-3 text-[#2C3E50]">
+          <li><strong class="text-[#0C2340]">Pôle IT & Ingénierie logicielle</strong> : développement informatique sur mesure, conseil en systèmes d'information, infogérance, réseaux, CAO/FAO, et édition de logiciels SaaS (notamment les plateformes <a href="https://www.ayeprep.com" target="_blank" rel="noopener noreferrer" class="text-[#00A859] font-semibold hover:underline">AyePrep</a> et <a href="https://www.ayejob.com" target="_blank" rel="noopener noreferrer" class="text-[#00A859] font-semibold hover:underline">AyeJob</a>).</li>
+          <li><strong class="text-[#0C2340]">Pôle Togo</strong> : General Trade (Import/Export de marchandises générales), fourniture et maintenance d'équipements informatiques et bureautiques, mobilier de bureau, transport logistique, entreposage et location de véhicules à Lomé.</li>
         </ul>
-        <p class="mt-2 text-xs text-slate-500">
+        <p class="mt-3 text-xs text-slate-500">
           La nomenclature exhaustive des 38 activités officielles déclarées est librement consultable sur notre page d'accueil et sur notre page dédiée aux services IT.
         </p>
       </div>
 
       <!-- Section 3 -->
-      <div>
-        <h2 class="text-xl font-bold text-brand-navy mb-3">3. Hébergement du Site</h2>
-        <p>
+      <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-bold text-[#0C2340] mb-3">3. Hébergement du Site</h2>
+        <p class="text-[#2C3E50]">
           Le site web est hébergé sur des infrastructures d'hébergement cloud haute disponibilité mondiales (Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis) bénéficiant de protections DDoS et de sauvegardes redondantes.
         </p>
       </div>
 
       <!-- Section 4 -->
-      <div>
-        <h2 class="text-xl font-bold text-brand-navy mb-3">4. Protection des Données Personnelles & Confidentialité</h2>
-        <p>
+      <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-bold text-[#0C2340] mb-3">4. Protection des Données Personnelles & Confidentialité</h2>
+        <p class="text-[#2C3E50]">
           AYEGROUPE attache une importance primordiale à la protection de la vie privée de ses utilisateurs :
         </p>
-        <ul class="list-disc list-inside space-y-1.5 mt-2 text-slate-600">
-          <li><strong>Collecte minimale</strong> : Les informations transmises via le formulaire de contact (nom, adresse email, téléphone, description de projet) sont exclusivement utilisées pour répondre à votre demande commerciale ou technique.</li>
-          <li><strong>Non-cession</strong> : Aucune donnée personnelle n'est vendue, louée ou cédée à des tiers à des fins publicitaires.</li>
-          <li><strong>Sécurité des échanges</strong> : L'ensemble du trafic transite par des protocoles chiffrés SSL/TLS (HTTPS).</li>
-          <li><strong>Vos droits</strong> : Conformément aux réglementations sur la protection des données, vous disposez d'un droit d'accès, de rectification et de suppression de vos données en adressant un email à <code>contact@ayegroupe.com</code>.</li>
+        <ul class="list-disc list-inside space-y-2 mt-3 text-[#2C3E50]">
+          <li><strong class="text-[#0C2340]">Collecte minimale</strong> : Les informations transmises via le formulaire de contact (nom, adresse email, téléphone, description de projet) sont exclusivement utilisées pour répondre à votre demande commerciale ou technique.</li>
+          <li><strong class="text-[#0C2340]">Non-cession</strong> : Aucune donnée personnelle n'est vendue, louée ou cédée à des tiers à des fins publicitaires.</li>
+          <li><strong class="text-[#0C2340]">Sécurité des échanges</strong> : L'ensemble du trafic transite par des protocoles chiffrés SSL/TLS (HTTPS).</li>
+          <li><strong class="text-[#0C2340]">Vos droits</strong> : Conformément aux réglementations sur la protection des données, vous disposez d'un droit d'accès, de rectification et de suppression de vos données en adressant un email à <code class="text-[#0C2340] bg-slate-100 px-1.5 py-0.5 rounded font-mono text-xs">contact@ayegroupe.com</code>.</li>
         </ul>
       </div>
 
       <!-- Section 5 -->
-      <div>
-        <h2 class="text-xl font-bold text-brand-navy mb-3">5. Propriété Intellectuelle</h2>
-        <p>
+      <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+        <h2 class="text-xl font-bold text-[#0C2340] mb-3">5. Propriété Intellectuelle</h2>
+        <p class="text-[#2C3E50]">
           L'ensemble des contenus de ce site (textes, logotypes, charte graphique, mise en page, architecture, illustrations) sont la propriété exclusive d'AYEGROUPE. Toute reproduction, diffusion ou utilisation sans accord préalable écrit est formellement prohibée. Les marques et dénominations commerciales <em>AyePrep</em> et <em>AyeJob</em> sont des actifs technologiques exploités par le groupe.
         </p>
       </div>

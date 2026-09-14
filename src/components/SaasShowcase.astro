@@ -21,9 +21,7 @@ const saasProducts = [
       ? ['Simulateurs d\'épreuves officielles', 'Correction IA Compréhension & Expression', 'Diagnostic NCLC gratuit', 'Paiements Stripe & Mobile Money (FedaPay)']
       : ['Official exam mock simulations', 'AI oral & written evaluations', 'Free CLB score diagnostic', 'Global Stripe & Mobile Money checkout'],
     badge: lang === 'fr' ? 'SaaS Actif · Monétisé' : 'Live SaaS · Monetized',
-    badgeColor: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-    accentColor: 'from-blue-600/20 to-emerald-600/10',
-    borderColor: 'hover:border-emerald-500/50',
+    badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     stat: '10 000+',
     statLabel: lang === 'fr' ? 'Candidats accompagnés' : 'Candidates assisted',
   },
@@ -37,13 +35,11 @@ const saasProducts = [
     description: lang === 'fr'
       ? 'Portail carrières et recrutement alimenté par le matching intelligent de compétences, la gestion simplifiée des candidatures et des flux optimisés pour recruteurs et talents.'
       : 'Recruitment and careers portal powered by smart skill matching, streamlined application pipelines, and high-efficiency workflows for modern enterprises.',
-    features: lang === 'fr'
+    features: lang === 'fr' 
       ? ['Matching de profils qualifiés', 'Alertes opportunités en temps réel', 'Espaces candidats & recruteurs dédiés', 'Architecture Cloud ultra-rapide']
       : ['Qualified candidate matching', 'Real-time job opportunity alerts', 'Dedicated recruiter dashboards', 'High-performance cloud architecture'],
     badge: lang === 'fr' ? 'SaaS Actif · En Ligne' : 'Live SaaS · Active',
-    badgeColor: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-    accentColor: 'from-blue-600/20 to-indigo-600/10',
-    borderColor: 'hover:border-blue-500/50',
+    badgeColor: 'bg-slate-100 text-[#0C2340] border-slate-200',
     stat: '98%',
     statLabel: lang === 'fr' ? 'Satisfaction entreprises' : 'Employer satisfaction',
   }
@@ -53,45 +49,42 @@ const saasProducts = [
 <div class="space-y-12">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
     {saasProducts.map((product) => (
-      <div class={`relative rounded-3xl bg-slate-900/90 border border-slate-700/70 ${product.borderColor} p-8 lg:p-10 backdrop-blur-xl shadow-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group overflow-hidden`}>
+      <div class="relative rounded-2xl bg-white border border-slate-200 hover:border-[#00A859]/60 p-8 lg:p-9 shadow-xs hover:shadow-md transition-all duration-200 hover:-translate-y-1 flex flex-col justify-between group overflow-hidden">
         
-        <!-- Ambient radial glow -->
-        <div class={`absolute top-0 right-0 -mr-24 -mt-24 w-80 h-80 rounded-full bg-gradient-to-br ${product.accentColor} blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
-
         <div>
           <!-- Header of card -->
           <div class="flex items-center justify-between gap-4 mb-6">
-            <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-mono border ${product.badgeColor}`}>
-              <span class="w-2 h-2 rounded-full bg-current animate-pulse"></span>
+            <span class={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider font-mono border ${product.badgeColor}`}>
+              <span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
               {product.badge}
             </span>
 
             <div class="text-right">
-              <span class="block text-2xl font-extrabold font-mono text-white">{product.stat}</span>
-              <span class="block text-[11px] text-slate-400 uppercase tracking-wider">{product.statLabel}</span>
+              <span class="block text-2xl font-bold font-mono text-[#00A859]">{product.stat}</span>
+              <span class="block text-[11px] text-slate-500 uppercase tracking-wider font-semibold">{product.statLabel}</span>
             </div>
           </div>
 
           <!-- Product Name & Tagline -->
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-brand-blue-light transition-colors">
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-[#0C2340] tracking-tight group-hover:text-[#00A859] transition-colors">
             {product.name}
           </h3>
-          <p class="text-brand-gold font-semibold text-sm sm:text-base mt-1 mb-4">
+          <p class="text-[#2C3E50] text-sm sm:text-base mt-1.5 mb-4 leading-relaxed">
             {product.tagline}
           </p>
 
           <!-- Mockup browser preview container -->
-          <div class="my-6 rounded-2xl bg-slate-950/90 border border-white/10 p-4 shadow-inner">
-            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3 text-xs text-slate-400">
+          <div class="my-6 rounded-xl bg-slate-50 border border-slate-200/90 p-4 shadow-inner">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-3 text-xs text-slate-500">
               <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
               </div>
-              <span class="font-mono text-[11px] text-slate-400 truncate max-w-[200px]">{product.domain}</span>
-              <span class="text-emerald-400 font-mono text-[10px]">SSL · Active</span>
+              <span class="font-mono text-[11px] text-slate-600 truncate max-w-[200px]">{product.domain}</span>
+              <span class="text-[#00A859] font-mono text-[10px] font-bold">SSL · ACTIF</span>
             </div>
-            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p class="text-xs text-[#2C3E50] leading-relaxed">
               {product.description}
             </p>
           </div>
@@ -99,35 +92,35 @@ const saasProducts = [
           <!-- Feature highlights -->
           <ul class="space-y-2.5 mb-8">
             {product.features.map((feat) => (
-              <li class="flex items-center gap-2.5 text-xs sm:text-sm text-slate-300">
-                <svg class="w-4 h-4 text-brand-blue-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <li class="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700">
+                <svg class="w-4 h-4 text-[#00A859] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span>{feat}</span>
+                <span class="font-medium">{feat}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <!-- External Link CTA -->
-        <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
           <a
             href={product.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-sm shadow-lg shadow-brand-blue/30 transition-all duration-200 group/btn"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-150 hover:-translate-y-0.5 group/btn"
           >
-            <span>{lang === 'fr' ? `Visiter ${product.domain}` : `Visit ${product.domain}`}</span>
-            <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            <span>{lang === 'fr' ? `Accéder à ${product.domain}` : `Access ${product.domain}`}</span>
+            <svg class="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
             </svg>
           </a>
 
-          <span class="text-xs text-slate-400 flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+          <span class="text-xs text-slate-500 flex items-center gap-1.5 font-medium">
+            <svg class="w-3.5 h-3.5 text-[#00A859]" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
             </svg>
-            {lang === 'fr' ? 'Lien externe sécurisé' : 'Secure external redirection'}
+            {lang === 'fr' ? 'Plateforme certifiée en production' : 'Certified live platform'}
           </span>
         </div>
 
@@ -137,33 +130,33 @@ const saasProducts = [
 
   <!-- Custom SaaS Conversion Banner -->
   {showCta && (
-    <div class="rounded-3xl bg-gradient-to-r from-brand-navy via-brand-navy-light to-brand-navy border border-brand-blue/30 p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
+    <div class="rounded-2xl bg-white border border-slate-200 p-8 sm:p-12 text-center relative overflow-hidden shadow-sm">
       <div class="max-w-3xl mx-auto relative z-10 space-y-4">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-gold/10 text-brand-gold border border-brand-gold/30">
-          🚀 {lang === 'fr' ? 'Ingénierie Produit sur mesure' : 'Custom Product Engineering'}
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-[#0C2340] border border-slate-200">
+          {lang === 'fr' ? 'Ingénierie Produit & Systèmes Scalables' : 'Product Engineering & Scalable Systems'}
         </span>
-        <h3 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+        <h3 class="text-2xl sm:text-4xl font-extrabold text-[#0C2340] tracking-tight">
           {lang === 'fr' 
-            ? 'Vous souhaitez créer votre propre solution logicielle ou SaaS ?' 
-            : 'Looking to turn your proprietary idea into a monetized SaaS?'}
+            ? 'Vous souhaitez développer votre propre solution logicielle ou SaaS ?' 
+            : 'Looking to build your proprietary software or SaaS platform?'}
         </h3>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+        <p class="text-[#2C3E50] text-sm sm:text-base leading-relaxed">
           {lang === 'fr'
-            ? 'AYEGROUPE ne se contente pas de coder : nous concevons, développons, testons et mettons en production des applications web complètes, scalables et monétisables pour nos clients comme pour nous-mêmes.'
-            : 'AYEGROUPE goes beyond simple coding: we architect, engineer, stress-test, and deploy high-converting, scalable, and monetized web applications.'}
+            ? 'AYEGROUPE conçoit, développe et maintient en conditions opérationnelles des architectures web complètes, scalables et sécurisées pour les entreprises et institutions.'
+            : 'AYEGROUPE architects, engineers, and maintains high-availability, secure, and scalable web platforms for modern enterprises.'}
         </p>
         <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
           <a
             href={`/${lang}/contact`}
-            class="px-8 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-gold-dark text-slate-950 font-bold text-sm shadow-xl shadow-brand-gold/25 transition-all duration-200 hover:-translate-y-0.5"
+            class="px-7 py-3.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
           >
-            {lang === 'fr' ? 'Discuter de votre projet SaaS' : 'Discuss your SaaS project'}
+            {lang === 'fr' ? 'Cadrer votre projet logiciel' : 'Scope your software project'}
           </a>
           <a
             href={`/${lang}/services-it`}
-            class="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 transition-all duration-200"
+            class="px-7 py-3 rounded-full bg-white hover:bg-[#0C2340] text-[#0C2340] hover:text-white font-bold text-xs uppercase tracking-wider border-2 border-[#0C2340] transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
           >
-            {lang === 'fr' ? 'Découvrir nos services d\'ingénierie' : 'Explore engineering services'}
+            {lang === 'fr' ? 'Consulter le catalogue IT' : 'View IT services catalog'}
           </a>
         </div>
       </div>

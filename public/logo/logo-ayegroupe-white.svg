@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 70" fill="none">
+  <defs>
+    <linearGradient id="logoSkyGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+    <linearGradient id="logoGreenFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00A859" />
+      <stop offset="100%" stop-color="#008F4C" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon Symbol (A) -->
+  <g transform="translate(10, 8)">
+    <rect width="54" height="54" rx="14" fill="#142C4C" stroke="#1E3E68" stroke-width="1.2" />
+    <path d="M27 9 L12 43 H20 L27 27 L34 43 H42 L27 9 Z" fill="url(#logoSkyGradWhite)" />
+    <path d="M27 18 L20 37 H34 L27 18 Z" fill="#142C4C" />
+    <path d="M27 9 L34 43 H42 L27 9 Z" fill="#07172B" opacity="0.3" />
+    <path d="M15 34 H39 V37 H15 Z" fill="#00A859" rx="1.5" />
+    <path d="M25 34 H29 V37 H25 Z" fill="#38BDF8" />
+  </g>
+
+  <!-- Typography -->
+  <text x="78" y="42" fill="#FFFFFF" font-family="'DIN Next LT Pro', 'DIN Next', 'Barlow', system-ui, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em">AYE</text>
+  <text x="140" y="42" fill="#38BDF8" font-family="'DIN Next LT Pro', 'DIN Next', 'Barlow', system-ui, sans-serif" font-size="28" font-weight="600" letter-spacing="0.04em">GROUPE</text>
+  <text x="79" y="56" fill="#94A3B8" font-family="'DIN Next LT Pro', 'DIN Next', 'Barlow', system-ui, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.22em">INGÉNIERIE · COMMERCE · LOGISTIQUE</text>
+</svg>

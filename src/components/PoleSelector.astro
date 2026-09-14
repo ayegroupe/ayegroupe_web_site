@@ -19,9 +19,8 @@ const poles = [
     link: `/${lang}/services-it`,
     linkText: lang === 'fr' ? 'Explorer les services IT' : 'Explore IT Services',
     badge: 'Tech & Innovation',
-    colorTheme: 'blue',
-    iconBg: 'bg-brand-blue/15 text-brand-blue-light border-brand-blue/30',
-    cardBorder: 'hover:border-brand-blue/60',
+    iconBg: 'bg-emerald-50 text-[#00A859] border-emerald-200',
+    cardBorder: 'hover:border-[#00A859]',
   },
   {
     id: 'togo',
@@ -36,9 +35,8 @@ const poles = [
     link: `/${lang}/togo`,
     linkText: lang === 'fr' ? 'Découvrir le Pôle Togo' : 'Discover Togo Hub',
     badge: 'Opérations & Négoce',
-    colorTheme: 'gold',
-    iconBg: 'bg-brand-gold/15 text-brand-gold-light border-brand-gold/30',
-    cardBorder: 'hover:border-brand-gold/60',
+    iconBg: 'bg-slate-100 text-[#0C2340] border-slate-200',
+    cardBorder: 'hover:border-[#0C2340]',
   },
   {
     id: 'saas',
@@ -53,45 +51,44 @@ const poles = [
     link: `/${lang}/saas`,
     linkText: lang === 'fr' ? 'Voir nos solutions SaaS' : 'View our SaaS portfolio',
     badge: 'Produits en Ligne',
-    colorTheme: 'emerald',
-    iconBg: 'bg-brand-emerald/15 text-emerald-400 border-brand-emerald/30',
-    cardBorder: 'hover:border-brand-emerald/60',
+    iconBg: 'bg-emerald-50 text-[#00A859] border-emerald-200',
+    cardBorder: 'hover:border-[#00A859]',
   }
 ];
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
   {poles.map((pole) => (
-    <div class={`rounded-3xl bg-slate-900/80 border border-slate-800 ${pole.cardBorder} p-8 flex flex-col justify-between backdrop-blur-xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl group`}>
+    <div class={`rounded-2xl bg-white border border-slate-200 ${pole.cardBorder} p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200 hover:-translate-y-1 group`}>
       <div>
         <!-- Badge & Scope -->
         <div class="flex items-center justify-between gap-2 mb-6">
-          <span class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border font-mono ${pole.iconBg}`}>
+          <span class={`inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider border font-mono ${pole.iconBg}`}>
             {pole.badge}
           </span>
-          <span class="text-[11px] text-slate-400 font-medium">
+          <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">
             {pole.scope}
           </span>
         </div>
 
         <!-- Title -->
-        <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-3 group-hover:text-brand-blue-light transition-colors">
+        <h3 class="text-xl sm:text-2xl font-bold text-[#0C2340] tracking-tight mb-3 group-hover:text-[#00A859] transition-colors">
           {pole.title}
         </h3>
 
         <!-- Description -->
-        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+        <p class="text-[#2C3E50] text-sm leading-relaxed mb-6">
           {pole.description}
         </p>
 
         <!-- Highlights List -->
-        <ul class="space-y-2.5 mb-8 border-t border-slate-800/80 pt-6">
+        <ul class="space-y-2.5 mb-8 border-t border-slate-100 pt-6">
           {pole.highlights.map((item) => (
-            <li class="flex items-start gap-2.5 text-xs text-slate-300">
-              <svg class="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <li class="flex items-start gap-2.5 text-xs text-slate-700">
+              <svg class="w-4 h-4 text-[#00A859] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
               </svg>
-              <span>{item}</span>
+              <span class="font-medium">{item}</span>
             </li>
           ))}
         </ul>
@@ -100,11 +97,11 @@ const poles = [
       <!-- Action Link -->
       <a
         href={pole.link}
-        class="inline-flex items-center justify-between w-full px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold text-sm border border-white/10 group-hover:border-white/25 transition-all duration-200"
+        class="inline-flex items-center justify-between w-full px-6 py-3.5 rounded-full bg-slate-100 hover:bg-[#00A859] hover:text-white text-[#0C2340] font-bold text-xs uppercase tracking-wider transition-all duration-150 group-hover:bg-[#00A859] group-hover:text-white"
       >
         <span>{pole.linkText}</span>
-        <svg class="w-4 h-4 text-brand-blue-light group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </a>
     </div>

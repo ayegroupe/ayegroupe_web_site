@@ -6,74 +6,75 @@ import ContactForm from '../../components/ContactForm.astro';
 import LegalAccordion from '../../components/LegalAccordion.astro';
 
 const metrics = [
-  { value: '2', label: 'Pôles d\'excellence', sub: 'IT Global & Hub Togo' },
-  { value: '2', label: 'Produits SaaS en ligne', sub: 'AyePrep & AyeJob' },
-  { value: '38', label: 'Activités certifiées', sub: 'Nomenclature officielle' },
-  { value: '100%', label: 'Disponibilité & Support', sub: 'Lomé & Remote mondial' },
+  { value: '02', label: 'Pôles d\'Excellence', sub: 'IT Global & Hub Togo' },
+  { value: '02', label: 'Produits SaaS en Ligne', sub: 'AyePrep & AyeJob' },
+  { value: '38', label: 'Activités Habilitées', sub: 'Nomenclature officielle' },
+  { value: '24/7', label: 'Disponibilité & Support', sub: 'Lomé & Remote international' },
 ];
 ---
 
 <BaseLayout
-  title="Ingénierie Logicielle, Négoce & Logistique"
-  description="AYEGROUPE conjugue l'ingénierie logicielle internationale de pointe et la puissance logistique et commerciale locale au Togo."
+  title="Ingénierie Logicielle, Négoce & Logistique Internationale"
+  description="AYEGROUPE conjugue le développement logiciel d'entreprise à l'échelle internationale et la puissance logistique et commerciale de son hub à Lomé, Togo."
   lang="fr"
   canonicalPath="/fr"
 >
   <!-- Hero Section -->
-  <section class="relative bg-brand-navy overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32">
-    <!-- Ambient mesh gradients -->
-    <div class="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none"></div>
-    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-brand-blue/30 blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-brand-gold/20 blur-3xl pointer-events-none"></div>
+  <section class="relative bg-gradient-to-b from-[#F4F6F9] via-white to-white overflow-hidden pt-16 pb-24 lg:pt-24 lg:pb-36 border-b border-slate-200/80">
+    <!-- Ambient Technical Grid -->
+    <div class="absolute inset-0 bg-grid-sky opacity-40 pointer-events-none"></div>
+    
+    <!-- Subtle Forex Glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-emerald-100/30 rounded-full blur-[130px] pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto text-center space-y-8">
         
-        <!-- Status Pill -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200">
-          <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
-          <span>Entreprise Individuelle · Double Pôle d'Expertise</span>
+        <!-- Status Pill (Forex.com Live Indicator Style) -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-[11px] font-bold uppercase tracking-wider text-[#0C2340]">
+          <span class="w-2 h-2 rounded-full bg-[#00A859] animate-pulse"></span>
+          <span>Entreprise Individuelle · Double Pôle d'Expertise Stratégique</span>
         </div>
 
         <!-- Main H1 Title -->
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
-          L'Excellence <span class="text-gradient-tech">Technologique</span> & la Puissance <span class="text-gradient-gold">Logistique</span>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0C2340] leading-[1.08]">
+          L'Excellence <span class="text-gradient-tech">Technologique</span> & la Puissance <span class="text-[#0C2340]">Logistique</span>
         </h1>
 
         <!-- Subtitle / Value proposition -->
-        <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
-          <strong class="text-white font-semibold">AYEGROUPE</strong> propulse vos projets grâce à une synergie unique : le développement de solutions logicielles sur mesure à l'échelle internationale et des opérations physiques de référence au Togo (Négoce, Fourniture IT et Logistique).
+        <p class="text-base sm:text-lg text-[#2C3E50] leading-relaxed max-w-3xl mx-auto font-normal">
+          <strong class="text-[#0C2340] font-semibold">AYEGROUPE</strong> orchestre une synergie d'affaires éprouvée : la conception et l'exploitation de solutions logicielles de pointe à l'échelle internationale et des opérations physiques de référence au Togo (Négoce, Fourniture IT et Logistique d'entreprise).
         </p>
 
-        <!-- CTAs -->
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <!-- CTAs - Forex.com Pill Action Buttons -->
+        <div class="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="/fr/services-it"
-            class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-sm shadow-xl shadow-brand-blue/30 transition-all duration-200 hover:-translate-y-0.5"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center"
           >
             Découvrir le Pôle IT & Logiciel
           </a>
           <a
             href="/fr/togo"
-            class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-gold hover:bg-brand-gold-dark text-slate-950 font-bold text-sm shadow-xl shadow-brand-gold/25 transition-all duration-200 hover:-translate-y-0.5"
+            class="w-full sm:w-auto px-8 py-3 rounded-full bg-white hover:bg-[#0C2340] text-[#0C2340] hover:text-white font-bold text-xs uppercase tracking-wider border-2 border-[#0C2340] transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center"
           >
             Explorer le Pôle Togo & Logistique
           </a>
           <a
             href="/fr/saas"
-            class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/20 transition-all duration-200"
+            class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-[#0C2340] font-bold text-xs uppercase tracking-wider transition-all duration-150 hover:-translate-y-0.5 text-center"
           >
             Nos SaaS en ligne &rarr;
           </a>
         </div>
 
-        <!-- Metrics ribbon -->
-        <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-white/10 mt-12">
+        <!-- Metrics ribbon (Forex.com High Precision Trading Metric Style) -->
+        <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-slate-200 mt-12">
           {metrics.map((m) => (
-            <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 text-center">
-              <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white mb-1">{m.value}</div>
-              <div class="text-xs sm:text-sm font-bold text-brand-gold">{m.label}</div>
-              <div class="text-[11px] text-slate-400 mt-0.5">{m.sub}</div>
+            <div class="p-5 rounded-2xl bg-white border border-slate-200 text-center shadow-xs hover:border-[#00A859]/50 hover:shadow-sm transition-all">
+              <div class="text-3xl sm:text-4xl font-bold font-mono text-[#00A859] mb-1 tracking-tight">{m.value}</div>
+              <div class="text-xs font-bold uppercase tracking-wider text-[#0C2340]">{m.label}</div>
+              <div class="text-[11px] text-slate-500 font-medium mt-0.5">{m.sub}</div>
             </div>
           ))}
         </div>
@@ -83,18 +84,18 @@ const metrics = [
   </section>
 
   <!-- Section Pôles d'activité -->
-  <section class="py-20 lg:py-28 bg-brand-surface relative">
+  <section class="py-20 lg:py-28 bg-white relative border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <span class="text-xs font-bold text-brand-blue uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3.5">
+        <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-[#0C2340] border border-slate-200">
           Architecture du Groupe
         </span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-navy tracking-tight">
-          Deux Marchés Distincts, Une Même Rigueur
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-[#0C2340] tracking-tight">
+          Deux Pôles Stratégiques, Une Même Rigueur
         </h2>
-        <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
-          Nous séparons nettement nos messages pour répondre avec une précision chirurgicale aux impératifs de nos deux publics cibles.
+        <p class="text-[#2C3E50] text-base sm:text-lg leading-relaxed">
+          Nous séparons nos messages pour répondre avec une précision chirurgicale aux impératifs respectifs de nos partenaires mondiaux et régionaux.
         </p>
       </div>
 
@@ -104,19 +105,19 @@ const metrics = [
   </section>
 
   <!-- Section SaaS Vitrine (AyePrep & AyeJob) -->
-  <section class="py-20 lg:py-28 bg-brand-navy relative overflow-hidden">
-    <div class="absolute inset-0 bg-grid-dark opacity-20 pointer-events-none"></div>
+  <section class="py-20 lg:py-28 bg-[#F4F6F9] relative overflow-hidden border-b border-slate-200/80">
+    <div class="absolute inset-0 bg-grid-sky opacity-20 pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3.5">
+        <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-[#00A859] border border-emerald-200">
           Preuve de Compétence Technique
         </span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-[#0C2340] tracking-tight">
           Nos Solutions SaaS en Production
         </h2>
-        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
-          Nous ne faisons pas que développer pour autrui : nous concevons, exploitons et monétisons nos propres plateformes haute performance.
+        <p class="text-[#2C3E50] text-base sm:text-lg leading-relaxed">
+          Nous ne faisons pas que développer pour autrui : nous architecturons, exploitons et monétisons nos propres plateformes haute performance.
         </p>
       </div>
 
@@ -125,13 +126,13 @@ const metrics = [
   </section>
 
   <!-- Section Légale & Activités déclarées -->
-  <section class="py-16 lg:py-20 bg-slate-950 text-white relative">
+  <section class="py-16 lg:py-24 bg-white text-[#0C2340] relative border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mb-8 space-y-2">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0C2340] tracking-tight">
           Transparence & Cadre Légal AYEGROUPE
         </h2>
-        <p class="text-slate-400 text-sm leading-relaxed">
+        <p class="text-slate-600 text-sm leading-relaxed">
           Consultez le périmètre officiel des 38 activités d'ingénierie, de négoce et de logistique habilitées pour l'entreprise.
         </p>
       </div>
@@ -141,38 +142,38 @@ const metrics = [
   </section>
 
   <!-- Quick Contact Section -->
-  <section class="py-20 lg:py-28 bg-brand-surface relative">
+  <section class="py-20 lg:py-28 bg-[#F4F6F9] relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-5 space-y-6">
-          <span class="text-xs font-bold text-brand-gold uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+          <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-[#00A859] border border-emerald-200">
             Contact & Devis Rapide
           </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0C2340] tracking-tight">
             Prêt à Concrétiser Votre Projet avec AYEGROUPE ?
           </h2>
-          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p class="text-[#2C3E50] text-sm sm:text-base leading-relaxed">
             Que vous ayez besoin d'une équipe de développement logiciel remote, de fournitures pour vos bureaux à Lomé ou d'une solution de transport logistique, nous mettons notre expertise à votre service.
           </p>
 
-          <div class="space-y-4 pt-2">
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-              <div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center font-bold flex-shrink-0">
+          <div class="space-y-3.5 pt-2">
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-[#00A859] flex items-center justify-center font-bold text-xs flex-shrink-0">
                 IT
               </div>
               <div>
-                <h4 class="text-sm font-bold text-brand-navy">Ingénierie & Consulting International</h4>
+                <h4 class="text-sm font-bold text-[#0C2340]">Ingénierie & Consulting International</h4>
                 <p class="text-xs text-slate-500 mt-0.5">Accompagnement agile, architecture web & SaaS sur mesure.</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-              <div class="w-10 h-10 rounded-xl bg-amber-50 text-brand-gold-dark flex items-center justify-center font-bold flex-shrink-0">
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-[#0284C7] flex items-center justify-center font-bold text-xs flex-shrink-0">
                 TG
               </div>
               <div>
-                <h4 class="text-sm font-bold text-brand-navy">Opérations & Logistique Togo</h4>
+                <h4 class="text-sm font-bold text-[#0C2340]">Opérations & Logistique Togo</h4>
                 <p class="text-xs text-slate-500 mt-0.5">Approvisionnement matériel, maintenance et gestion de flotte.</p>
               </div>
             </div>

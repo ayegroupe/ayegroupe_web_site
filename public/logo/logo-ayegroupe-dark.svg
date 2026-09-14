@@ -1,30 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 70" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 70" fill="none">
   <defs>
-    <linearGradient id="logoBlueDark" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="logoSkyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#38BDF8" />
-      <stop offset="100%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#0284C7" />
     </linearGradient>
-    <linearGradient id="logoGoldDark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FCD34D" />
-      <stop offset="100%" stop-color="#F59E0B" />
+    <linearGradient id="logoDarkFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#0F172A" />
     </linearGradient>
   </defs>
   
   <!-- Icon Symbol (A) -->
   <g transform="translate(10, 8)">
-    <rect width="54" height="54" rx="14" fill="#0E223D" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1.5" />
-    <path d="M27 10 L12 44 H20 L27 27 L34 44 H42 L27 10 Z" fill="url(#logoBlueDark)" />
-    <path d="M27 19 L20 36 H34 L27 19 Z" fill="#0E223D" />
-    <path d="M15 35 Q27 30 39 35 L37 39 Q27 35 17 39 Z" fill="url(#logoGoldDark)" />
-    <circle cx="27" cy="26" r="2.8" fill="#FFFFFF" />
-    <circle cx="27" cy="26" r="1.5" fill="#2563EB" />
+    <rect width="54" height="54" rx="14" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1.2" />
+    <path d="M27 9 L12 43 H20 L27 27 L34 43 H42 L27 9 Z" fill="url(#logoSkyGrad)" />
+    <path d="M27 18 L20 37 H34 L27 18 Z" fill="#F0F9FF" />
+    <path d="M27 9 L34 43 H42 L27 9 Z" fill="url(#logoDarkFacet)" opacity="0.2" />
+    <path d="M15 34 H39 V37 H15 Z" fill="url(#logoDarkFacet)" rx="1.5" />
+    <path d="M25 34 H29 V37 H25 Z" fill="#38BDF8" />
   </g>
 
   <!-- Typography -->
-  <!-- AYE -->
-  <text x="76" y="42" fill="#FFFFFF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em">AYE</text>
-  <!-- GROUPE -->
-  <text x="136" y="42" fill="#60A5FA" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="28" font-weight="600" letter-spacing="0.04em">GROUPE</text>
-  <!-- Subtitle Baseline -->
-  <text x="78" y="56" fill="#94A3B8" font-family="'Inter', system-ui, sans-serif" font-size="9" font-weight="500" letter-spacing="0.18em">TECH &middot; COMMERCE &middot; LOGISTIQUE</text>
+  <!-- AYE in Deep Black -->
+  <text x="78" y="42" fill="#0F172A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.03em">AYE</text>
+  <!-- GROUPE in Bluesky -->
+  <text x="140" y="42" fill="#0284C7" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="28" font-weight="600" letter-spacing="0.04em">GROUPE</text>
+  <!-- Subtitle Baseline in Slate Charcoal -->
+  <text x="79" y="56" fill="#475569" font-family="'Inter', system-ui, sans-serif" font-size="8.5" font-weight="600" letter-spacing="0.22em">INGÉNIERIE · COMMERCE · LOGISTIQUE</text>
 </svg>

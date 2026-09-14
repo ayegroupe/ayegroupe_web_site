@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,71 +7,128 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', system-ui, sans-serif;
-    color: #0F172A;
-    background-color: #F8FAFC;
+    font-family: 'DIN Next LT Pro', 'DIN Next', 'DIN 2014', 'Barlow', 'Inter', system-ui, sans-serif;
+    color: #0C2340;
+    background-color: #FFFFFF;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #0C2340;
+    overflow-x: hidden;
+    font-family: 'DIN Next LT Pro', 'DIN Next', 'DIN 2014', 'Barlow', 'Inter', system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    letter-spacing: -0.02em;
+    font-family: 'DIN Next LT Pro', 'DIN Next', 'DIN 2014', 'Barlow', sans-serif;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    color: #0C2340;
+  }
+
+  p {
+    color: #2C3E50;
   }
 
   ::selection {
-    background-color: #2563EB;
+    background-color: #00A859;
     color: #FFFFFF;
   }
 }
 
 @layer utilities {
-  .bg-grid-pattern {
-    background-image: radial-gradient(rgba(37, 99, 235, 0.12) 1px, transparent 1px);
+  /* Forex.com Signature Action Buttons */
+  .btn-forex-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center;
+  }
+
+  .btn-forex-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0C2340] hover:bg-[#122744] text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:shadow-sm transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center;
+  }
+
+  .btn-forex-outline {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-white hover:bg-[#0C2340] text-[#0C2340] hover:text-white font-bold text-xs uppercase tracking-wider border-2 border-[#0C2340] transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center;
+  }
+
+  .btn-forex-outline-white {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-transparent hover:bg-white text-white hover:text-[#0C2340] font-bold text-xs uppercase tracking-wider border-2 border-white transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center;
+  }
+
+  .badge-forex {
+    @apply inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider;
+  }
+
+  .bg-grid-sky {
+    background-image: 
+      linear-gradient(to right, rgba(12, 35, 64, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(12, 35, 64, 0.04) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  .bg-grid-dots-light {
+    background-image: radial-gradient(rgba(0, 168, 89, 0.15) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
-  .bg-grid-dark {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
-
-  .glass-dark {
-    background: rgba(10, 25, 47, 0.75);
+  .glass-header {
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #E2E8F0;
   }
 
-  .glass-light {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(226, 232, 240, 0.8);
+  .glass-card-light {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+  }
+
+  .glass-card-light:hover {
+    border-color: #00A859;
+  }
+
+  .text-gradient-bluesky {
+    background: linear-gradient(135deg, #0C2340 0%, #0284C7 60%, #00A859 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-cobalt {
+    background: linear-gradient(135deg, #0C2340 0%, #0284C7 60%, #0284C7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-tech {
-    background: linear-gradient(135deg, #FFFFFF 20%, #93C5FD 70%, #38BDF8 100%);
+    background: linear-gradient(135deg, #0C2340 20%, #00A859 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #D97706 100%);
+    background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Clean Light */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A192F;
+  background: #F4F6F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E3A8A;
+  background: #CBD5E1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2563EB;
+  background: #94A3B8;
 }

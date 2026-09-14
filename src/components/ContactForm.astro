@@ -49,21 +49,21 @@ const labels = {
 const l = labels[lang];
 ---
 
-<div class="rounded-3xl bg-slate-900/90 border border-slate-700/80 p-8 sm:p-12 backdrop-blur-xl shadow-2xl">
+<div class="rounded-2xl bg-white border border-slate-200 p-8 sm:p-10 shadow-sm">
   <div class="mb-8">
-    <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+    <h3 class="text-2xl sm:text-3xl font-extrabold text-[#0C2340] tracking-tight">
       {l.title}
     </h3>
-    <p class="text-slate-400 text-sm sm:text-base mt-2">
+    <p class="text-[#2C3E50] text-sm mt-1.5 leading-relaxed">
       {l.subtitle}
     </p>
   </div>
 
-  <form id="ayegroupe-contact-form" class="space-y-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+  <form id="ayegroupe-contact-form" class="space-y-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <!-- Name -->
       <div>
-        <label for="contact-name" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+        <label for="contact-name" class="block text-[11px] font-bold text-[#0C2340] uppercase tracking-wider mb-2">
           {l.name}
         </label>
         <input
@@ -71,14 +71,14 @@ const l = labels[lang];
           id="contact-name"
           name="name"
           required
-          class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-sm"
+          class="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 text-[#0C2340] placeholder-slate-400 focus:outline-none focus:border-[#00A859] focus:ring-2 focus:ring-[#00A859]/20 transition-all text-xs"
           placeholder="Ex: Koffi Mensah / Entreprise SARL"
         />
       </div>
 
       <!-- Email -->
       <div>
-        <label for="contact-email" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+        <label for="contact-email" class="block text-[11px] font-bold text-[#0C2340] uppercase tracking-wider mb-2">
           {l.email}
         </label>
         <input
@@ -86,37 +86,37 @@ const l = labels[lang];
           id="contact-email"
           name="email"
           required
-          class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-sm"
+          class="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 text-[#0C2340] placeholder-slate-400 focus:outline-none focus:border-[#00A859] focus:ring-2 focus:ring-[#00A859]/20 transition-all text-xs"
           placeholder="contact@votre-entreprise.com"
         />
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <!-- Phone / WhatsApp -->
       <div>
-        <label for="contact-phone" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+        <label for="contact-phone" class="block text-[11px] font-bold text-[#0C2340] uppercase tracking-wider mb-2">
           {l.phone}
         </label>
         <input
           type="tel"
           id="contact-phone"
           name="phone"
-          class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-sm"
+          class="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 text-[#0C2340] placeholder-slate-400 focus:outline-none focus:border-[#00A859] focus:ring-2 focus:ring-[#00A859]/20 transition-all text-xs"
           placeholder="+228 90 00 00 00"
         />
       </div>
 
       <!-- Pole Division Selector -->
       <div>
-        <label for="contact-pole" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+        <label for="contact-pole" class="block text-[11px] font-bold text-[#0C2340] uppercase tracking-wider mb-2">
           {l.pole}
         </label>
         <select
           id="contact-pole"
           name="pole"
           required
-          class="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-white/10 text-white focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-sm"
+          class="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 text-[#0C2340] focus:outline-none focus:border-[#00A859] focus:ring-2 focus:ring-[#00A859]/20 transition-all text-xs"
         >
           <option value="" disabled selected>{l.selectPole}</option>
           <option value="it">{l.poleIt}</option>
@@ -129,7 +129,7 @@ const l = labels[lang];
 
     <!-- Message -->
     <div>
-      <label for="contact-message" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+      <label for="contact-message" class="block text-[11px] font-bold text-[#0C2340] uppercase tracking-wider mb-2">
         {l.message}
       </label>
       <textarea
@@ -137,7 +137,7 @@ const l = labels[lang];
         name="message"
         rows="4"
         required
-        class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all text-sm resize-y"
+        class="w-full px-4 py-3 rounded-lg bg-white border border-slate-300 text-[#0C2340] placeholder-slate-400 focus:outline-none focus:border-[#00A859] focus:ring-2 focus:ring-[#00A859]/20 transition-all text-xs resize-y"
         placeholder={l.placeholderMsg}
       ></textarea>
     </div>
@@ -147,17 +147,17 @@ const l = labels[lang];
       <button
         type="submit"
         id="contact-submit-btn"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-sm shadow-xl shadow-brand-blue/30 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
       >
         <span>{l.submit}</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </button>
     </div>
 
     <!-- Feedback Message Box -->
-    <div id="contact-feedback" class="hidden p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm">
+    <div id="contact-feedback" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-[#00A859] text-xs font-bold">
       {l.success}
     </div>
   </form>
@@ -174,7 +174,6 @@ const l = labels[lang];
       submitBtn.setAttribute('disabled', 'true');
       submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
 
-      // Simulate instantaneous UX feedback (can be wired to Formspree or custom API)
       setTimeout(() => {
         feedback.classList.remove('hidden');
         form.reset();
