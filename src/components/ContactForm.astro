@@ -61,7 +61,7 @@ const l = labels[lang];
     </p>
   </div>
 
-  <form id="ayegroupe-contact-form" class="space-y-5">
+  <form id="ayegroupe-contact-form" class="space-y-5" data-lang={lang}>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <!-- Name -->
       <div>
@@ -168,7 +168,7 @@ const l = labels[lang];
   </form>
 </div>
 
-<script define:vars={{ lang }}>
+<script>
   const form = document.getElementById('ayegroupe-contact-form');
   const successBox = document.getElementById('contact-feedback-success');
   const errorBox = document.getElementById('contact-feedback-error');
@@ -192,7 +192,7 @@ const l = labels[lang];
           phone: formData.get('phone') || null,
           pole: formData.get('pole'),
           message: formData.get('message'),
-          lang,
+          lang: form.dataset.lang,
         });
 
         if (error) throw error;
