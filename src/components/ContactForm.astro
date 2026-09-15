@@ -23,6 +23,7 @@ const labels = {
     submit: 'Envoyer ma demande',
     sending: 'Envoi en cours...',
     success: 'Merci ! Votre message a été transmis avec succès. Nous reviendrons vers vous très rapidement.',
+    error: "Une erreur est survenue lors de l'envoi. Merci de réessayer ou de nous contacter par WhatsApp.",
     directOr: 'Ou contactez directement nos équipes :',
   },
   en: {
@@ -42,6 +43,7 @@ const labels = {
     submit: 'Submit Inquiry',
     sending: 'Submitting...',
     success: 'Thank you! Your message has been sent successfully. We will follow up with you promptly.',
+    error: 'Something went wrong while sending your message. Please try again or reach us on WhatsApp.',
     directOr: 'Or connect directly with our regional teams:',
   }
 };
@@ -157,29 +159,53 @@ const l = labels[lang];
     </div>
 
     <!-- Feedback Message Box -->
-    <div id="contact-feedback" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-[#00A859] text-xs font-bold">
+    <div id="contact-feedback-success" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-[#00A859] text-xs font-bold">
       {l.success}
+    </div>
+    <div id="contact-feedback-error" class="hidden p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-bold">
+      {l.error}
     </div>
   </form>
 </div>
 
-<script>
-  const form = document.getElementById('ayegroupe-contact-form') as HTMLFormElement | null;
-  const feedback = document.getElementById('contact-feedback');
+<script define:vars={{ lang }}>
+  const form = document.getElementById('ayegroupe-contact-form');
+  const successBox = document.getElementById('contact-feedback-success');
+  const errorBox = document.getElementById('contact-feedback-error');
   const submitBtn = document.getElementById('contact-submit-btn');
 
-  if (form && feedback && submitBtn) {
-    form.addEventListener('submit', (e) => {
+  if (form && successBox && errorBox && submitBtn) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      successBox.classList.add('hidden');
+      errorBox.classList.add('hidden');
       submitBtn.setAttribute('disabled', 'true');
       submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
 
-      setTimeout(() => {
-        feedback.classList.remove('hidden');
+      const formData = new FormData(form);
+
+      try {
+        const { supabase } = await import('../lib/supabase');
+        const { error } = await supabase.from('contact_submissions').insert({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone') || null,
+          pole: formData.get('pole'),
+          message: formData.get('message'),
+          lang,
+        });
+
+        if (error) throw error;
+
+        successBox.classList.remove('hidden');
         form.reset();
+      } catch (err) {
+        console.error('Contact form submission failed:', err);
+        errorBox.classList.remove('hidden');
+      } finally {
         submitBtn.removeAttribute('disabled');
         submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
-      }, 600);
+      }
     });
   }
 </script>
