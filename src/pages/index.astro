@@ -1,4 +1,15 @@
----
-// Redirect to default French locale
-return Astro.redirect('/fr');
----
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;url=/fr" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="/fr" />
+    <title>AYEGROUPE</title>
+    <script>window.location.replace('/fr' + window.location.search);</script>
+  </head>
+  <body>
+    <a href="/fr">Continuer vers ayegroupe.com/fr</a>
+  </body>
+</html>
+
