@@ -14,6 +14,8 @@ const divisions = [
       'Structured Cat6/Cat7 network cabling, server racks, and high-density Wi-Fi',
       'Business continuity, cloud migration, and managed IT services',
     ],
+    link: '/en/togo/it-bureautique',
+    cta: 'View IT equipment & services',
   },
   {
     id: 'logistique',
@@ -27,6 +29,8 @@ const divisions = [
       'High-velocity order fulfillment, picking, packing, and distribution',
       'Corporate 4x4, utility vans, and executive sedan rental with or without drivers',
     ],
+    link: '/en/togo/logistique',
+    cta: 'Discover our logistics solutions',
   },
   {
     id: 'import-export',
@@ -40,6 +44,8 @@ const divisions = [
       'Customs clearance advisory and single-window (GUCE) documentation handling',
       'End-to-end maritime (FCL/LCL) and air cargo shipment tracking',
     ],
+    link: '/en/togo/import-export',
+    cta: 'Explore international trading services',
   },
 ];
 ---
@@ -150,13 +156,19 @@ const divisions = [
             <div class="lg:col-span-5 flex flex-col justify-center items-center lg:items-end p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center lg:text-right space-y-4">
               <span class="text-xs text-slate-500 font-semibold">Immediate availability in Lomé and nationwide</span>
               <a
-                href="/en/contact"
-                class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-150 hover:-translate-y-0.5"
+                href={div.link}
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0C2340] hover:bg-[#00A859] text-white font-bold text-xs uppercase tracking-wider transition-all duration-150 hover:-translate-y-0.5"
               >
-                <span>Request Quotation</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span>Access Detailed Catalog</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                 </svg>
+              </a>
+              <a
+                href={`/en/contact?division=${div.id}`}
+                class="text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider hover:underline"
+              >
+                Request local quotation &rarr;
               </a>
             </div>
 

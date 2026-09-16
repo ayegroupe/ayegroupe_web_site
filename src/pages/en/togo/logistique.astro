@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: 'Freight Haulage & Inland Road Transport',
+    desc: 'Dependable and secure transport of commercial cargo connecting the Autonomous Port of Lomé, regional distribution warehouses, and end-customer sites across Togo and neighboring hinterland corridors.',
+    bullets: ['Fleet of tracked trucks and utility cargo vans with GPS monitoring', 'Port transfers and express deliveries across metropolitan Lomé', 'Scheduled transport routes to inland Togo, Burkina Faso, and Niger', 'Goods-in-transit insurance and comprehensive tracking waybills'],
+  },
+  {
+    title: 'Secure Warehousing & Inventory Management',
+    desc: 'Modern, ventilated storage facilities secured 24/7 to safeguard your merchandise, raw materials, or sensitive technology assets.',
+    bullets: ['Round-the-clock CCTV surveillance and professional on-site security guards', 'Digitized inventory tracking with FIFO (First-In, First-Out) control', 'Inbound quality inspections and periodic certified stock audits', 'Dedicated climate-controlled areas for sensitive technology hardware'],
+  },
+  {
+    title: 'Order Fulfillment, Kitting & Distribution',
+    desc: 'Outsource your order preparation workflow to gain operational speed: picking, packing, customized barcode labeling, and rapid dispatch.',
+    bullets: ['Custom kitting, secure parceling, and protective wrapping', 'Fast-track processing for B2B and institutional orders', 'Reverse logistics and return authorization management', 'Real-time delivery confirmation alerts via SMS & WhatsApp'],
+  },
+  {
+    title: 'Corporate Fleet Leasing & Vehicle Rental',
+    desc: 'Modern, well-maintained vehicles available for executive travel, team missions, airport VIP transfers, or operational logistics in Lomé.',
+    bullets: ['Rugged 4x4 SUVs for provincial and cross-border road missions', 'Executive sedans and premium SUVs for executives and visiting delegations', 'Cargo vans and utility trucks for freight and equipment transport', 'Flexible daily, monthly, or long-term leasing with or without driver'],
+  },
+  {
+    title: 'Commercial Facility Maintenance & Janitorial Care',
+    desc: 'Professional janitorial, sanitization, and facility upkeep services for corporate headquarters, banking agencies, and commercial offices.',
+    bullets: ['Daily or scheduled cleaning programs for corporate buildings', 'Floor sanitization, technical surface care, and window cleaning', 'Routine facilities maintenance (basic plumbing, electrical repairs)', 'Vetted, uniformed, and professionally trained maintenance personnel'],
+  },
+];
+---
+
+<BaseLayout
+  title="Logistics, Warehousing & Fleet Leasing in Lomé | AYEGROUPE"
+  description="Integrated logistics solutions in Togo: freight transport, 24/7 guarded warehousing, order fulfillment, and executive vehicle rentals with drivers."
+  lang="en"
+  canonicalPath="/en/togo/logistique"
+>
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-20 text-[#0C2340] relative overflow-hidden border-b border-slate-200/80">
+    <div class="absolute inset-0 bg-grid-sky opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl space-y-4">
+        <a href="/en/togo" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider">&larr; Back to Togo Hub</a>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0C2340]">
+          Logistics, Warehousing & Vehicle Fleet
+        </h1>
+        <p class="text-[#2C3E50] text-base sm:text-lg font-normal">
+          Streamline your supply chain in Togo with modern warehousing facilities, punctual freight forwarding, and tailored vehicle fleets.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((s) => (
+          <div class="rounded-2xl bg-white border border-slate-200 p-8 shadow-sm hover:border-[#00A859] hover:shadow-md transition-all flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-[#0C2340] mb-2">{s.title}</h3>
+              <p class="text-[#2C3E50] text-xs sm:text-sm mb-6 leading-relaxed">{s.desc}</p>
+              <ul class="space-y-2.5 border-t border-slate-100 pt-4 mb-6">
+                {s.bullets.map((b) => (
+                  <li class="flex items-start gap-2.5 text-xs text-slate-700">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#00A859] mt-1 flex-shrink-0"></span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a
+              href={`/en/contact?service=${encodeURIComponent(s.title)}`}
+              class="inline-flex items-center text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider transition-colors"
+            >
+              Request Quote &rarr;
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Vehicle rental highlight -->
+      <div class="mt-12 rounded-2xl bg-[#F4F6F9] text-[#0C2340] p-8 sm:p-12 border border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xs">
+        <div class="space-y-2 max-w-2xl">
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-[#00A859] border border-emerald-200 font-mono">Corporate Mobility Service</span>
+          <h3 class="text-2xl font-bold text-[#0C2340]">Need a utility cargo van or 4x4 in Lomé?</h3>
+          <p class="text-[#2C3E50] text-xs sm:text-sm leading-relaxed">
+            Available 7 days a week, with vetted professional chauffeurs or self-drive options for your enterprise missions in Togo.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3.5">
+          <a
+            href="https://wa.me/17788091060?text=Hello%20AYEGROUPE%2C%20I%20would%20like%20to%20reserve%20a%20vehicle%20in%20Lom%C3%A9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm flex items-center gap-2 transition-all"
+          >
+            <span>Reserve via WhatsApp</span>
+          </a>
+          <a
+            href="/en/contact?service=location-vehicule"
+            class="px-6 py-3 rounded-full bg-white hover:bg-[#0C2340] text-[#0C2340] hover:text-white font-bold text-xs uppercase tracking-wider border border-slate-300 transition-all"
+          >
+            Online Vehicle Request
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

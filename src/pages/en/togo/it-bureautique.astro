@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: 'Enterprise IT Hardware & Consumables Supply',
+    desc: 'Procurement, on-site delivery, and warranty support for desktop fleets, business laptops, tower and rack servers, multi-function printers, and original manufacturer consumables.',
+    bullets: ['HP, Dell, and Lenovo professional laptops and workstations', 'Tower servers and high-capacity storage arrays', 'Guaranteed OEM genuine toners, inks, and replacement cartridges', 'Structured recurring supply agreements for corporations'],
+  },
+  {
+    title: 'Executive Office Furniture & Workspace Design',
+    desc: 'Ergonomic interior outfitting for corporate headquarters, branches, and reception areas: executive desks, modular meeting tables, ergonomic seating, and reinforced filing cabinets.',
+    bullets: ['Certified ergonomic executive and task chairs', 'Presidential office suites and open-space collaborative desks', 'Fireproof archive cabinets, credenzas, and secure safes', 'Professional on-site delivery and assembly by certified technicians'],
+  },
+  {
+    title: 'Structured Cabling & Local Area Networks (LAN)',
+    desc: 'Turnkey network infrastructure engineering: raceway installation, Cat6/Cat7 structured cabling, server rack patch panels, and certified optical interconnects.',
+    bullets: ['Copper structured cabling and inter-building fiber optic backbones', 'Managed network switch, router, and firewall deployment', 'High-density enterprise Wi-Fi mesh access points', 'Connectivity audits, port labeling, and normalized network diagrams'],
+  },
+  {
+    title: 'Managed IT Maintenance, Cloud & IoT Solutions',
+    desc: 'On-demand and contracted technical assistance for enterprises in Lomé. Secure cloud data migrations, centralized backups, and intelligent IoT telemetry deployment.',
+    bullets: ['Preventive and corrective IT support and SLA maintenance contracts', 'Automated off-site cloud backups and baseline cybersecurity defense', 'Secure branch interconnectivity via encrypted VPN tunnels', 'IoT sensor arrays for facility environmental monitoring and telemetry'],
+  },
+];
+---
+
+<BaseLayout
+  title="IT Hardware & Office Equipment in Lomé | AYEGROUPE"
+  description="Procurement, installation, and maintenance of computer fleets, original consumables, executive furniture, and corporate LAN networks in Togo."
+  lang="en"
+  canonicalPath="/en/togo/it-bureautique"
+>
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-20 text-[#0C2340] relative overflow-hidden border-b border-slate-200/80">
+    <div class="absolute inset-0 bg-grid-sky opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl space-y-4">
+        <a href="/en/togo" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider">&larr; Back to Togo Hub</a>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0C2340]">
+          IT Hardware & Office Equipment in Togo
+        </h1>
+        <p class="text-[#2C3E50] text-base sm:text-lg font-normal">
+          Equip your organization with certified hardware, premium office interiors, and high-availability enterprise networks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {services.map((s) => (
+          <div class="rounded-2xl bg-white border border-slate-200 p-8 shadow-sm hover:border-[#00A859] hover:shadow-md transition-all">
+            <h3 class="text-xl font-bold text-[#0C2340] mb-2">{s.title}</h3>
+            <p class="text-[#2C3E50] text-xs sm:text-sm mb-6 leading-relaxed">{s.desc}</p>
+            <ul class="space-y-2.5 border-t border-slate-100 pt-4">
+              {s.bullets.map((b) => (
+                <li class="flex items-center gap-2.5 text-xs text-slate-700">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00A859] flex-shrink-0"></span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 p-8 rounded-2xl bg-[#F4F6F9] border border-slate-200 text-[#0C2340] text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+        <div>
+          <h3 class="text-xl font-bold text-[#0C2340]">Need a quote to equip your offices in Lomé?</h3>
+          <p class="text-[#2C3E50] text-xs sm:text-sm mt-1">Individual unit supplies or turnkey full-facility installations.</p>
+        </div>
+        <a
+          href="/en/contact?service=it-bureautique"
+          class="px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm whitespace-nowrap transition-all"
+        >
+          Request Immediate Quotation
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

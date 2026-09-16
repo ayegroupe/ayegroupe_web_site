@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const pillars = [
+  {
+    title: 'International Sourcing & Supplier Negotiation',
+    desc: 'Identification and vetting of certified manufacturing facilities in Europe, Asia, and the Americas to source commercial goods at the best price-to-quality ratio.',
+    bullets: ['Factory auditing and international compliance verification', 'Procurement term negotiation and production schedule monitoring', 'Pre-shipment inspection and quality assurance'],
+  },
+  {
+    title: 'Importation & Multimodal Freight Forwarding',
+    desc: 'Turnkey handling of ocean container shipments (FCL/LCL) and air cargo arriving at the Autonomous Port of Lomé (PAL) or Gnassingbé Eyadéma International Airport (AIGE).',
+    bullets: ['Incoterms management (FOB, CIF, DAP, DDP)', 'Real-time bill of lading and manifest tracking', 'Logistics coordination with global shipping lines and air carriers'],
+  },
+  {
+    title: 'Customs Facilitation & Port Clearance',
+    desc: 'Rigorous support in navigating Togolese statutory clearance procedures in full compliance with the Single Window for Foreign Trade (GUCE).',
+    bullets: ['Preparation and validation of trade documentation dossiers', 'Tariff optimization under the ECOWAS common external tariff', 'Rapid cargo release monitoring to prevent demurrage charges'],
+  },
+  {
+    title: 'Regional Commodities & Export Distribution',
+    desc: 'Structuring and exporting West African agro-industrial produce, raw commodities, and manufactured goods to global consumer markets.',
+    bullets: ['Packaging adhering to international phytosanitary standards', 'Traceability tagging and certificates of origin', 'Documentary collection and letters of credit handling'],
+  },
+];
+---
+
+<BaseLayout
+  title="General Trade & International Sourcing in Togo | AYEGROUPE"
+  description="International trade operations, factory sourcing, sea/air cargo transit, and single-window customs clearance in Lomé by AYEGROUPE."
+  lang="en"
+  canonicalPath="/en/togo/import-export"
+>
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-20 text-[#0C2340] relative overflow-hidden border-b border-slate-200/80">
+    <div class="absolute inset-0 bg-grid-sky opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl space-y-4">
+        <a href="/en/togo" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider">&larr; Back to Togo Hub</a>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0C2340]">
+          General Trade & International Sourcing
+        </h1>
+        <p class="text-[#2C3E50] text-base sm:text-lg font-normal">
+          Your global commercial gateway: we source, negotiate, transport, and clear your freight in Togo with absolute diligence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {pillars.map((p) => (
+          <div class="rounded-2xl bg-white border border-slate-200 p-8 shadow-sm hover:border-[#00A859] hover:shadow-md transition-all">
+            <h3 class="text-xl font-bold text-[#0C2340] mb-2">{p.title}</h3>
+            <p class="text-[#2C3E50] text-xs sm:text-sm mb-6 leading-relaxed">{p.desc}</p>
+            <ul class="space-y-2.5 border-t border-slate-100 pt-4">
+              {p.bullets.map((b) => (
+                <li class="flex items-center gap-2.5 text-xs text-slate-700">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#00A859] flex-shrink-0"></span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 p-8 rounded-2xl bg-[#F4F6F9] border border-slate-200 text-[#0C2340] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+        <div>
+          <h3 class="text-xl font-bold text-[#0C2340]">Have an import or sourcing requirement?</h3>
+          <p class="text-[#2C3E50] text-xs sm:text-sm mt-1">Speak directly with our international trade specialists.</p>
+        </div>
+        <a
+          href="/en/contact?service=import-export"
+          class="px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm whitespace-nowrap transition-all"
+        >
+          Contact Our Trading Desk
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
