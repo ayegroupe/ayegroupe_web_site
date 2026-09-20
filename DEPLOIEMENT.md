@@ -44,8 +44,8 @@ Référence des paramètres mis en place. À garder à jour si un élément chan
 
 **Notifications email (Resend)**
 - Clé API stockée chiffrée dans le Vault Supabase sous le nom `resend_api_key` (jamais dans le code).
-- Expéditeur actuel : `onboarding@resend.dev` — tant que le domaine n'est pas vérifié chez Resend, les emails **ne peuvent partir que vers `ayegroupe@ayegroupe.com`** (l'adresse propriétaire du compte Resend), et risquent d'arriver en indésirables.
-- Pour envoyer depuis `contact@ayegroupe.com` vers n'importe quelle adresse : vérifier le domaine sur resend.com → Domains → Add Domain, puis ajouter les 3 enregistrements DNS fournis dans Cloudflare.
+- Expéditeur : `contact@ayegroupe.com`, destinataire : `ayegroupe@ayegroupe.com`, `reply_to` = l'email du prospect (répondre à l'email répond directement au client).
+- Domaine `ayegroupe.com` déclaré chez Resend. Enregistrements DNS en place dans Cloudflare : DKIM (`resend._domainkey`), MX + SPF (`send`, en CNAME vers l'infra Resend), DMARC (`_dmarc`, politique `p=none`).
 - Diagnostic en cas de non-réception : `select id, status_code, content, created from net._http_response order by created desc limit 10;` (200 = accepté par Resend).
 
 ## 4. DNS (Cloudflare)

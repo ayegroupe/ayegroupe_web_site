@@ -35,7 +35,10 @@ begin
       'Authorization', 'Bearer ' || api_key
     ),
     body := jsonb_build_object(
-      'from', 'AYEGROUPE <onboarding@resend.dev>',
+      -- Necessite que le domaine soit ajoute chez Resend. Sinon, repli sur
+      -- 'AYEGROUPE <onboarding@resend.dev>' (envoi limite a l'adresse
+      -- proprietaire du compte Resend).
+      'from', 'AYEGROUPE <contact@ayegroupe.com>',
       'to', jsonb_build_array('CHANGER@exemple.com'),
       'reply_to', new.email,
       'subject', 'Nouvelle demande AYEGROUPE - ' || new.name,
