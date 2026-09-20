@@ -17,6 +17,10 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      // La racine est une page de redirection en noindex : l'inclure ferait
+      // remonter une erreur "URL soumise marquée noindex" dans Search Console.
+      filter: (page) => page !== 'https://ayegroupe.com/',
+    }),
   ],
 });

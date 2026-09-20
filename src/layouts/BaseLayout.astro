@@ -94,7 +94,13 @@ const organizationSchema = {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={`${title} | AYEGROUPE`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://ayegroupe.com/logo/logo-icon.svg" />
+    <!-- Les réseaux sociaux (WhatsApp, LinkedIn, Facebook) n'affichent pas les
+         SVG : l'aperçu de partage doit pointer vers une image matricielle. -->
+    <meta property="og:image" content="https://ayegroupe.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://ayegroupe.com/og-image.png" />
 
     <!-- Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
