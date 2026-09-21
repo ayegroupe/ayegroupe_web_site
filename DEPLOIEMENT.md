@@ -71,13 +71,25 @@ Le domaine `ayegroupe.com` est géré via Cloudflare (nameservers `laila.ns.clou
 - La page racine `/` est exclue du sitemap via l'option `filter` de `@astrojs/sitemap` : c'est une redirection en `noindex`, l'inclure génèrerait une erreur dans Search Console.
 - Les titres de page ne doivent **pas** contenir `| AYEGROUPE` : le `BaseLayout` ajoute déjà ce suffixe.
 
-## 6. Fichiers de config locaux importants
+## 6. Mesure d'audience
+
+| Outil | Configuration |
+|---|---|
+| Vercel Web Analytics | Composant `@vercel/analytics/astro` dans le `BaseLayout`. Sans cookie → chargé sans consentement. **Doit être activé** dans Vercel → projet → onglet Analytics, sinon rien n'est collecté. |
+| Google Analytics 4 | Propriété `AYEGROUPE`, ID de mesure `G-X79Z15EJBW`, fourni via la variable `PUBLIC_GA_MEASUREMENT_ID` (Production + Preview). |
+| Consentement | [src/components/CookieConsent.astro](src/components/CookieConsent.astro) — bannière FR/EN, choix mémorisé dans `localStorage` sous `ayegroupe-cookie-consent`. GA4 n'est injecté qu'après acceptation. |
+
+- Si `PUBLIC_GA_MEASUREMENT_ID` est absent, GA4 n'est pas chargé **et** la bannière ne s'affiche pas (aucun cookie déposé, donc rien à consentir).
+- ⚠️ Le détecteur de balise de Google affichera **toujours** « balise non détectée » : son robot ne clique pas sur « Accepter ». Ce n'est pas une erreur. Pour vérifier réellement GA4 : naviguer sur le site en privé, accepter la bannière, et se regarder apparaître dans GA4 → Rapports → Temps réel.
+- Une variable d'environnement ajoutée sur Vercel ne déclenche pas de rebuild : il faut pousser un commit (au besoin `git commit --allow-empty`) pour qu'elle soit prise en compte.
+
+## 7. Fichiers de config locaux importants
 
 - `.env` (jamais commité) : contient `PUBLIC_SUPABASE_URL` et `PUBLIC_SUPABASE_ANON_KEY` pour le développement local (`npm run dev`).
 - `.env.example` : modèle sans les vraies valeurs, commité pour référence.
 - `astro.config.mjs` : `site: 'https://ayegroupe.com'` — à mettre à jour si le domaine principal change un jour.
 
-## 7. Pièges déjà rencontrés (pour ne pas les refaire)
+## 8. Pièges déjà rencontrés (pour ne pas les refaire)
 
 1. **Variables `PUBLIC_` en mode "Sensitive" sur Vercel** → build silencieusement cassé (valeurs vides). Toujours utiliser "Non-sensitive/Config" pour ces variables.
 2. **`<script define:vars={...}>` dans un composant Astro** → désactive le bundling Vite, un `import()` relatif à l'intérieur ne fonctionne plus dans le navigateur. Passer les valeurs par attribut `data-*` à la place.
