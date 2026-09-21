@@ -6,7 +6,7 @@ Référence des paramètres mis en place. À garder à jour si un élément chan
 
 | Paramètre | Valeur |
 |---|---|
-| Repo actif (à utiliser) | `github.com/ayegroupe/ayegroupe_web_site` (**privé** — ce document cartographie l'infrastructure, il n'a pas vocation à être public) |
+| Repo actif (à utiliser) | `github.com/ayegroupe/ayegroupe_web_site` (public) |
 | Branche | `main` |
 | Remote local | `origin` → `github-ayegroupe:ayegroupe/ayegroupe_web_site.git` (SSH) |
 | Ancien repo (abandonné) | `github.com/noevansarl/ayegroupe_web_site` — ne plus l'utiliser, il n'est relié à aucun déploiement |
@@ -95,10 +95,18 @@ Le domaine `ayegroupe.com` est géré via Cloudflare (nameservers `laila.ns.clou
 - `.env.example` : modèle sans les vraies valeurs, commité pour référence.
 - `astro.config.mjs` : `site: 'https://ayegroupe.com'` — à mettre à jour si le domaine principal change un jour.
 
-## 8. Pièges déjà rencontrés (pour ne pas les refaire)
+## 9. Protection du formulaire de contact
+
+- Champ piège (*honeypot*) dans [ContactForm.astro](src/components/ContactForm.astro) : invisible et hors du parcours clavier. S'il est rempli, rien n'est envoyé et le robot reçoit un faux message de succès.
+- Limites d'insertion en base : [supabase/rate_limit.sql](supabase/rate_limit.sql), par adresse email et par empreinte d'IP.
+- **Aucun plafond global, volontairement** : un plafond commun à tous les visiteurs permettrait à un spammeur de bloquer les vrais clients en le saturant. Toute limite doit rester rapportée à un expéditeur précis.
+- L'IP n'est jamais stockée en clair, seulement son empreinte `md5`, suffisante pour compter.
+
+## 10. Pièges déjà rencontrés (pour ne pas les refaire)
 
 1. **Variables `PUBLIC_` en mode "Sensitive" sur Vercel** → build silencieusement cassé (valeurs vides). Toujours utiliser "Non-sensitive/Config" pour ces variables.
 2. **`<script define:vars={...}>` dans un composant Astro** → désactive le bundling Vite, un `import()` relatif à l'intérieur ne fonctionne plus dans le navigateur. Passer les valeurs par attribut `data-*` à la place.
 3. **`Astro.redirect()` en build statique** → génère une redirection vers l'URL **absolue** définie dans `site`, pas une URL relative. Problématique si testé sur un domaine temporaire (ex. `*.vercel.app`) avant que le domaine final soit branché.
 4. **Reconnecter un repo Git à un projet Vercel existant ne redéploie pas automatiquement** ce qui a déjà été poussé avant la connexion — il faut un nouveau push (ou passer par le CLI directement) après coup.
-5. **Pour ajouter une route serveur (API), utiliser `@astrojs/vercel` v8** — la v7 ne connaît que Node 18/20 et génère une fonction en `nodejs18.x`, un runtime retiré chez Vercel. C'est ce blocage, du temps d'Astro 4, qui a conduit à faire passer la notification email par un trigger Postgres plutôt que par une route API du site. Le site étant désormais sur Astro 5, une route serveur redevient envisageable.
+5. **Ne pas repasser le dépôt en privé** : le déploiement automatique cesse de se déclencher (vérifié le 2026-09-20 — le webhook ne part plus, et une déconnexion/reconnexion de l'intégration Git ne le rétablit pas). Si la confidentialité devient nécessaire, prévoir de diagnostiquer les autorisations de l'app Vercel sur GitHub avant de basculer.
+6. **Pour ajouter une route serveur (API), utiliser `@astrojs/vercel` v8** — la v7 ne connaît que Node 18/20 et génère une fonction en `nodejs18.x`, un runtime retiré chez Vercel. C'est ce blocage, du temps d'Astro 4, qui a conduit à faire passer la notification email par un trigger Postgres plutôt que par une route API du site. Le site étant désormais sur Astro 5, une route serveur redevient envisageable.
