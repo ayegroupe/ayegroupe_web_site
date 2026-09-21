@@ -12,7 +12,7 @@ export const translations = {
       quote: 'Demander un devis',
     },
     footer: {
-      baseline: 'Compagnie technologique basée à Surrey, Canada & Hub commercial et logistique au Togo.',
+      baseline: 'Ingénierie logicielle depuis Surrey, Canada & hub commercial et logistique au Togo.',
       quickLinks: 'Navigation rapide',
       poles: 'Nos Pôles d\'activité',
       itPoleTitle: 'Pôle IT & Ingénierie',
@@ -49,7 +49,7 @@ export const translations = {
       quote: 'Request a Quote',
     },
     footer: {
-      baseline: 'Technology company based in Surrey, Canada & West Africa commercial & logistics hub.',
+      baseline: 'Software engineering from Surrey, Canada & West Africa commercial and logistics hub.',
       quickLinks: 'Quick Navigation',
       poles: 'Business Divisions',
       itPoleTitle: 'IT & Software Engineering',

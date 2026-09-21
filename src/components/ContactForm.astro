@@ -61,7 +61,7 @@ const l = labels[lang];
     </p>
   </div>
 
-  <form id="ayegroupe-contact-form" class="space-y-5" data-lang={lang}>
+  <form id="ayegroupe-contact-form" class="space-y-5 relative" data-lang={lang}>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <!-- Name -->
       <div>
@@ -129,6 +129,14 @@ const l = labels[lang];
       </div>
     </div>
 
+    <!-- Champ piège : invisible et hors du parcours clavier, donc jamais
+         rempli par un humain. Les robots qui remplissent tous les champs se
+         trahissent en y écrivant quelque chose. -->
+    <div class="absolute w-px h-px -m-px overflow-hidden" aria-hidden="true">
+      <label for="contact-website">Ne pas remplir ce champ</label>
+      <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
     <!-- Message -->
     <div>
       <label for="contact-message" class="block text-[11px] font-bold text-[#0C2340] uppercase tracking-wider mb-2">
@@ -183,6 +191,16 @@ const l = labels[lang];
       submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
 
       const formData = new FormData(form);
+
+      // Champ piège rempli : c'est un robot. On affiche le message de succès
+      // sans rien envoyer, pour ne pas lui signaler qu'il a été détecté.
+      if (formData.get('website')) {
+        successBox.classList.remove('hidden');
+        form.reset();
+        submitBtn.removeAttribute('disabled');
+        submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+        return;
+      }
 
       try {
         const { supabase } = await import('../lib/supabase');
