@@ -59,13 +59,25 @@ Le domaine `ayegroupe.com` est géré via Cloudflare (nameservers `laila.ns.clou
 
 ⚠️ Si tu ajoutes un jour un autre enregistrement lié à Vercel, garde toujours le proxy Cloudflare désactivé ("DNS only"), sinon le certificat SSL de Vercel ne peut pas se générer.
 
-## 5. Fichiers de config locaux importants
+## 5. Référencement (Google Search Console)
+
+| Paramètre | Valeur |
+|---|---|
+| Propriété | `ayegroupe.com`, type **Domaine** (couvre www/non-www, http/https), vérifiée par TXT DNS |
+| Sitemap soumis | `https://ayegroupe.com/sitemap-index.xml` |
+| robots.txt | [public/robots.txt](public/robots.txt) — une seule directive `Sitemap:`, vers le sitemap-index |
+
+- Sur une propriété de type **Domaine**, Search Console exige l'**URL complète** du sitemap (`https://ayegroupe.com/sitemap-index.xml`) ; saisir seulement `sitemap-index.xml` renvoie « adresse de sitemap incorrecte ».
+- La page racine `/` est exclue du sitemap via l'option `filter` de `@astrojs/sitemap` : c'est une redirection en `noindex`, l'inclure génèrerait une erreur dans Search Console.
+- Les titres de page ne doivent **pas** contenir `| AYEGROUPE` : le `BaseLayout` ajoute déjà ce suffixe.
+
+## 6. Fichiers de config locaux importants
 
 - `.env` (jamais commité) : contient `PUBLIC_SUPABASE_URL` et `PUBLIC_SUPABASE_ANON_KEY` pour le développement local (`npm run dev`).
 - `.env.example` : modèle sans les vraies valeurs, commité pour référence.
 - `astro.config.mjs` : `site: 'https://ayegroupe.com'` — à mettre à jour si le domaine principal change un jour.
 
-## 6. Pièges déjà rencontrés (pour ne pas les refaire)
+## 7. Pièges déjà rencontrés (pour ne pas les refaire)
 
 1. **Variables `PUBLIC_` en mode "Sensitive" sur Vercel** → build silencieusement cassé (valeurs vides). Toujours utiliser "Non-sensitive/Config" pour ces variables.
 2. **`<script define:vars={...}>` dans un composant Astro** → désactive le bundling Vite, un `import()` relatif à l'intérieur ne fonctionne plus dans le navigateur. Passer les valeurs par attribut `data-*` à la place.
