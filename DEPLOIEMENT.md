@@ -83,7 +83,13 @@ Le domaine `ayegroupe.com` est géré via Cloudflare (nameservers `laila.ns.clou
 - ⚠️ Le détecteur de balise de Google affichera **toujours** « balise non détectée » : son robot ne clique pas sur « Accepter ». Ce n'est pas une erreur. Pour vérifier réellement GA4 : naviguer sur le site en privé, accepter la bannière, et se regarder apparaître dans GA4 → Rapports → Temps réel.
 - Une variable d'environnement ajoutée sur Vercel ne déclenche pas de rebuild : il faut pousser un commit (au besoin `git commit --allow-empty`) pour qu'elle soit prise en compte.
 
-## 7. Fichiers de config locaux importants
+## 7. Socle technique
+
+- **Astro 5** (build statique, sans adaptateur), **Tailwind 3** via `@astrojs/tailwind` v6, `@astrojs/sitemap`.
+- Ne pas monter au-delà d'Astro 5 sans traiter Tailwind : `@astrojs/tailwind` ne supporte pas Astro 6+, la suite impose une migration vers Tailwind 4 (configuration entièrement différente, risque de régressions visuelles).
+- `npm audit` signale des alertes sur Astro, y compris une « critique ». Elles visent des fonctionnalités **non utilisées ici** : `astro:assets` (l'alerte critique, liée à l'optimisation AVIF), le rendu serveur, les middlewares, `define:vars`, les *spread props*, les *view transitions* et les *server islands*. Le site étant 100 % statique et n'employant aucun de ces mécanismes, ces alertes ne constituent pas une exposition réelle — le vérifier avant de déclencher une migration en urgence.
+
+## 8. Fichiers de config locaux importants
 
 - `.env` (jamais commité) : contient `PUBLIC_SUPABASE_URL` et `PUBLIC_SUPABASE_ANON_KEY` pour le développement local (`npm run dev`).
 - `.env.example` : modèle sans les vraies valeurs, commité pour référence.
@@ -95,4 +101,4 @@ Le domaine `ayegroupe.com` est géré via Cloudflare (nameservers `laila.ns.clou
 2. **`<script define:vars={...}>` dans un composant Astro** → désactive le bundling Vite, un `import()` relatif à l'intérieur ne fonctionne plus dans le navigateur. Passer les valeurs par attribut `data-*` à la place.
 3. **`Astro.redirect()` en build statique** → génère une redirection vers l'URL **absolue** définie dans `site`, pas une URL relative. Problématique si testé sur un domaine temporaire (ex. `*.vercel.app`) avant que le domaine final soit branché.
 4. **Reconnecter un repo Git à un projet Vercel existant ne redéploie pas automatiquement** ce qui a déjà été poussé avant la connexion — il faut un nouveau push (ou passer par le CLI directement) après coup.
-5. **Ne pas ajouter `@astrojs/vercel` v7 pour créer une route serveur** tant qu'on est sur Astro 4 : cet adaptateur ne connaît que Node 18/20 et génère une fonction en `nodejs18.x`, un runtime retiré chez Vercel. Il faudrait d'abord migrer vers Astro 5 + adaptateur v8. C'est la raison pour laquelle la notification email passe par un trigger Postgres plutôt que par une route API du site.
+5. **Pour ajouter une route serveur (API), utiliser `@astrojs/vercel` v8** — la v7 ne connaît que Node 18/20 et génère une fonction en `nodejs18.x`, un runtime retiré chez Vercel. C'est ce blocage, du temps d'Astro 4, qui a conduit à faire passer la notification email par un trigger Postgres plutôt que par une route API du site. Le site étant désormais sur Astro 5, une route serveur redevient envisageable.
