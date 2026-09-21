@@ -1,8 +1,9 @@
 {
+  "trailingSlash": true,
   "redirects": [
     {
       "source": "/",
-      "destination": "/fr",
+      "destination": "/fr/",
       "permanent": true
     }
   ]
