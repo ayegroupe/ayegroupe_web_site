@@ -2,6 +2,8 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 import type { Lang } from '../content/i18n';
 
@@ -23,6 +25,7 @@ const {
 
 const siteUrl = 'https://ayegroupe.com';
 const canonicalUrl = `${siteUrl}${canonicalPath || Astro.url.pathname}`;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
 // Alternate hreflang
 const frUrl = `${siteUrl}${canonicalPath.replace(/^\/(en|fr)/, '/fr') || '/fr'}`;
@@ -118,5 +121,11 @@ const organizationSchema = {
 
     <Footer lang={lang} />
     <WhatsAppButton lang={lang} />
+
+    <!-- Vercel Analytics est sans cookie : pas de consentement requis.
+         GA4 en dépose, il n'est donc chargé qu'après acceptation — et la
+         bannière ne s'affiche que si GA4 est effectivement configuré. -->
+    <Analytics />
+    {gaMeasurementId && <CookieConsent lang={lang} gaMeasurementId={gaMeasurementId} />}
   </body>
 </html>

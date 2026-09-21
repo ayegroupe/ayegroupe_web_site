@@ -1,0 +1,119 @@
+---
+import type { Lang } from '../content/i18n';
+
+interface Props {
+  lang?: Lang;
+  gaMeasurementId?: string;
+}
+
+const { lang = 'fr', gaMeasurementId } = Astro.props;
+
+const labels = {
+  fr: {
+    text: "Nous utilisons des cookies de mesure d'audience pour comprendre comment le site est consulté et l'améliorer. Aucune donnée n'est utilisée à des fins publicitaires.",
+    learnMore: 'En savoir plus',
+    accept: 'Accepter',
+    decline: 'Refuser',
+  },
+  en: {
+    text: 'We use analytics cookies to understand how the site is used and improve it. No data is used for advertising purposes.',
+    learnMore: 'Learn more',
+    accept: 'Accept',
+    decline: 'Decline',
+  },
+};
+
+const l = labels[lang];
+const legalPath = `/${lang}/mentions-legales`;
+---
+
+<div
+  id="cookie-consent"
+  data-ga-id={gaMeasurementId}
+  class="hidden fixed bottom-0 inset-x-0 z-50 p-4 sm:p-6"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Consentement aux cookies"
+>
+  <div class="mx-auto max-w-4xl rounded-2xl bg-white border border-slate-200 shadow-lg p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+    <p class="text-xs leading-relaxed text-[#2C3E50] flex-1">
+      {l.text}
+      <a href={legalPath} class="underline text-[#0C2340] hover:text-[#00A859] font-semibold whitespace-nowrap">
+        {l.learnMore}
+      </a>
+    </p>
+
+    <div class="flex items-center gap-3 shrink-0">
+      <button
+        type="button"
+        id="cookie-decline"
+        class="px-5 py-2.5 rounded-full border border-slate-300 text-[#0C2340] font-bold text-[11px] uppercase tracking-wider hover:bg-slate-50 transition-colors"
+      >
+        {l.decline}
+      </button>
+      <button
+        type="button"
+        id="cookie-accept"
+        class="px-6 py-2.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-[11px] uppercase tracking-wider transition-colors"
+      >
+        {l.accept}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'ayegroupe-cookie-consent';
+
+  const banner = document.getElementById('cookie-consent');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const declineBtn = document.getElementById('cookie-decline');
+
+  function loadAnalytics(measurementId: string) {
+    const tag = document.createElement('script');
+    tag.async = true;
+    tag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    document.head.appendChild(tag);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args: unknown[]) {
+      window.dataLayer.push(args);
+    }
+    gtag('js', new Date());
+    gtag('config', measurementId, { anonymize_ip: true });
+  }
+
+  if (banner && acceptBtn && declineBtn) {
+    const measurementId = banner.dataset.gaId;
+
+    // Un navigateur en navigation privee peut refuser l'acces au stockage.
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem(STORAGE_KEY);
+    } catch {
+      stored = null;
+    }
+
+    if (stored === 'accepted' && measurementId) {
+      loadAnalytics(measurementId);
+    } else if (stored !== 'declined') {
+      banner.classList.remove('hidden');
+    }
+
+    const remember = (choice: string) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, choice);
+      } catch {
+        // Le choix ne sera pas memorise, mais il est respecte pour cette visite.
+      }
+      banner.classList.add('hidden');
+    };
+
+    acceptBtn.addEventListener('click', () => {
+      remember('accepted');
+      if (measurementId) loadAnalytics(measurementId);
+    });
+
+    declineBtn.addEventListener('click', () => remember('declined'));
+  }
+</script>
