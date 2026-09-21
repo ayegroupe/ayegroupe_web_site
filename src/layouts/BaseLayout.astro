@@ -27,6 +27,10 @@ const siteUrl = 'https://ayegroupe.com';
 const canonicalUrl = `${siteUrl}${canonicalPath || Astro.url.pathname}`;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
+// Sur les pages du pôle Togo, le visiteur est local : lui proposer le numéro
+// togolais plutôt qu'un appel international vers le Canada.
+const whatsappPhone = Astro.url.pathname.includes('/togo') ? '+22890116744' : '+17788091060';
+
 // Alternate hreflang
 const frUrl = `${siteUrl}${canonicalPath.replace(/^\/(en|fr)/, '/fr') || '/fr'}`;
 const enUrl = `${siteUrl}${canonicalPath.replace(/^\/(en|fr)/, '/en') || '/en'}`;
@@ -41,7 +45,7 @@ const organizationSchema = {
       "name": "AYEGROUPE",
       "url": "https://ayegroupe.com",
       "logo": "https://ayegroupe.com/logo/logo-ayegroupe-dark.svg",
-      "description": "Compagnie technologique basée à Surrey, Canada & Hub commercial et logistique au Togo.",
+      "description": "Entreprise individuelle d'ingénierie logicielle basée à Surrey, Canada, avec un hub commercial et logistique à Lomé, Togo.",
       "email": "ayegroupe@ayegroupe.com",
       "telephone": "+17788091060",
       "address": {
@@ -65,7 +69,7 @@ const organizationSchema = {
         "addressLocality": "Lomé",
         "addressCountry": "TG"
       },
-      "telephone": "+17788091060",
+      "telephone": "+22890116744",
       "parentOrganization": {
         "@id": "https://ayegroupe.com/#organization"
       }
@@ -120,7 +124,7 @@ const organizationSchema = {
     </main>
 
     <Footer lang={lang} />
-    <WhatsAppButton lang={lang} />
+    <WhatsAppButton lang={lang} phone={whatsappPhone} />
 
     <!-- Vercel Analytics est sans cookie : pas de consentement requis.
          GA4 en dépose, il n'est donc chargé qu'après acceptation — et la
