@@ -76,8 +76,10 @@ const legalPath = `/${lang}/mentions-legales`;
     document.head.appendChild(tag);
 
     window.dataLayer = window.dataLayer || [];
-    function gtag(...args: unknown[]) {
-      window.dataLayer.push(args);
+    // gtag.js n'accepte que des objets `arguments` : un vrai tableau (via des
+    // paramètres du reste) est silencieusement ignoré.
+    function gtag() {
+      window.dataLayer.push(arguments);
     }
     gtag('js', new Date());
     gtag('config', measurementId, { anonymize_ip: true });
