@@ -6,7 +6,7 @@ Référence des paramètres mis en place. À garder à jour si un élément chan
 
 | Paramètre | Valeur |
 |---|---|
-| Repo actif (à utiliser) | `github.com/ayegroupe/ayegroupe_web_site` (public) |
+| Repo actif (à utiliser) | `github.com/ayegroupe/ayegroupe_web_site` (**privé** — ce document cartographie l'infrastructure, il n'a pas vocation à être public) |
 | Branche | `main` |
 | Remote local | `origin` → `github-ayegroupe:ayegroupe/ayegroupe_web_site.git` (SSH) |
 | Ancien repo (abandonné) | `github.com/noevansarl/ayegroupe_web_site` — ne plus l'utiliser, il n'est relié à aucun déploiement |
