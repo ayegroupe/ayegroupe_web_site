@@ -68,7 +68,7 @@ Le domaine `ayegroupe.com` est géré via Cloudflare (nameservers `laila.ns.clou
 | robots.txt | [public/robots.txt](public/robots.txt) — une seule directive `Sitemap:`, vers le sitemap-index |
 
 - Sur une propriété de type **Domaine**, Search Console exige l'**URL complète** du sitemap (`https://ayegroupe.com/sitemap-index.xml`) ; saisir seulement `sitemap-index.xml` renvoie « adresse de sitemap incorrecte ».
-- La page racine `/` est exclue du sitemap via l'option `filter` de `@astrojs/sitemap` : c'est une redirection en `noindex`, l'inclure génèrerait une erreur dans Search Console.
+- La racine `/` est une **redirection HTTP 308 vers `/fr`**, déclarée dans [vercel.json](vercel.json) — il n'existe aucune page à cette adresse. Ne jamais demander son indexation : inspecter `/fr/` à la place.
 - Les titres de page ne doivent **pas** contenir `| AYEGROUPE` : le `BaseLayout` ajoute déjà ce suffixe.
 
 ## 6. Mesure d'audience
