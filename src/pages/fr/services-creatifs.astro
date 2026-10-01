@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CreativeServicesSlide from '../../components/CreativeServicesSlide.astro';
+import ContactForm from '../../components/ContactForm.astro';
+
+const faqs = [
+  {
+    q: "Quels types de sites web AYEGROUPE réalise-t-il ?",
+    a: "Nous réalisons des sites vitrines corporate pour entreprises et institutions, des boutiques e-commerce avec intégration de paiement (Mobile Money FedaPay, Stripe, PayPal), des plateformes SaaS, des landing pages de conversion et des intranets sur-mesure."
+  },
+  {
+    q: "Sous quels formats recevrai-je mon logo et ma charte graphique ?",
+    a: "Vous recevez votre logo dans tous les formats professionnels standard : vectoriels (SVG, AI, PDF) agrandissables à l'infini sans pixellisation (enseignes, véhicules, kakémonos), et web (PNG transparents haute définition, JPG, favicons)."
+  },
+  {
+    q: "Prenez-vous en charge la conception de flyers et l'impression ?",
+    a: "Nous assurons la création graphique complète de vos flyers, affiches, dépliants, cartes de visite et roll-ups selon les normes d'imprimerie (300 DPI, mode colorimétrique CMJN, repères de coupe et fond perdu). À Lomé, nous pouvons également coordonner l'impression et la livraison."
+  },
+  {
+    q: "Existe-t-il un pack regroupant Site Web + Logo + Flyers ?",
+    a: "Oui ! Notre 'Pack Corporate 360°' regroupe la création de votre identité visuelle complète (logo + charte), votre site web professionnel responsive et un ensemble de supports imprimés (flyers + cartes de visite) à un tarif forfaitaire préférentiel."
+  }
+];
+
+const steps = [
+  {
+    num: "01",
+    title: "Brief & Stratégie",
+    desc: "Écoute de vos besoins, étude de votre cible et définition de vos préférences graphiques."
+  },
+  {
+    num: "02",
+    title: "Création & Maquettage",
+    desc: "Conception de pistes graphiques originales (logos, wireframes de sites ou maquettes de flyers)."
+  },
+  {
+    num: "03",
+    title: "Ajustements & Validation",
+    desc: "Itérations rapides selon vos retours jusqu'à votre entière satisfaction."
+  },
+  {
+    num: "04",
+    title: "Livraison & Mise en Ligne",
+    desc: "Remise des fichiers sources certifiés haute définition et déploiement en ligne sécurisé."
+  }
+];
+---
+
+<BaseLayout
+  title="Studio Créatif — Création de Site Web, Logo & Flyers"
+  description="AYEGROUPE concrétise votre image de marque : création de sites internet ultra-rapides, design de logos vectoriels et conception de flyers & supports de communication."
+  lang="fr"
+  canonicalPath="/fr/services-creatifs"
+>
+  <!-- Dedicated Top Hero Banner -->
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-20 border-b border-slate-200/80 relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-sky opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl space-y-4">
+        <a href="/fr" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider">&larr; Retour à l'accueil</a>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-[#0C2340]">
+          Studio Digital & Créatif
+        </h1>
+        <p class="text-[#2C3E50] text-base sm:text-xl font-normal leading-relaxed">
+          Donnez une dimension d'exception à votre entreprise avec nos solutions complètes : 
+          <strong class="text-[#0C2340] font-semibold">Sites Web sur-mesure</strong>, 
+          <strong class="text-[#0C2340] font-semibold">Logos vectoriels uniques</strong> et 
+          <strong class="text-[#0C2340] font-semibold">Flyers & supports de communication haute résolution</strong>.
+        </p>
+
+        <div class="pt-4 flex flex-wrap items-center gap-3">
+          <a
+            href="#studio-creatif"
+            class="px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
+          >
+            Découvrir la slide de présentation &darr;
+          </a>
+          <a
+            href="https://wa.me/22890116744?text=Bonjour%20AYEGROUPE%2C%20je%20souhaite%20un%20devis%20pour%20la%20cr%C3%A9ation%20de%20%3A%20site%20web%20%2F%20logo%20%2F%20flyers"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-full bg-white hover:bg-[#0C2340] text-[#0C2340] hover:text-white font-bold text-xs uppercase tracking-wider border-2 border-[#0C2340] transition-all"
+          >
+            WhatsApp Devis Rapide
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Slide Component -->
+  <CreativeServicesSlide lang="fr" />
+
+  <!-- Methodology / Process Steps -->
+  <section class="py-20 lg:py-24 bg-white border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-[#0C2340] border border-slate-200">
+          Méthodologie AYEGROUPE
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0C2340] tracking-tight">
+          Un Processus Créatif Rigoureux & Transparent
+        </h2>
+        <p class="text-[#2C3E50] text-sm sm:text-base leading-relaxed">
+          De l'idée initiale à la remise des livrables finaux, chaque étape est validée avec vous.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((st) => (
+          <div class="p-6 rounded-2xl bg-[#F4F6F9] border border-slate-200 hover:border-emerald-500/50 hover:bg-white hover:shadow-md transition-all">
+            <div class="text-3xl font-extrabold font-mono text-[#00A859] mb-3">{st.num}</div>
+            <h3 class="text-lg font-bold text-[#0C2340] mb-2">{st.title}</h3>
+            <p class="text-xs text-[#2C3E50] leading-relaxed">{st.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-[#F4F6F9] border-b border-slate-200/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 space-y-3">
+        <h2 class="text-3xl font-extrabold text-[#0C2340] tracking-tight">
+          Questions Fréquentes
+        </h2>
+        <p class="text-sm text-[#2C3E50]">
+          Tout ce que vous devez savoir pour démarrer votre projet avec nous.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((f) => (
+          <div class="rounded-2xl bg-white border border-slate-200 p-6 shadow-xs">
+            <h3 class="text-base font-bold text-[#0C2340] mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#00A859] flex-shrink-0"></span>
+              {f.q}
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-4">
+              {f.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-[#00A859] border border-emerald-200">
+            Devis Gratuit
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0C2340] tracking-tight">
+            Parlons de Votre Prochain Projet Créatif
+          </h2>
+          <p class="text-[#2C3E50] text-sm sm:text-base leading-relaxed">
+            Remplissez ce formulaire ou envoyez-nous un message WhatsApp pour recevoir une proposition tarifaire détaillée sous 24h ouvrées.
+          </p>
+          
+          <div class="p-5 rounded-2xl bg-[#F4F6F9] border border-slate-200 text-xs text-slate-700 space-y-2">
+            <div class="font-bold text-[#0C2340]">✓ Réponse garantie sous 24h</div>
+            <div class="font-bold text-[#0C2340]">✓ Tarification claire sans frais cachés</div>
+            <div class="font-bold text-[#0C2340]">✓ Accompagnement sur-mesure à Lomé & à distance</div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <ContactForm lang="fr" />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

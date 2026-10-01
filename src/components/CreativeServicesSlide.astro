@@ -1,0 +1,406 @@
+---
+interface Props {
+  lang?: 'fr' | 'en';
+}
+
+const { lang = 'fr' } = Astro.props;
+
+const isFr = lang === 'fr';
+
+const services = [
+  {
+    id: 'web',
+    tag: isFr ? '01 · Digital & Performance' : '01 · Digital & Performance',
+    title: isFr ? 'Création de Sites Web' : 'Website Development',
+    subtitle: isFr ? 'Vitrines corporate, e-commerce & applications sur-mesure' : 'Corporate websites, e-commerce & custom web apps',
+    desc: isFr
+      ? 'Nous concevons des sites internet ultra-rapides, ergonomiques et optimisés pour le référencement naturel (SEO). Que ce soit pour valoriser votre entreprise, vendre en ligne avec Mobile Money et cartes bancaires, ou déployer un portail client sur-mesure.'
+      : 'We design lightning-fast, user-friendly, and SEO-optimized websites. From corporate showcases and e-commerce platforms to bespoke client portals with seamless international & mobile money checkouts.',
+    features: isFr
+      ? [
+          'Sites vitrines haute performance & plateformes sur-mesure',
+          'E-commerce complet (Paiement Mobile Money FedaPay, Stripe, PayPal)',
+          '100% Adapté aux mobiles, tablettes et ordinateurs (Responsive)',
+          'Optimisation SEO Google, temps de chargement ultra-rapides & sécurité SSL',
+          'Technologies modernes : Astro, Next.js, React, Tailwind CSS'
+        ]
+      : [
+          'High-performance showcase websites & custom portals',
+          'E-commerce storefronts with Stripe & Mobile Money gateways',
+          '100% mobile-first responsive design & fluid animations',
+          'Top-tier Google SEO, sub-second load times & SSL security',
+          'Modern tech stack: Astro, Next.js, React, Tailwind CSS'
+        ],
+    deliverables: isFr ? 'Code source, nom de domaine, hébergement, emails pro & formation' : 'Source code, domain name, hosting, pro emails & walkthrough',
+    icon: 'web',
+    badgeColor: 'bg-emerald-50 text-[#00A859] border-emerald-200',
+    stat: '100%',
+    statLabel: isFr ? 'Responsive & Mobile-first' : 'Responsive & Mobile-first'
+  },
+  {
+    id: 'logo',
+    tag: isFr ? '02 · Identité de Marque' : '02 · Brand Identity',
+    title: isFr ? 'Création de Logo & Branding' : 'Logo & Visual Identity',
+    subtitle: isFr ? 'Une identité visuelle forte, mémorable et intemporelle' : 'A strong, memorable, and timeless brand identity',
+    desc: isFr
+      ? 'Votre logo est la première impression laissée à vos clients. AYEGROUPE imagine pour vous une identité visuelle distinctive, pensée pour marquer les esprits et inspirer confiance, du premier regard jusqu’à l’ensemble de vos supports professionnels.'
+      : 'Your logo is the first touchpoint with your audience. AYEGROUPE designs distinctive visual identities engineered to inspire immediate authority, elegance, and trust across all touchpoints.',
+    features: isFr
+      ? [
+          'Recherche de concept originale & propositions graphiques sur-mesure',
+          'Logo 100% vectoriel (agrandissement infini sans perte de qualité)',
+          'Charte graphique complète (palette de couleurs, typographies, règles)',
+          'Déclinaisons pour fonds clairs, sombres, monochrome et réseaux sociaux',
+          'Formats livrés : SVG vectoriel, Adobe Illustrator (AI), PNG transparent, PDF HD'
+        ]
+      : [
+          'Original creative concept & tailored graphic propositions',
+          '100% vector artwork (infinite scalability without pixel loss)',
+          'Complete brand guidelines (color palette, typography, dos and don’ts)',
+          'Variants for light, dark, monochrome backgrounds & app icons',
+          'Delivered in vector SVG, AI, transparent PNG & high-res PDF'
+        ],
+    deliverables: isFr ? 'Fichiers vectoriels complets + Brand Book PDF' : 'Full vector suite + comprehensive Brand Book PDF',
+    icon: 'logo',
+    badgeColor: 'bg-blue-50 text-[#0284C7] border-blue-200',
+    stat: 'Vectoriel',
+    statLabel: isFr ? 'Haute Définition Garantie' : 'Infinite Scalability'
+  },
+  {
+    id: 'flyers',
+    tag: isFr ? '03 · Print & Communication' : '03 · Print & Collateral',
+    title: isFr ? 'Création de Flyers & Supports' : 'Flyers & Marketing Collateral',
+    subtitle: isFr ? 'Flyers, affiches, roll-ups, cartes de visite & visuels réseaux' : 'Flyers, posters, roll-ups, business cards & social media kits',
+    desc: isFr
+      ? 'Faites passer votre message avec impact ! Nous réalisons tous vos supports promotionnels et événementiels, prêts pour une impression impeccable en imprimerie ou pour diffusion numérique immédiate sur WhatsApp, LinkedIn, Instagram et Facebook.'
+      : 'Make your campaigns unmissable! We craft high-impact marketing materials ready for high-end print houses or instant social media broadcasting on WhatsApp, LinkedIn, and Instagram.',
+    features: isFr
+      ? [
+          'Flyers publicitaires & dépliants commerciaux (formats A5, A6, 2/3 volets)',
+          'Affiches promotionnelles, kakémonos & roll-ups pour salons professionnels',
+          'Cartes de visite de prestige (recto/verso, QR code interactif)',
+          'Packs visuels pour réseaux sociaux (bannières, posts carrousels)',
+          'Fichiers prépresse certifiés (300 DPI, CMJN, repères de coupe & fond perdu)'
+        ]
+      : [
+          'Commercial flyers & tri-fold brochures (A5, A6, multi-fold)',
+          'Event posters, banners & trade-show roll-up displays',
+          'Executive business cards (front/back with interactive QR code)',
+          'Social media kits (post templates, banners, carousel slides)',
+          'Certified print-ready files (300 DPI, CMYK, crop marks & bleed)'
+        ],
+    deliverables: isFr ? 'Fichiers d\'impression 300 DPI CMJN + versions Web RVB' : 'Print-ready 300 DPI CMYK + Web-optimized RGB files',
+    icon: 'flyer',
+    badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
+    stat: '300 DPI',
+    statLabel: isFr ? 'Normes Prépresse & Web' : 'Print & Web Certified'
+  }
+];
+---
+
+<section id="studio-creatif" class="py-20 lg:py-28 bg-[#0C2340] text-white relative overflow-hidden border-b border-slate-800">
+  <!-- Dynamic ambient lights & technical grid -->
+  <div class="absolute inset-0 bg-grid-sky opacity-10 pointer-events-none"></div>
+  <div class="absolute -top-40 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+  <div class="absolute -bottom-40 left-10 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-4xl mx-auto text-center space-y-4 mb-14">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-emerald-400 text-xs font-bold uppercase tracking-wider font-mono">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>{isFr ? 'Studio Digital & Créatif AYEGROUPE' : 'AYEGROUPE Creative & Digital Studio'}</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        {isFr ? (
+          <>
+            Sites Web, Logos & Supports Graphiques : <span class="text-emerald-400">AYEGROUPE</span> Concrétise Vos Idées
+          </>
+        ) : (
+          <>
+            Websites, Logos & Print Collateral: <span class="text-emerald-400">AYEGROUPE</span> Brings Your Vision to Life
+          </>
+        )}
+      </h2>
+
+      <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
+        {isFr
+          ? 'Au-delà de nos solutions logicielles et logistiques, nous accompagnons les entreprises, entrepreneurs et institutions dans la création complète de leur image : présence web performante, identité visuelle marquante et supports marketing percutants.'
+          : 'Beyond software engineering and logistics, we empower modern enterprises and innovators with full-spectrum brand creation: high-converting web presence, iconic visual identity, and turnkey marketing collateral.'}
+      </p>
+    </div>
+
+    <!-- Interactive Mode Switcher Tabs -->
+    <div class="flex items-center justify-center mb-10">
+      <div class="inline-flex p-1.5 rounded-full bg-slate-900/80 border border-slate-700/80 backdrop-blur-lg shadow-xl" role="tablist">
+        <button
+          type="button"
+          id="tab-btn-slide"
+          class="creative-tab-btn active px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 bg-emerald-500 text-slate-950 shadow-md flex items-center gap-2"
+          data-tab="tab-slide"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+          </svg>
+          <span>{isFr ? 'Vue Slide Présentation (16:9)' : '16:9 Presentation Slide'}</span>
+        </button>
+
+        <button
+          type="button"
+          id="tab-btn-cards"
+          class="creative-tab-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 text-slate-300 hover:text-white flex items-center gap-2"
+          data-tab="tab-cards"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+          </svg>
+          <span>{isFr ? 'Détail des 3 Services' : 'Detailed Breakdown'}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 1: PRESENTATION SLIDE SHOWCASE (16:9 Luxury Frame) -->
+    <div id="tab-slide" class="creative-tab-panel transition-all duration-300">
+      <div class="relative rounded-3xl bg-slate-900/90 border border-slate-700/80 p-3 sm:p-6 shadow-2xl overflow-hidden group">
+        
+        <!-- Screen Frame Bar -->
+        <div class="flex items-center justify-between px-3 py-2.5 mb-3 border-b border-slate-800 text-xs text-slate-400">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+            <span class="ml-2 font-mono text-[11px] text-slate-400 hidden sm:inline">ayegroupe-slide-solutions-creatives.key</span>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+              16:9 Ultra HD
+            </span>
+            <a
+              href="/images/creative/ayegroupe-solutions-creatives-slide.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="AYEGROUPE-Solutions-Creatives-Slide.jpg"
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-[11px] font-bold transition-all"
+              title={isFr ? 'Télécharger la slide en haute résolution' : 'Download high-res slide'}
+            >
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span>{isFr ? 'Télécharger' : 'Download'}</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 16:9 Visual Slide Presentation Container -->
+        <div class="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner group/slide">
+          <img
+            src="/images/creative/ayegroupe-solutions-creatives-slide.jpg"
+            alt={isFr ? "Slide de présentation AYEGROUPE - Solutions Digitales & Créatives (Sites Web, Logos, Flyers)" : "AYEGROUPE Presentation Slide - Digital & Creative Solutions"}
+            class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover/slide:scale-[1.01]"
+            loading="lazy"
+          />
+
+          <!-- Floating Interactive Overlay Badge -->
+          <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-auto bg-slate-950/85 backdrop-blur-md border border-slate-700/80 rounded-2xl p-4 max-w-md shadow-2xl">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xs sm:text-sm font-bold text-white">
+                  {isFr ? 'Prêt à lancer votre projet ?' : 'Ready to launch your project?'}
+                </h4>
+                <p class="text-[11px] sm:text-xs text-slate-300 mt-0.5">
+                  {isFr ? 'Devis gratuit sous 24h & conseils personnalisés.' : 'Free quote within 24h & custom advisory.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide Footer Bar -->
+        <div class="mt-4 pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+          <div class="flex items-center gap-4">
+            <span class="flex items-center gap-1.5 text-slate-300 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              {isFr ? 'Format PowerPoint / Keynote & Print certifié' : 'PowerPoint, Keynote & Print certified format'}
+            </span>
+            <span class="hidden md:inline text-slate-600">|</span>
+            <span class="hidden md:inline text-slate-400">
+              {isFr ? 'Disponible à Lomé (Togo), Surrey (Canada) & à l\'international' : 'Available in Lomé (Togo), Surrey (Canada) & Remote'}
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a
+              href={isFr ? "https://wa.me/22890116744?text=Bonjour%20AYEGROUPE%2C%20je%20souhaite%20un%20devis%20pour%20la%20cr%C3%A9ation%20de%20%3A%20site%20web%20%2F%20logo%20%2F%20flyers" : "https://wa.me/17788091060?text=Hello%20AYEGROUPE%2C%20I%20would%20like%20a%20quote%20for%20a%20website%2C%20logo%20or%20marketing%20flyers."}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-4 py-2 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider transition-all inline-flex items-center gap-2 shadow-xs"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+              </svg>
+              <span>{isFr ? 'WhatsApp Direct' : 'Direct WhatsApp'}</span>
+            </a>
+
+            <a
+              href={isFr ? "/fr/contact?pole=creative" : "/en/contact?pole=creative"}
+              class="px-4 py-2 rounded-full bg-white/10 hover:bg-white text-white hover:text-slate-900 font-bold text-xs uppercase tracking-wider transition-all"
+            >
+              {isFr ? 'Formulaire devis &rarr;' : 'Quote form &rarr;'}
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: DETAILED 3 CARDS BREAKDOWN -->
+    <div id="tab-cards" class="creative-tab-panel hidden transition-all duration-300">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {services.map((s) => (
+          <div class="rounded-3xl bg-slate-900/90 border border-slate-700/80 p-8 shadow-xl flex flex-col justify-between hover:border-emerald-500/60 transition-all duration-200 group">
+            
+            <div>
+              <!-- Pill badge -->
+              <div class="flex items-center justify-between mb-5">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider font-mono bg-white/10 text-emerald-400 border border-white/15">
+                  {s.tag}
+                </span>
+
+                <div class="text-right">
+                  <span class="text-base font-bold font-mono text-emerald-400">{s.stat}</span>
+                  <div class="text-[10px] text-slate-400 uppercase tracking-wider">{s.statLabel}</div>
+                </div>
+              </div>
+
+              <!-- Title & description -->
+              <h3 class="text-2xl font-extrabold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                {s.title}
+              </h3>
+              <p class="text-xs font-semibold text-emerald-400/90 mb-4">{s.subtitle}</p>
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+                {s.desc}
+              </p>
+
+              <!-- Feature checklist -->
+              <div class="border-t border-slate-800 pt-5 space-y-2.5 mb-6">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-mono">
+                  {isFr ? 'Ce qui est inclus :' : 'Key deliverables:'}
+                </div>
+                {s.features.map((f) => (
+                  <div class="flex items-start gap-2.5 text-xs text-slate-200">
+                    <svg class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Card Bottom info -->
+            <div class="pt-4 border-t border-slate-800 mt-2">
+              <div class="text-[11px] text-slate-400 mb-4 flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+                <span><strong>{isFr ? 'Livrables :' : 'Deliverables:'}</strong> {s.deliverables}</span>
+              </div>
+
+              <a
+                href={isFr ? `/fr/contact?service=${s.id}` : `/en/contact?service=${s.id}`}
+                class="w-full py-3 rounded-full bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-white font-bold text-xs uppercase tracking-wider transition-all duration-150 flex items-center justify-center gap-2 border border-white/10 hover:border-emerald-500"
+              >
+                <span>{isFr ? 'Demander un devis' : 'Request quote'}</span>
+                <span class="text-emerald-400 group-hover:text-slate-950">&rarr;</span>
+              </a>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Bottom Global CTA Banner -->
+    <div class="mt-14 rounded-3xl bg-gradient-to-r from-emerald-950/60 via-slate-900 to-slate-900 border border-emerald-500/30 p-8 sm:p-10 shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="space-y-3 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold uppercase tracking-wider font-mono">
+          <span>{isFr ? 'Pack Tout-en-un Disponible' : 'All-in-One Corporate Pack'}</span>
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+          {isFr
+            ? 'Vous lancez votre entreprise ou renouvelez votre image ?'
+            : 'Launching a new venture or rebranding your company?'}
+        </h3>
+        <p class="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
+          {isFr
+            ? 'Bénéficiez de notre Pack Corporate 360° combinant : Création de Site Web + Logo & Charte Graphique + Flyers & Cartes de Visite à un tarif préférentiel tout-en-un.'
+            : 'Enjoy our 360° Corporate Branding Pack combining Website + Vector Logo & Guidelines + Flyers & Business Cards at an exclusive bundled rate.'}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center gap-3.5 flex-shrink-0 w-full lg:w-auto">
+        <a
+          href={isFr ? "https://wa.me/22890116744?text=Bonjour%20AYEGROUPE%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Pack%20Corporate%20(Site%20Web%2C%20Logo%2C%20Flyers)" : "https://wa.me/17788091060?text=Hello%20AYEGROUPE%2C%20I%20am%20interested%20in%20the%20Corporate%20Pack%20(Website%2C%20Logo%2C%20Flyers)"}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center inline-flex items-center justify-center gap-2"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+          </svg>
+          <span>{isFr ? 'WhatsApp Togo & International' : 'WhatsApp Us'}</span>
+        </a>
+
+        <a
+          href={isFr ? "/fr/contact?pole=creative" : "/en/contact?pole=creative"}
+          class="w-full sm:w-auto px-7 py-3 rounded-full bg-transparent hover:bg-white text-white hover:text-slate-900 font-bold text-xs uppercase tracking-wider border-2 border-white transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center"
+        >
+          {isFr ? 'Demander un devis en ligne' : 'Request online quote'}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupCreativeTabs() {
+    const tabBtns = document.querySelectorAll('.creative-tab-btn');
+    const tabPanels = document.querySelectorAll('.creative-tab-panel');
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-tab');
+
+        // Toggle button states
+        tabBtns.forEach((b) => {
+          b.classList.remove('active', 'bg-emerald-500', 'text-slate-950', 'shadow-md');
+          b.classList.add('text-slate-300');
+        });
+        btn.classList.add('active', 'bg-emerald-500', 'text-slate-950', 'shadow-md');
+        btn.classList.remove('text-slate-300');
+
+        // Toggle panels
+        tabPanels.forEach((panel) => {
+          if (panel.id === targetId) {
+            panel.classList.remove('hidden');
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  // Setup on page load and Astro view transitions
+  setupCreativeTabs();
+  document.addEventListener('astro:after-swap', setupCreativeTabs);
+</script>

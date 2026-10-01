@@ -67,8 +67,9 @@ const currentYear = new Date().getFullYear();
           {t.itPoleTitle}
         </h4>
         <ul class="space-y-2.5 text-xs text-slate-300">
-          <li><a href={`/${lang}/services-it`} class="hover:text-[#00A859] transition-colors">Développement sur mesure</a></li>
-          <li><a href={`/${lang}/services-it`} class="hover:text-[#00A859] transition-colors">Conseil & Audit IT</a></li>
+          <li><a href={`/${lang}/services-it`} class="hover:text-[#00A859] transition-colors">{lang === 'fr' ? 'Développement sur mesure' : 'Custom Software Dev'}</a></li>
+          <li><a href={lang === 'fr' ? '/fr/services-creatifs' : '/en/creative-services'} class="text-emerald-400 font-semibold hover:underline flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>{lang === 'fr' ? 'Studio Créatif (Web, Logo, Flyers)' : 'Creative Studio (Web, Logo, Flyers)'}</a></li>
+          <li><a href={`/${lang}/services-it`} class="hover:text-[#00A859] transition-colors">{lang === 'fr' ? 'Conseil & Audit IT' : 'IT Advisory & Audit'}</a></li>
           <li><a href={`/${lang}/services-it`} class="hover:text-[#00A859] transition-colors">Intégration de Systèmes</a></li>
           <li><a href={`/${lang}/services-it`} class="hover:text-[#00A859] transition-colors">Réseaux & Infrastructures</a></li>
           <li><a href={`/${lang}/services-it`} class="hover:text-[#00A859] transition-colors">Solutions CAO / FAO / IAO</a></li>

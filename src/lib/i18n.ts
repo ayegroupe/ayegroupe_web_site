@@ -5,6 +5,7 @@ export const translations = {
     nav: {
       home: 'Accueil',
       servicesIt: 'Services IT',
+      creative: 'Studio Créatif',
       togo: 'Pôle Togo & Logistique',
       saas: 'Nos SaaS',
       about: 'À propos',
@@ -42,6 +43,7 @@ export const translations = {
     nav: {
       home: 'Home',
       servicesIt: 'IT Services',
+      creative: 'Creative Studio',
       togo: 'Togo Hub',
       saas: 'Our SaaS',
       about: 'About Us',

@@ -15,6 +15,7 @@ const labels = {
     pole: 'Pôle d\'activité concerné *',
     selectPole: 'Sélectionnez un pôle',
     poleIt: 'Pôle IT & Ingénierie logicielle (International)',
+    poleCreative: 'Studio Digital & Graphisme (Sites Web, Logos, Flyers)',
     poleTogo: 'Pôle Togo (Fourniture IT, Matériel, Logistique)',
     poleSaas: 'Solutions SaaS & Création de plateforme',
     poleOther: 'Autre demande / Partenariat',
@@ -35,6 +36,7 @@ const labels = {
     pole: 'Division Concerned *',
     selectPole: 'Select a business unit',
     poleIt: 'IT & Software Engineering (International)',
+    poleCreative: 'Digital & Creative Studio (Websites, Logos, Flyers)',
     poleTogo: 'Togo Hub (IT Supply, Hardware, Logistics)',
     poleSaas: 'SaaS Solutions & Custom Platforms',
     poleOther: 'Other inquiry / Strategic partnership',
@@ -122,6 +124,7 @@ const l = labels[lang];
         >
           <option value="" disabled selected>{l.selectPole}</option>
           <option value="it">{l.poleIt}</option>
+          <option value="creative">{l.poleCreative}</option>
           <option value="togo">{l.poleTogo}</option>
           <option value="saas">{l.poleSaas}</option>
           <option value="other">{l.poleOther}</option>
@@ -181,6 +184,33 @@ const l = labels[lang];
   const successBox = document.getElementById('contact-feedback-success');
   const errorBox = document.getElementById('contact-feedback-error');
   const submitBtn = document.getElementById('contact-submit-btn');
+
+  // Pre-select pole if in URL
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const poleParam = urlParams.get('pole');
+    const serviceParam = urlParams.get('service');
+    const poleSelect = document.getElementById('contact-pole') as HTMLSelectElement | null;
+    const messageInput = document.getElementById('contact-message') as HTMLTextAreaElement | null;
+
+    if (poleSelect) {
+      if (poleParam === 'creative' || ['web', 'logo', 'flyers'].includes(serviceParam || '')) {
+        poleSelect.value = 'creative';
+      }
+    }
+
+    if (messageInput && serviceParam) {
+      if (serviceParam === 'web') {
+        messageInput.value = "Bonjour, je souhaite un devis pour la création d'un site web : ";
+      } else if (serviceParam === 'logo') {
+        messageInput.value = "Bonjour, je souhaite un devis pour la création d'un logo et de mon identité visuelle : ";
+      } else if (serviceParam === 'flyers') {
+        messageInput.value = "Bonjour, je souhaite un devis pour la création de supports de communication (flyers, affiches, cartes de visite) : ";
+      }
+    }
+  } catch (e) {
+    // Ignore URL parsing errors
+  }
 
   if (form && successBox && errorBox && submitBtn) {
     form.addEventListener('submit', async (e) => {

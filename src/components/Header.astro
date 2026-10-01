@@ -13,6 +13,7 @@ const t = translations[lang].nav;
 const navItems = [
   { label: t.home, href: `/${lang}` },
   { label: t.servicesIt, href: `/${lang}/services-it` },
+  { label: t.creative, href: lang === 'fr' ? '/fr/services-creatifs' : '/en/creative-services' },
   { label: t.togo, href: `/${lang}/togo` },
   { label: t.saas, href: `/${lang}/saas` },
   { label: t.about, href: `/${lang}/a-propos` },

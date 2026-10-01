@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CreativeServicesSlide from '../../components/CreativeServicesSlide.astro';
+import ContactForm from '../../components/ContactForm.astro';
+
+const faqs = [
+  {
+    q: "What types of websites does AYEGROUPE build?",
+    a: "We engineer corporate showcase websites, full-featured e-commerce storefronts (with Stripe, PayPal, and Mobile Money integrations), custom web applications, SaaS platforms, and conversion landing pages."
+  },
+  {
+    q: "What formats will I receive for my logo and brand assets?",
+    a: "You receive your brand identity in all industry-standard vector formats (SVG, AI, PDF) for infinite scaling without quality loss (signage, embroidery, billboards), plus high-resolution web formats (transparent PNG, JPG, favicons)."
+  },
+  {
+    q: "Do you design print-ready flyers and trade-show banners?",
+    a: "Yes, we handle end-to-end design for commercial flyers, brochures, trade-show roll-up banners, and business cards adhering to professional prepress specifications (300 DPI, CMYK color space, bleed and crop marks)."
+  },
+  {
+    q: "Is there a combined package for Website + Logo + Marketing Print?",
+    a: "Yes! Our '360° Corporate Brand Pack' bundles full brand identity creation, responsive showcase website development, and essential print collateral (business cards and flyers) at a preferential bundled price."
+  }
+];
+
+const steps = [
+  {
+    num: "01",
+    title: "Discovery & Brief",
+    desc: "Understanding your vision, business goals, target audience, and aesthetic requirements."
+  },
+  {
+    num: "02",
+    title: "Creative Prototyping",
+    desc: "Crafting original design directions, UI wireframes, vector logo concepts, and print layouts."
+  },
+  {
+    num: "03",
+    title: "Refinement & Polish",
+    desc: "Fast feedback cycles and precision iterations until complete alignment with your vision."
+  },
+  {
+    num: "04",
+    title: "Final Delivery & Launch",
+    desc: "Delivering all master source assets in high resolution, plus secure web deployment."
+  }
+];
+---
+
+<BaseLayout
+  title="Creative Studio — Websites, Logos & Print Collateral"
+  description="Elevate your brand with AYEGROUPE: high-performance custom websites, bespoke vector logos, and high-impact marketing flyers and brochures."
+  lang="en"
+  canonicalPath="/en/creative-services"
+>
+  <section class="bg-gradient-to-b from-[#F4F6F9] via-white to-white py-16 lg:py-20 border-b border-slate-200/80 relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-sky opacity-30 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl space-y-4">
+        <a href="/en" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#00A859] hover:text-[#008F4C] uppercase tracking-wider">&larr; Back to Home</a>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-[#0C2340]">
+          Digital & Creative Studio
+        </h1>
+        <p class="text-[#2C3E50] text-base sm:text-xl font-normal leading-relaxed">
+          Elevate your corporate presence with our end-to-end creative suite: 
+          <strong class="text-[#0C2340] font-semibold">Custom Websites</strong>, 
+          <strong class="text-[#0C2340] font-semibold">Iconic Vector Logos</strong>, and 
+          <strong class="text-[#0C2340] font-semibold">High-Impact Marketing Collateral</strong>.
+        </p>
+
+        <div class="pt-4 flex flex-wrap items-center gap-3">
+          <a
+            href="#studio-creatif"
+            class="px-6 py-3 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
+          >
+            Explore presentation slide &darr;
+          </a>
+          <a
+            href="https://wa.me/17788091060?text=Hello%20AYEGROUPE%2C%20I%20would%20like%20a%20quote%20for%20a%20website%2C%20logo%20or%20marketing%20flyers."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-full bg-white hover:bg-[#0C2340] text-[#0C2340] hover:text-white font-bold text-xs uppercase tracking-wider border-2 border-[#0C2340] transition-all"
+          >
+            Direct WhatsApp Chat
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CreativeServicesSlide lang="en" />
+
+  <section class="py-20 lg:py-24 bg-white border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-[#0C2340] border border-slate-200">
+          AYEGROUPE Workflow
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0C2340] tracking-tight">
+          A Structured & Transparent Creative Journey
+        </h2>
+        <p class="text-[#2C3E50] text-sm sm:text-base leading-relaxed">
+          From concept to high-res production, every phase is vetted with your team.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((st) => (
+          <div class="p-6 rounded-2xl bg-[#F4F6F9] border border-slate-200 hover:border-emerald-500/50 hover:bg-white hover:shadow-md transition-all">
+            <div class="text-3xl font-extrabold font-mono text-[#00A859] mb-3">{st.num}</div>
+            <h3 class="text-lg font-bold text-[#0C2340] mb-2">{st.title}</h3>
+            <p class="text-xs text-[#2C3E50] leading-relaxed">{st.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-[#F4F6F9] border-b border-slate-200/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 space-y-3">
+        <h2 class="text-3xl font-extrabold text-[#0C2340] tracking-tight">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-sm text-[#2C3E50]">
+          Everything you need to know before initiating your project.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((f) => (
+          <div class="rounded-2xl bg-white border border-slate-200 p-6 shadow-xs">
+            <h3 class="text-base font-bold text-[#0C2340] mb-2 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#00A859] flex-shrink-0"></span>
+              {f.q}
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-4">
+              {f.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-[#00A859] border border-emerald-200">
+            Complimentary Quote
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0C2340] tracking-tight">
+            Let’s Shape Your Brand’s Next Chapter
+          </h2>
+          <p class="text-[#2C3E50] text-sm sm:text-base leading-relaxed">
+            Fill out the form or drop us a WhatsApp message to receive a detailed cost breakdown within 24 business hours.
+          </p>
+          
+          <div class="p-5 rounded-2xl bg-[#F4F6F9] border border-slate-200 text-xs text-slate-700 space-y-2">
+            <div class="font-bold text-[#0C2340]">✓ Guaranteed 24-hour turnaround</div>
+            <div class="font-bold text-[#0C2340]">✓ Transparent pricing without hidden fees</div>
+            <div class="font-bold text-[#0C2340]">✓ Dedicated international & regional support</div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <ContactForm lang="en" />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
