@@ -101,6 +101,7 @@ Le domaine `ayegroupe.com` est géré via Cloudflare (nameservers `laila.ns.clou
 - Limites d'insertion en base : [supabase/rate_limit.sql](supabase/rate_limit.sql), par adresse email et par empreinte d'IP.
 - **Aucun plafond global, volontairement** : un plafond commun à tous les visiteurs permettrait à un spammeur de bloquer les vrais clients en le saturant. Toute limite doit rester rapportée à un expéditeur précis.
 - L'IP n'est jamais stockée en clair, seulement son empreinte `md5`, suffisante pour compter.
+- En-têtes de sécurité dans [vercel.json](vercel.json), CSP comprise. Elle restreint **les domaines autorisés** à servir scripts, styles et polices ; elle conserve `'unsafe-inline'` car Astro intègre certains scripts directement dans les pages. Toute nouvelle ressource externe (police, outil de mesure, widget) devra y être ajoutée, sinon le navigateur la bloquera silencieusement.
 
 ## 10. Pièges déjà rencontrés (pour ne pas les refaire)
 
