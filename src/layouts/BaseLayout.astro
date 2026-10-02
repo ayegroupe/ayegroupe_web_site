@@ -18,6 +18,9 @@ interface Props {
    *  hreflang pointe vers une URL inexistante et Google l'ignore. */
   altPathFr?: string;
   altPathEn?: string;
+  /** Pages outils internes : visibles si on connait l'URL, mais tenues hors
+   *  des resultats de recherche. */
+  noindex?: boolean;
 }
 
 const {
@@ -28,6 +31,7 @@ const {
   ogType = 'website',
   altPathFr,
   altPathEn,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = 'https://ayegroupe.com';
@@ -99,6 +103,7 @@ const organizationSchema = {
     <title>{title} | AYEGROUPE</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

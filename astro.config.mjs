@@ -17,6 +17,9 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      // Outil de production interne : ne doit pas etre soumis a Google.
+      filter: (page) => !page.includes('/tiktok-visuels'),
+    }),
   ],
 });

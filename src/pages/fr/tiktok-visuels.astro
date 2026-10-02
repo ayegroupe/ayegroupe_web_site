@@ -1,0 +1,557 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Source unique des 24 visuels, partagee avec public/tiktok-studio.html :
+// une correction de texte ne doit se faire qu'a un seul endroit.
+import visuals from '../../../public/tiktok-visuals.json';
+---
+
+<BaseLayout
+  title="TikTok Studio AYEGROUPE — 24 Visuels Haute Définition Prêts à Publier"
+  description="Générez, prévisualisez et téléchargez en 1 clic 24 visuels 9:16 professionnels pour promouvoir les services d'AYEGROUPE sur TikTok (Studio Créatif, Logistique, Import-Export, IT, SaaS)."
+  lang="fr"
+  canonicalPath="/fr/tiktok-visuels"
+  noindex
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-[#0A192F] via-[#0C2340] to-[#0A192F] text-white pt-16 pb-20 relative overflow-hidden border-b border-slate-700/50">
+    <div class="absolute inset-0 bg-grid-sky opacity-20 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-4xl mx-auto text-center space-y-6">
+        
+        <!-- Status Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Kit Officiel TikTok AYEGROUPE · 24 Visuels 9:16 HD</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+          Vos Visuels TikTok <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-blue-400">Prêts à Publier</span>
+        </h1>
+
+        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          Propulsez vos services sur TikTok avec nos <strong>24 affiches visuelles au format 9:16 (1080x1920)</strong>. Téléchargez chaque image en haute définition et copiez la légende complète avec hashtags viraux en 1 clic.
+        </p>
+
+        <!-- Quick Stats -->
+        <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div class="text-2xl font-bold font-mono text-emerald-400">24</div>
+            <div class="text-xs text-slate-300">Visuels prêts à l'emploi</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div class="text-2xl font-bold font-mono text-blue-400">9:16</div>
+            <div class="text-xs text-slate-300">Format natif TikTok / Reels</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div class="text-2xl font-bold font-mono text-amber-400">5 Pôles</div>
+            <div class="text-xs text-slate-300">Créatif, Logistique, IT, Trade, SaaS</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div class="text-2xl font-bold font-mono text-purple-400">100%</div>
+            <div class="text-xs text-slate-300">Captions & Hashtags inclus</div>
+          </div>
+        </div>
+
+        <!-- Strategy Tips Alert -->
+        <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 text-left text-xs sm:text-sm text-slate-300 space-y-2 mt-8">
+          <div class="font-bold text-white flex items-center gap-2">
+            <span>💡</span> <span>Comment maximiser l'algorithme TikTok pour ces visuels :</span>
+          </div>
+          <ul class="list-disc list-inside space-y-1 text-slate-300">
+            <li><strong>Mode Photo (Diaporama Carrousel)</strong> : TikTok booste énormément le format carrousel de photos avec musique tendance en fond sonore.</li>
+            <li><strong>Voix-off ou Vidéo</strong> : Vous pouvez également utiliser ces visuels comme plans de coupe ou comme miniatures de couverture dans CapCut.</li>
+            <li><strong>Horaires de publication au Togo / Afrique de l'Ouest (GMT)</strong> : Entre 12h00 et 14h00, puis entre 18h30 et 21h30 pour un pic d'audience maximal.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Buttons Section -->
+  <section class="py-6 bg-slate-900 border-b border-slate-800 sticky top-16 z-30 backdrop-blur-md bg-slate-900/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-center gap-2" id="filter-buttons">
+        <button
+          class="filter-btn active px-4 py-2 rounded-full text-xs font-bold transition-all bg-[#00A859] text-white shadow-sm"
+          data-filter="all"
+        >
+          Tous les visuels (24)
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300"
+          data-filter="creative"
+        >
+          🎨 Studio Créatif (5)
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300"
+          data-filter="logistics"
+        >
+          🚢 Logistique & Fret (5)
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300"
+          data-filter="trade"
+        >
+          🌐 Import-Export & Sourcing (4)
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300"
+          data-filter="it_hardware"
+        >
+          💻 IT & Bureautique Pro (4)
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300"
+          data-filter="saas_tech"
+        >
+          🚀 SaaS & Logiciels (4)
+        </button>
+        <button
+          class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300"
+          data-filter="contact"
+        >
+          ⭐ Devis & Confiance (2)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visuals Grid Section -->
+  <section class="py-16 bg-[#081220] min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="visuals-grid">
+        {visuals.map((v) => (
+          <div
+            class="visual-item flex flex-col rounded-3xl bg-slate-900/90 border border-slate-800 overflow-hidden shadow-xl hover:border-slate-700 transition-all duration-200"
+            data-category={v.category}
+            id={`card-${v.id}`}
+          >
+            <!-- 9:16 Mockup Canvas Container -->
+            <div class="p-4 sm:p-5 flex justify-center bg-slate-950/60">
+              <div
+                class={`relative w-full max-w-[320px] aspect-[9/16] rounded-2xl p-5 flex flex-col justify-between overflow-hidden shadow-2xl bg-gradient-to-b ${v.themeGradient} border border-white/10`}
+                id={`visual-preview-${v.id}`}
+              >
+                <!-- Background subtle technical grid -->
+                <div class="absolute inset-0 opacity-15 bg-grid-sky pointer-events-none"></div>
+
+                <!-- Top Header in 9:16 card -->
+                <div class="relative z-10 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span class="text-[10px] font-black tracking-widest uppercase text-white font-mono">AYEGROUPE</span>
+                    </div>
+                    <span class={`text-[9px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${v.badgeColor}`}>
+                      {v.badge}
+                    </span>
+                  </div>
+
+                  <!-- Hook Title -->
+                  <div class="pt-2">
+                    <h3 class="text-lg sm:text-xl font-black text-white leading-tight drop-shadow-md">
+                      {v.hook}
+                    </h3>
+                    <p class="text-[11px] text-slate-300 font-medium mt-1 leading-snug">
+                      {v.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Middle Feature Card in 9:16 -->
+                <div class="relative z-10 my-auto py-2">
+                  <div class="rounded-xl bg-black/40 backdrop-blur-md p-3.5 border border-white/15 space-y-2">
+                    <div class="text-[10px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
+                      <span>⚡</span> <span>Points Clés du Service :</span>
+                    </div>
+                    <ul class="space-y-1.5">
+                      {v.points.map((pt) => (
+                        <li class="flex items-start gap-1.5 text-[10px] text-slate-200 leading-tight">
+                          <span class="text-emerald-400 font-bold">✓</span>
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Reassurance Pill -->
+                  <div class="mt-2.5 text-center">
+                    <span class="inline-block text-[9px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 text-white border border-white/20">
+                      ★ {v.tag}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Bottom Footer in 9:16 -->
+                <div class="relative z-10 space-y-2 pt-2 border-t border-white/15">
+                  <div class="p-2 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-center">
+                    <div class="text-[10px] font-black text-emerald-300 uppercase tracking-wide">
+                      {v.ctaText}
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-[9px] text-slate-400 font-mono">
+                    <span>Lomé, Togo & Canada</span>
+                    <span class="text-white font-bold">{v.website}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Card Controls & Copy Buttons -->
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-4 bg-slate-900 border-t border-slate-800">
+              
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-mono font-bold text-slate-400">Post #{v.id}</span>
+                  <span class="text-xs font-semibold text-emerald-400">{v.categoryName}</span>
+                </div>
+                <h4 class="text-sm font-bold text-white line-clamp-1">{v.hook}</h4>
+                <p class="text-xs text-slate-400 mt-1 line-clamp-2">{v.subtitle}</p>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="space-y-2 pt-2">
+                <!-- Direct HD Canvas Generator Button -->
+                <button
+                  class="download-canvas-btn w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#00A859] to-[#008F4C] hover:from-[#008F4C] hover:to-[#007A40] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]"
+                  data-visual-id={v.id}
+                  data-hook={v.hook}
+                  data-subtitle={v.subtitle}
+                  data-badge={v.badge}
+                  data-tag={v.tag}
+                  data-points={JSON.stringify(v.points)}
+                  data-cta={v.ctaText}
+                  data-website={v.website}
+                  data-theme={v.category}
+                >
+                  <span>📥</span> <span>Télécharger l'Affiche HD (1080x1920)</span>
+                </button>
+
+                <!-- AI Artwork Download (if available) -->
+                {v.aiImage && (
+                  <a
+                    href={v.aiImage}
+                    download={`ayegroupe-tiktok-ai-${v.id}.jpg`}
+                    target="_blank"
+                    class="w-full py-2 px-4 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all text-center"
+                  >
+                    <span>🖼️</span> <span>Télécharger le Poster 3D IA</span>
+                  </a>
+                )}
+
+                <!-- Copy Caption Button -->
+                <button
+                  class="copy-caption-btn w-full py-2 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+                  data-caption={v.caption}
+                >
+                  <span class="icon">📋</span> <span class="btn-text">Copier la Légende & Hashtags</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Offscreen canvas used for generating high-definition 1080x1920 graphics -->
+  <canvas id="export-canvas" width="1080" height="1920" class="hidden"></canvas>
+
+  <!-- Client-side Interactive Logic -->
+  <script is:inline>
+    // Filtering logic
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const visualItems = document.querySelectorAll('.visual-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-[#00A859]', 'text-white');
+          b.classList.add('bg-slate-800', 'text-slate-300');
+        });
+        btn.classList.add('bg-[#00A859]', 'text-white');
+        btn.classList.remove('bg-slate-800', 'text-slate-300');
+
+        const filter = btn.getAttribute('data-filter');
+
+        visualItems.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Copy caption logic
+    const copyButtons = document.querySelectorAll('.copy-caption-btn');
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const caption = btn.getAttribute('data-caption');
+        const textSpan = btn.querySelector('.btn-text');
+        const iconSpan = btn.querySelector('.icon');
+
+        try {
+          await navigator.clipboard.writeText(caption);
+          const originalText = textSpan.textContent;
+          const originalIcon = iconSpan.textContent;
+
+          textSpan.textContent = 'Copié dans le presse-papiers !';
+          iconSpan.textContent = '✅';
+          btn.classList.add('bg-emerald-800/50', 'text-emerald-300', 'border-emerald-500');
+
+          setTimeout(() => {
+            textSpan.textContent = originalText;
+            iconSpan.textContent = originalIcon;
+            btn.classList.remove('bg-emerald-800/50', 'text-emerald-300', 'border-emerald-500');
+          }, 2500);
+        } catch (err) {
+          alert('Impossible de copier automatiquement : ' + caption);
+        }
+      });
+    });
+
+    // High definition 1080x1920 Canvas Downloader
+    const downloadBtns = document.querySelectorAll('.download-canvas-btn');
+    const canvas = document.getElementById('export-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Helper function for wrapping text on Canvas
+    function wrapText(context, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      let currentY = y;
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = context.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          context.fillText(line, x, currentY);
+          line = words[n] + ' ';
+          currentY += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      context.fillText(line, x, currentY);
+      return currentY + lineHeight;
+    }
+
+    // Helper for rounded rectangles
+    function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+      if (typeof radius === 'number') {
+        radius = {tl: radius, tr: radius, br: radius, bl: radius};
+      }
+      ctx.beginPath();
+      ctx.moveTo(x + radius.tl, y);
+      ctx.lineTo(x + width - radius.tr, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+      ctx.lineTo(x + width, y + height - radius.br);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+      ctx.lineTo(x + radius.bl, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+      ctx.lineTo(x, y + radius.tl);
+      ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+      ctx.closePath();
+      if (fill) ctx.fill();
+      if (stroke) ctx.stroke();
+    }
+
+    downloadBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-visual-id');
+        const hook = btn.getAttribute('data-hook');
+        const subtitle = btn.getAttribute('data-subtitle');
+        const badge = btn.getAttribute('data-badge');
+        const tag = btn.getAttribute('data-tag');
+        const points = JSON.parse(btn.getAttribute('data-points') || '[]');
+        const cta = btn.getAttribute('data-cta');
+        const website = btn.getAttribute('data-website');
+        const theme = btn.getAttribute('data-theme');
+
+        // Setup 1080x1920 high resolution canvas
+        canvas.width = 1080;
+        canvas.height = 1920;
+
+        // Background Gradient
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, 1920);
+        if (theme === 'creative') {
+          bgGrad.addColorStop(0, '#0A192F');
+          bgGrad.addColorStop(0.5, '#0E2A4D');
+          bgGrad.addColorStop(1, '#1E3A8A');
+        } else if (theme === 'logistics') {
+          bgGrad.addColorStop(0, '#0A192F');
+          bgGrad.addColorStop(0.5, '#241A0B');
+          bgGrad.addColorStop(1, '#B45309');
+        } else if (theme === 'trade') {
+          bgGrad.addColorStop(0, '#0A192F');
+          bgGrad.addColorStop(0.5, '#1B2A10');
+          bgGrad.addColorStop(1, '#D97706');
+        } else if (theme === 'saas_tech') {
+          bgGrad.addColorStop(0, '#0A192F');
+          bgGrad.addColorStop(0.5, '#062B22');
+          bgGrad.addColorStop(1, '#059669');
+        } else {
+          bgGrad.addColorStop(0, '#0A192F');
+          bgGrad.addColorStop(0.5, '#12253D');
+          bgGrad.addColorStop(1, '#2563EB');
+        }
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Ambient circular glows
+        const glowGrad1 = ctx.createRadialGradient(900, 200, 20, 900, 200, 600);
+        glowGrad1.addColorStop(0, 'rgba(0, 168, 89, 0.35)');
+        glowGrad1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = glowGrad1;
+        ctx.beginPath();
+        ctx.arc(900, 200, 600, 0, Math.PI * 2);
+        ctx.fill();
+
+        const glowGrad2 = ctx.createRadialGradient(200, 1600, 20, 200, 1600, 700);
+        glowGrad2.addColorStop(0, 'rgba(37, 99, 235, 0.35)');
+        glowGrad2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = glowGrad2;
+        ctx.beginPath();
+        ctx.arc(200, 1600, 700, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Technical Grid pattern
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+        ctx.lineWidth = 2;
+        for (let x = 60; x < 1080; x += 60) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, 1920);
+          ctx.stroke();
+        }
+        for (let y = 60; y < 1920; y += 60) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(1080, y);
+          ctx.stroke();
+        }
+
+        // Header Brand Bar (Y: 120)
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '900 44px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('AYEGROUPE', 90, 150);
+
+        // Green active dot
+        ctx.fillStyle = '#00A859';
+        ctx.beginPath();
+        ctx.arc(70, 138, 10, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Badge pill
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 2;
+        roundRect(ctx, 700, 105, 290, 60, 30, true, true);
+
+        ctx.fillStyle = '#F59E0B';
+        ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(badge.toUpperCase(), 845, 144);
+        ctx.textAlign = 'left';
+
+        // Main Hook Title (Y: 280)
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '900 68px "Plus Jakarta Sans", sans-serif';
+        const nextY = wrapText(ctx, hook, 90, 310, 900, 84);
+
+        // Subtitle
+        ctx.fillStyle = '#94A3B8';
+        ctx.font = '500 36px "Inter", sans-serif';
+        wrapText(ctx, subtitle, 90, nextY + 20, 900, 48);
+
+        // Feature Center Glass Card (Y: 680, Height: 700)
+        const cardY = 660;
+        ctx.fillStyle = 'rgba(10, 25, 47, 0.75)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+        ctx.lineWidth = 3;
+        roundRect(ctx, 90, cardY, 900, 680, 40, true, true);
+
+        // Feature Card Title
+        ctx.fillStyle = '#F59E0B';
+        ctx.font = 'bold 30px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('⚡ CE QUE NOUS VOUS APPORTONS :', 140, cardY + 80);
+
+        // Points bullets
+        let bulletY = cardY + 160;
+        points.forEach(pt => {
+          // Check icon circle
+          ctx.fillStyle = '#00A859';
+          ctx.beginPath();
+          ctx.arc(160, bulletY - 12, 18, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = 'bold 22px sans-serif';
+          ctx.fillText('✓', 152, bulletY - 4);
+
+          // Bullet text
+          ctx.fillStyle = '#F8FAFC';
+          ctx.font = '600 32px "Inter", sans-serif';
+          wrapText(ctx, pt, 205, bulletY, 740, 42);
+
+          bulletY += 115;
+        });
+
+        // Reassurance Tag Pill (Y: 1400)
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+        roundRect(ctx, 240, 1390, 600, 75, 38, true, true);
+
+        ctx.fillStyle = '#F8FAFC';
+        ctx.font = 'bold 28px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('★  ' + tag.toUpperCase() + '  ★', 540, 1438);
+
+        // WhatsApp CTA Box (Y: 1530)
+        const ctaGrad = ctx.createLinearGradient(90, 1530, 990, 1660);
+        ctaGrad.addColorStop(0, '#00A859');
+        ctaGrad.addColorStop(1, '#008F4C');
+        ctx.fillStyle = ctaGrad;
+        roundRect(ctx, 90, 1520, 900, 150, 40, true, false);
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '900 38px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('📲  ' + cta.toUpperCase(), 540, 1610);
+
+        // Footer Bar (Y: 1770)
+        ctx.textAlign = 'left';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.fillRect(90, 1750, 900, 2);
+
+        ctx.fillStyle = '#94A3B8';
+        ctx.font = '600 28px "Inter", sans-serif';
+        ctx.fillText('📍 Hub Lomé, Togo & Surrey, Canada', 90, 1820);
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 30px "JetBrains Mono", monospace';
+        ctx.textAlign = 'right';
+        ctx.fillText(website, 990, 1820);
+
+        // Trigger direct PNG download
+        const dataUrl = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = `ayegroupe-tiktok-post-${id}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+    });
+  </script>
+</BaseLayout>

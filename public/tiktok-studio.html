@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio TikTok AYEGROUPE — 24 Visuels Haute Définition Prêts à Publier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', 'sans-serif'],
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#081220] text-slate-100 font-sans antialiased min-h-screen">
+
+  <!-- Header Banner -->
+  <header class="bg-gradient-to-r from-[#0A192F] via-[#0E2A4D] to-[#0A192F] border-b border-slate-800 py-12 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        Kit Officiel Réseaux Sociaux · AYEGROUPE
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black font-heading tracking-tight text-white">
+        24 Visuels TikTok <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-blue-400">9:16 Haute Définition</span>
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+        Prêts à publier sur votre nouveau compte TikTok ! Chaque affiche est téléchargeable en <strong>1080x1920 HD</strong> avec la légende et les hashtags optimisés pour le référencement au Togo et en Afrique.
+      </p>
+    </div>
+  </header>
+
+  <!-- Filter Bar -->
+  <div class="bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 border-b border-slate-800 py-4 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2" id="filter-bar">
+      <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-[#00A859] text-white" data-filter="all">Tous les visuels (24)</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300" data-filter="creative">🎨 Studio Créatif (5)</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300" data-filter="logistics">🚢 Logistique & Fret (5)</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300" data-filter="trade">🌐 Import-Export (4)</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300" data-filter="it_hardware">💻 IT & Bureautique (4)</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300" data-filter="saas_tech">🚀 Logiciels & SaaS (4)</button>
+      <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-300" data-filter="contact">⭐ Confiance & Devis (2)</button>
+    </div>
+  </div>
+
+  <!-- Cards Grid Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cards-container">
+      <!-- Cards rendered via JS -->
+    </div>
+  </main>
+
+  <!-- Offscreen canvas for download -->
+  <canvas id="export-canvas" width="1080" height="1920" class="hidden"></canvas>
+
+  <script>
+    // Source unique des 24 visuels : public/tiktok-visuals.json.
+    // Les donnees ne sont PAS dupliquees ici, pour qu'une correction de texte
+    // n'ait a etre faite qu'a un seul endroit.
+    let visualsData = [];
+
+    const container = document.getElementById('cards-container');
+
+    function renderCards(filter = 'all') {
+      container.innerHTML = '';
+      visualsData.forEach(v => {
+        if (filter !== 'all' && v.category !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = "visual-item flex flex-col rounded-3xl bg-slate-900 border border-slate-800 overflow-hidden shadow-xl";
+        card.setAttribute('data-category', v.category);
+
+        const aiBtnHtml = v.aiImage ? `
+          <a href="${v.aiImage}" download="ayegroupe-tiktok-ai-${v.id}.jpg" target="_blank" class="w-full py-2 px-4 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all text-center">
+            <span>🖼️</span> <span>Télécharger le Poster 3D IA</span>
+          </a>
+        ` : '';
+
+        card.innerHTML = `
+          <div class="p-4 sm:p-5 flex justify-center bg-slate-950/60">
+            <div class="relative w-full max-w-[320px] aspect-[9/16] rounded-2xl p-5 flex flex-col justify-between overflow-hidden shadow-2xl bg-gradient-to-b ${v.themeGradient} border border-white/10">
+              
+              <div class="relative z-10 space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-[10px] font-black tracking-widest uppercase text-white font-mono">AYEGROUPE</span>
+                  </div>
+                  <span class="text-[9px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${v.badgeColor}">
+                    ${v.badge}
+                  </span>
+                </div>
+
+                <div class="pt-2">
+                  <h3 class="text-lg font-black text-white leading-tight drop-shadow-md">
+                    ${v.hook}
+                  </h3>
+                  <p class="text-[11px] text-slate-300 font-medium mt-1 leading-snug">
+                    ${v.subtitle}
+                  </p>
+                </div>
+              </div>
+
+              <div class="relative z-10 my-auto py-2">
+                <div class="rounded-xl bg-black/40 backdrop-blur-md p-3.5 border border-white/15 space-y-2">
+                  <div class="text-[10px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
+                    <span>⚡</span> <span>Ce que nous vous offrons :</span>
+                  </div>
+                  <ul class="space-y-1.5">
+                    ${v.points.map(pt => `
+                      <li class="flex items-start gap-1.5 text-[10px] text-slate-200 leading-tight">
+                        <span class="text-emerald-400 font-bold">✓</span>
+                        <span>${pt}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </div>
+
+                <div class="mt-2.5 text-center">
+                  <span class="inline-block text-[9px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 text-white border border-white/20">
+                    ★ ${v.tag}
+                  </span>
+                </div>
+              </div>
+
+              <div class="relative z-10 space-y-2 pt-2 border-t border-white/15">
+                <div class="p-2 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-center">
+                  <div class="text-[10px] font-black text-emerald-300 uppercase tracking-wide">
+                    ${v.ctaText}
+                  </div>
+                </div>
+                <div class="flex items-center justify-between text-[9px] text-slate-400 font-mono">
+                  <span>Lomé, Togo & Canada</span>
+                  <span class="text-white font-bold">${v.website}</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4 bg-slate-900 border-t border-slate-800">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-mono font-bold text-slate-400">Post #${v.id}</span>
+                <span class="text-xs font-semibold text-emerald-400">${v.categoryName}</span>
+              </div>
+              <h4 class="text-sm font-bold text-white line-clamp-1">${v.hook}</h4>
+              <p class="text-xs text-slate-400 mt-1 line-clamp-2">${v.subtitle}</p>
+            </div>
+
+            <div class="space-y-2 pt-2">
+              <button
+                class="download-btn w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#00A859] to-[#008F4C] hover:from-[#008F4C] hover:to-[#007A40] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]"
+                onclick="downloadImage(${v.id})"
+              >
+                <span>📥</span> <span>Télécharger l'Affiche HD (1080x1920)</span>
+              </button>
+
+              ${aiBtnHtml}
+
+              <button
+                class="copy-btn w-full py-2 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+                onclick="copyCaption(${v.id}, this)"
+              >
+                <span>📋</span> <span class="txt">Copier la Légende & Hashtags</span>
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Filter events
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('bg-[#00A859]', 'text-white');
+          b.classList.add('bg-slate-800', 'text-slate-300');
+        });
+        btn.classList.add('bg-[#00A859]', 'text-white');
+        btn.classList.remove('bg-slate-800', 'text-slate-300');
+        renderCards(btn.getAttribute('data-filter'));
+      });
+    });
+
+    // Copy caption
+    async function copyCaption(id, btn) {
+      const item = visualsData.find(x => x.id === id);
+      if (!item) return;
+      try {
+        await navigator.clipboard.writeText(item.caption);
+        const txt = btn.querySelector('.txt');
+        const oldText = txt.textContent;
+        txt.textContent = 'Copié dans le presse-papiers !';
+        btn.classList.add('bg-emerald-800/60', 'text-emerald-200');
+        setTimeout(() => {
+          txt.textContent = oldText;
+          btn.classList.remove('bg-emerald-800/60', 'text-emerald-200');
+        }, 2500);
+      } catch (e) {
+        alert(item.caption);
+      }
+    }
+
+    // Helper functions for Canvas
+    function wrapText(context, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      let currentY = y;
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = context.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          context.fillText(line, x, currentY);
+          line = words[n] + ' ';
+          currentY += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      context.fillText(line, x, currentY);
+      return currentY + lineHeight;
+    }
+
+    function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+      if (typeof radius === 'number') radius = {tl: radius, tr: radius, br: radius, bl: radius};
+      ctx.beginPath();
+      ctx.moveTo(x + radius.tl, y);
+      ctx.lineTo(x + width - radius.tr, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+      ctx.lineTo(x + width, y + height - radius.br);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+      ctx.lineTo(x + radius.bl, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+      ctx.lineTo(x, y + radius.tl);
+      ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+      ctx.closePath();
+      if (fill) ctx.fill();
+      if (stroke) ctx.stroke();
+    }
+
+    // Download HD Canvas
+    // Charge une image et la renvoie prete a dessiner (null si indisponible,
+    // pour que l'affiche se genere quand meme avec le degrade seul).
+    function loadImage(src) {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = src;
+      });
+    }
+
+    async function downloadImage(id) {
+      const item = visualsData.find(x => x.id === id);
+      if (!item) return;
+
+      const canvas = document.getElementById('export-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = 1080;
+      canvas.height = 1920;
+
+      // Background Gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, 1920);
+      if (item.category === 'creative') {
+        bgGrad.addColorStop(0, '#0A192F');
+        bgGrad.addColorStop(0.5, '#0E2A4D');
+        bgGrad.addColorStop(1, '#1E3A8A');
+      } else if (item.category === 'logistics') {
+        bgGrad.addColorStop(0, '#0A192F');
+        bgGrad.addColorStop(0.5, '#241A0B');
+        bgGrad.addColorStop(1, '#B45309');
+      } else if (item.category === 'trade') {
+        bgGrad.addColorStop(0, '#0A192F');
+        bgGrad.addColorStop(0.5, '#1B2A10');
+        bgGrad.addColorStop(1, '#D97706');
+      } else if (item.category === 'saas_tech') {
+        bgGrad.addColorStop(0, '#0A192F');
+        bgGrad.addColorStop(0.5, '#062B22');
+        bgGrad.addColorStop(1, '#059669');
+      } else {
+        bgGrad.addColorStop(0, '#0A192F');
+        bgGrad.addColorStop(0.5, '#12253D');
+        bgGrad.addColorStop(1, '#2563EB');
+      }
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Photo de fond si le visuel en a une : recadrage "cover" pour remplir
+      // le 1080x1920 sans deformer, puis voile sombre pour garder le texte
+      // lisible par-dessus.
+      if (item.aiImage) {
+        const bg = await loadImage(item.aiImage);
+        if (bg) {
+          const scale = Math.max(1080 / bg.width, 1920 / bg.height);
+          const w = bg.width * scale;
+          const h = bg.height * scale;
+          ctx.drawImage(bg, (1080 - w) / 2, (1920 - h) / 2, w, h);
+
+          const scrim = ctx.createLinearGradient(0, 0, 0, 1920);
+          scrim.addColorStop(0, 'rgba(8,18,32,0.88)');
+          scrim.addColorStop(0.45, 'rgba(8,18,32,0.72)');
+          scrim.addColorStop(1, 'rgba(8,18,32,0.92)');
+          ctx.fillStyle = scrim;
+          ctx.fillRect(0, 0, 1080, 1920);
+        }
+      }
+
+      // Glows
+      const glowGrad1 = ctx.createRadialGradient(900, 200, 20, 900, 200, 600);
+      glowGrad1.addColorStop(0, 'rgba(0, 168, 89, 0.35)');
+      glowGrad1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = glowGrad1;
+      ctx.beginPath();
+      ctx.arc(900, 200, 600, 0, Math.PI * 2);
+      ctx.fill();
+
+      const glowGrad2 = ctx.createRadialGradient(200, 1600, 20, 200, 1600, 700);
+      glowGrad2.addColorStop(0, 'rgba(37, 99, 235, 0.35)');
+      glowGrad2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = glowGrad2;
+      ctx.beginPath();
+      ctx.arc(200, 1600, 700, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Grid
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 2;
+      for (let x = 60; x < 1080; x += 60) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, 1920);
+        ctx.stroke();
+      }
+      for (let y = 60; y < 1920; y += 60) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(1080, y);
+        ctx.stroke();
+      }
+
+      // Brand Bar
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '900 44px sans-serif';
+      ctx.fillText('AYEGROUPE', 90, 150);
+
+      ctx.fillStyle = '#00A859';
+      ctx.beginPath();
+      ctx.arc(70, 138, 10, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Badge pill
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.lineWidth = 2;
+      roundRect(ctx, 700, 105, 290, 60, 30, true, true);
+
+      ctx.fillStyle = '#F59E0B';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(item.badge.toUpperCase(), 845, 144);
+      ctx.textAlign = 'left';
+
+      // Hook
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '900 68px sans-serif';
+      const nextY = wrapText(ctx, item.hook, 90, 310, 900, 84);
+
+      // Subtitle
+      ctx.fillStyle = '#94A3B8';
+      ctx.font = '500 36px sans-serif';
+      wrapText(ctx, item.subtitle, 90, nextY + 20, 900, 48);
+
+      // Feature Card
+      const cardY = 660;
+      ctx.fillStyle = 'rgba(10, 25, 47, 0.75)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+      ctx.lineWidth = 3;
+      roundRect(ctx, 90, cardY, 900, 680, 40, true, true);
+
+      ctx.fillStyle = '#F59E0B';
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('⚡ CE QUE NOUS VOUS APPORTONS :', 140, cardY + 80);
+
+      let bulletY = cardY + 160;
+      item.points.forEach(pt => {
+        ctx.fillStyle = '#00A859';
+        ctx.beginPath();
+        ctx.arc(160, bulletY - 12, 18, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 22px sans-serif';
+        ctx.fillText('✓', 152, bulletY - 4);
+
+        ctx.fillStyle = '#F8FAFC';
+        ctx.font = '600 32px sans-serif';
+        wrapText(ctx, pt, 205, bulletY, 740, 42);
+
+        bulletY += 115;
+      });
+
+      // Tag
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+      roundRect(ctx, 240, 1390, 600, 75, 38, true, true);
+
+      ctx.fillStyle = '#F8FAFC';
+      ctx.font = 'bold 28px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('★  ' + item.tag.toUpperCase() + '  ★', 540, 1438);
+
+      // CTA
+      const ctaGrad = ctx.createLinearGradient(90, 1530, 990, 1660);
+      ctaGrad.addColorStop(0, '#00A859');
+      ctaGrad.addColorStop(1, '#008F4C');
+      ctx.fillStyle = ctaGrad;
+      roundRect(ctx, 90, 1520, 900, 150, 40, true, false);
+
+      // Le CTA contient le numero WhatsApp : il doit tenir entierement dans le
+      // bouton. On reduit la taille jusqu'a ce qu'il rentre, plutot que de le
+      // laisser deborder et tronquer le numero.
+      ctx.fillStyle = '#FFFFFF';
+      const ctaLabel = '📲  ' + item.ctaText.toUpperCase();
+      let ctaSize = 38;
+      do {
+        ctx.font = '900 ' + ctaSize + 'px sans-serif';
+        if (ctx.measureText(ctaLabel).width <= 840) break;
+        ctaSize -= 1;
+      } while (ctaSize > 20);
+      ctx.fillText(ctaLabel, 540, 1610);
+
+      // Footer
+      ctx.textAlign = 'left';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.fillRect(90, 1750, 900, 2);
+
+      // Deux lignes distinctes : cote a cote, l'adresse et l'URL se
+      // chevauchaient.
+      ctx.fillStyle = '#94A3B8';
+      ctx.font = '600 26px sans-serif';
+      ctx.fillText('📍 Hub Lomé, Togo & Surrey, Canada', 90, 1808);
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 28px monospace';
+      ctx.fillText(item.website, 90, 1858);
+
+      const dataUrl = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = `ayegroupe-tiktok-post-${id}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Initial render
+    fetch('/tiktok-visuals.json')
+      .then(r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(data => {
+        visualsData = data;
+        renderCards('all');
+      })
+      .catch(err => {
+        container.innerHTML = '<p class="col-span-full text-center text-red-300 py-12">Impossible de charger les visuels (' + err.message + '). Ouvrez cette page via un serveur web, pas directement depuis le disque.</p>';
+      });
+  </script>
+</body>
+</html>
