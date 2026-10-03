@@ -82,11 +82,10 @@
         card.className = "visual-item flex flex-col rounded-3xl bg-slate-900 border border-slate-800 overflow-hidden shadow-xl";
         card.setAttribute('data-category', v.category);
 
-        const aiBtnHtml = v.aiImage ? `
-          <a href="${v.aiImage}" download="ayegroupe-tiktok-ai-${v.id}.jpg" target="_blank" class="w-full py-2 px-4 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all text-center">
-            <span>🖼️</span> <span>Télécharger le Poster 3D IA</span>
-          </a>
-        ` : '';
+        // Plus de second bouton : depuis que le bouton principal renvoie
+        // l'affiche finie telle quelle, les deux telechargeaient le meme
+        // fichier.
+        const aiBtnHtml = '';
 
         card.innerHTML = `
           <div class="p-4 sm:p-5 flex justify-center bg-slate-950/60">
