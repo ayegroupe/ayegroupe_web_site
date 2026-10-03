@@ -157,13 +157,17 @@ def generate_tiktok_poster(
     draw.text((195, 134), "Technologie • Commerce • Logistique", fill=(148, 163, 184), font=f_baseline)
     
     # Top-right category badge pill
-    badge_w = 380
+    # Largeur calculee sur le texte : un libelle long debordait du cadre.
+    badge_label = wide(category_badge)
+    while f_badge.getbbox(badge_label)[2] > 370 and f_badge.size > 16:
+        f_badge = load_font('jakarta', f_badge.size - 1, 'Bold')
+    badge_w = max(340, min(420, f_badge.getbbox(badge_label)[2] + 52))
     badge_h = 58
     badge_x = target_w - badge_w - 70
     badge_y = 96
     draw_round_rect(draw, (badge_x, badge_y, badge_x + badge_w, badge_y + badge_h), radius=29, fill=(10, 25, 47, 240), outline=badge_color, width=2)
     
-    draw.text((badge_x + badge_w // 2, badge_y + 14), wide(category_badge), fill=badge_color, font=f_badge, anchor="mt")
+    draw.text((badge_x + badge_w // 2, badge_y + 14), badge_label, fill=badge_color, font=f_badge, anchor="mt")
     
     # Thin divider
     draw.line([(70, 205), (target_w - 70, 205)], fill=(255, 255, 255, 45), width=2)
@@ -171,7 +175,21 @@ def generate_tiktok_poster(
     # 5. Accroche principale, en taille adaptative : une accroche longue doit
     # retrecir plutot que de deborder sur le bloc d'arguments (qui commence a
     # y=660).
-    TITLE_TOP, TITLE_LIMIT = 240, 600
+    # On mesure d'abord le sous-titre : le titre ne doit pas lui voler la
+    # place, sinon les deux viennent toucher la carte.
+    _sub_lines, _cur = [], ""
+    for w in (subtitle or '').split(' '):
+        t = (_cur + " " + w).strip()
+        if f_sub.getbbox(t)[2] > 940 and _cur:
+            _sub_lines.append(_cur)
+            _cur = w
+        else:
+            _cur = t
+    if _cur:
+        _sub_lines.append(_cur)
+
+    TITLE_TOP = 240
+    TITLE_LIMIT = 630 - len(_sub_lines) * int(f_sub.size * 1.3)
     for title_size in range(66, 39, -2):
         f_title = load_font('jakarta', title_size, 'ExtraBold')
         line_h = int(title_size * 1.22)
@@ -196,7 +214,21 @@ def generate_tiktok_poster(
     
     # Subtitle
     y_text += 8
-    draw.text((70, y_text), subtitle, fill=(203, 213, 225), font=f_sub)
+    # Le sous-titre deborde en une seule ligne : on le replie sur la largeur
+    # utile, comme le titre.
+    sub_lines, sub_cur = [], ""
+    for w in (subtitle or '').split(' '):
+        test = (sub_cur + " " + w).strip()
+        if f_sub.getbbox(test)[2] > 940 and sub_cur:
+            sub_lines.append(sub_cur)
+            sub_cur = w
+        else:
+            sub_cur = test
+    if sub_cur:
+        sub_lines.append(sub_cur)
+    for sl in sub_lines:
+        draw.text((70, y_text), sl, fill=(203, 213, 225), font=f_sub)
+        y_text += int(f_sub.size * 1.3)
     
     # 6. Center Feature Card (positioned so top 3D image remains nicely exposed)
     card_y = 660
@@ -273,7 +305,12 @@ def generate_tiktok_poster(
     cta_h = 135
     cta_x = 70
     draw_round_rect(draw, (cta_x, cta_y, cta_x + cta_w, cta_y + cta_h), radius=35, fill=cta_color)
-    draw.text((cta_x + cta_w // 2, cta_y + 44), wide(cta_text), fill=(255, 255, 255), font=f_cta, anchor="mt")
+    # Le CTA porte le numero ou l'adresse : il doit tenir entierement dans le
+    # bouton, sinon l'information est tronquee.
+    cta_label = wide(cta_text)
+    while f_cta.getbbox(cta_label)[2] > cta_w - 70 and f_cta.size > 24:
+        f_cta = load_font('jakarta', f_cta.size - 1, 'ExtraBold')
+    draw.text((cta_x + cta_w // 2, cta_y + 44), cta_label, fill=(255, 255, 255), font=f_cta, anchor="mt")
     
     # 9. Footer Info Bar
     footer_y = cta_y + cta_h + 52
