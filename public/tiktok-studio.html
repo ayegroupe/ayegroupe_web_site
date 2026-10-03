@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Outil de production interne : accessible par son URL, mais hors des moteurs. -->
+  <meta name="robots" content="noindex, nofollow">
   <title>Studio TikTok AYEGROUPE — 24 Visuels Haute Définition Prêts à Publier</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -268,6 +270,19 @@
       const item = visualsData.find(x => x.id === id);
       if (!item) return;
 
+      // Les visuels livres avec une image sont des affiches DEJA finies, en
+      // 1080x1920 : on les telecharge telles quelles. Redessiner le texte
+      // par-dessus le dupliquerait et rendrait l'affiche illisible.
+      if (item.aiImage) {
+        const a = document.createElement('a');
+        a.href = item.aiImage;
+        a.download = 'ayegroupe-tiktok-' + String(item.id).padStart(2, '0') + '.jpg';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        return;
+      }
+
       const canvas = document.getElementById('export-canvas');
       const ctx = canvas.getContext('2d');
       canvas.width = 1080;
@@ -298,26 +313,6 @@
       }
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, 1080, 1920);
-
-      // Photo de fond si le visuel en a une : recadrage "cover" pour remplir
-      // le 1080x1920 sans deformer, puis voile sombre pour garder le texte
-      // lisible par-dessus.
-      if (item.aiImage) {
-        const bg = await loadImage(item.aiImage);
-        if (bg) {
-          const scale = Math.max(1080 / bg.width, 1920 / bg.height);
-          const w = bg.width * scale;
-          const h = bg.height * scale;
-          ctx.drawImage(bg, (1080 - w) / 2, (1920 - h) / 2, w, h);
-
-          const scrim = ctx.createLinearGradient(0, 0, 0, 1920);
-          scrim.addColorStop(0, 'rgba(8,18,32,0.88)');
-          scrim.addColorStop(0.45, 'rgba(8,18,32,0.72)');
-          scrim.addColorStop(1, 'rgba(8,18,32,0.92)');
-          ctx.fillStyle = scrim;
-          ctx.fillRect(0, 0, 1080, 1920);
-        }
-      }
 
       // Glows
       const glowGrad1 = ctx.createRadialGradient(900, 200, 20, 900, 200, 600);
