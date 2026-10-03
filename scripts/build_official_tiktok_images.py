@@ -136,7 +136,6 @@ def generate_tiktok_poster(
     f_badge = load_font('jakarta', 25, 'Bold')
     f_sub = load_font('inter', 34, 'Medium')
     f_card_hdr = load_font('jakarta', 29, 'Bold')
-    f_bullet = load_font('inter', 32, 'SemiBold')
     f_tag = load_font('inter', 28, 'Bold')
     f_cta = load_font('jakarta', 40, 'ExtraBold')
     f_footer = load_font('inter', 26, 'SemiBold')
@@ -215,33 +214,46 @@ def generate_tiktok_poster(
     
     draw.line([(card_x + 45, hdr_y + 48), (card_x + card_w - 45, hdr_y + 48)], fill=(255, 255, 255, 35), width=1)
     
-    # Bullets
-    b_y = hdr_y + 80
-    for b in bullets:
-        # Custom vector checkmark
+    # Bullets, en taille adaptative : on prend la plus grande qui tienne
+    # encore dans la carte, pour un texte aussi lisible que possible sur un
+    # ecran de telephone.
+    B_TOP = hdr_y + 80
+    B_BOTTOM = card_y + card_h - 40
+
+    def layout_bullets(font, line_h, gap):
+        """Decoupe chaque puce en lignes et renvoie (lignes, hauteur totale)."""
+        out, total = [], 0
+        for b in bullets:
+            lines, cur = [], ""
+            for w in b.split(' '):
+                test = (cur + " " + w).strip()
+                if (font.getbbox(test)[2] - font.getbbox(test)[0]) > 770 and cur:
+                    lines.append(cur)
+                    cur = w
+                else:
+                    cur = test
+            if cur:
+                lines.append(cur)
+            out.append(lines)
+            total += max(gap, len(lines) * line_h + gap // 2)
+        return out, total
+
+    for b_size in range(40, 27, -2):
+        f_bullet = load_font('inter', b_size, 'SemiBold')
+        b_line_h = int(b_size * 1.38)
+        b_gap = int(b_size * 2.75)
+        laid_out, needed = layout_bullets(f_bullet, b_line_h, b_gap)
+        if B_TOP + needed <= B_BOTTOM:
+            break
+
+    b_y = B_TOP
+    for lines in laid_out:
         draw_vector_check(draw, card_x + 72, b_y + 24, radius=22, circle_fill=(0, 168, 89))
-        
-        # Multi-line wrap
-        b_words = b.split(' ')
-        b_lines = []
-        b_cur = ""
-        for w in b_words:
-            test = (b_cur + " " + w).strip()
-            bbox = f_bullet.getbbox(test)
-            if (bbox[2] - bbox[0]) > 770:
-                b_lines.append(b_cur)
-                b_cur = w
-            else:
-                b_cur = test
-        if b_cur:
-            b_lines.append(b_cur)
-        
         line_sub_y = b_y + 6
-        for bl in b_lines:
+        for bl in lines:
             draw.text((card_x + 115, line_sub_y), bl, fill=(241, 245, 249), font=f_bullet)
-            line_sub_y += 42
-        
-        b_y += max(88, len(b_lines) * 44 + 42)
+            line_sub_y += b_line_h
+        b_y += max(b_gap, len(lines) * b_line_h + b_gap // 2)
     
     # 7. Trust Badge (below card)
     tag_y = card_y + card_h + 30
