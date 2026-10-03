@@ -1,4 +1,7 @@
+import io
+import json
 import os
+import re
 from PIL import Image, ImageDraw, ImageFont
 
 def create_cinematic_gradient(width, height):
@@ -54,21 +57,39 @@ def generate_tiktok_poster(
     cta_color,
     footer_left,
     footer_right,
-    theme_accent=(37, 99, 235)
+    theme_accent=(37, 99, 235),
+    gradient_stops=None
 ):
     target_w, target_h = 1080, 1920
     
-    # 1. Load and scale background
-    bg = Image.open(bg_path).convert('RGB')
-    bg_w, bg_h = bg.size
-    
-    scale = max(target_w / bg_w, target_h / bg_h)
-    new_w, new_h = int(bg_w * scale), int(bg_h * scale)
-    bg = bg.resize((new_w, new_h), Image.Resampling.LANCZOS)
-    
-    left = (new_w - target_w) // 2
-    top = (new_h - target_h) // 2
-    bg = bg.crop((left, top, left + target_w, top + target_h))
+    # 1. Fond : photo si disponible, sinon degrade thematique.
+    # Toutes les affiches partagent ainsi la meme mise en page, qu'une photo
+    # existe ou non pour ce visuel.
+    if bg_path:
+        bg = Image.open(bg_path).convert('RGB')
+        bg_w, bg_h = bg.size
+
+        scale = max(target_w / bg_w, target_h / bg_h)
+        new_w, new_h = int(bg_w * scale), int(bg_h * scale)
+        bg = bg.resize((new_w, new_h), Image.Resampling.LANCZOS)
+
+        left = (new_w - target_w) // 2
+        top = (new_h - target_h) // 2
+        bg = bg.crop((left, top, left + target_w, top + target_h))
+    else:
+        stops = gradient_stops or [(10, 25, 47), (14, 42, 77), (30, 58, 138)]
+        bg = Image.new('RGB', (target_w, target_h))
+        bg_draw = ImageDraw.Draw(bg)
+        segments = len(stops) - 1
+        for y in range(target_h):
+            pos = y / (target_h - 1) * segments
+            i = min(int(pos), segments - 1)
+            t = pos - i
+            c0, c1 = stops[i], stops[i + 1]
+            bg_draw.line(
+                [(0, y), (target_w, y)],
+                fill=tuple(int(c0[k] + (c1[k] - c0[k]) * t) for k in range(3))
+            )
     
     # 2. Cinematic overlay
     overlay = create_cinematic_gradient(target_w, target_h)
@@ -226,120 +247,63 @@ def generate_tiktok_poster(
 
 brain_dir = "C:/Users/HP/.gemini/antigravity-ide/brain/85fa634b-7d53-4338-b68e-8e6f2a90fa64"
 
-configs = [
-    {
-        "bg": f"{brain_dir}/bg_studio_creatif_clean_1790984870355.jpg",
-        "out": "public/images/tiktok/tiktok-01-studio-creatif.jpg",
-        "category": "STUDIO CRÉATIF",
-        "badge_color": (37, 99, 235),
-        "title": "CRÉATION DE SITES WEB & LOGOS PRO",
-        "subtitle": "Propulsez l'image de marque de votre entreprise",
-        "bullets": [
-            "Sites vitrines & boutiques e-commerce ultra-rapides",
-            "Paiement Mobile Money (T-Money, Flooz) & Carte bancaire",
-            "Logos vectoriels uniques (SVG, AI, PDF haute résolution)",
-            "Pack Corporate 360° clé en main en 7 jours ouvrés"
-        ],
-        "tag": "PACK PME & CRÉATION D'ENTREPRISE",
-        "cta": "WHATSAPP DEVIS 15 MIN : +228 90 11 67 44",
-        "cta_color": (0, 168, 89),
-        "footer_left": "Lomé, Togo & Surrey, Canada",
-        "footer_right": "ayegroupe.com/fr/services-creatifs"
-    },
-    {
-        "bg": f"{brain_dir}/bg_logistique_lome_clean_1790984885824.jpg",
-        "out": "public/images/tiktok/tiktok-06-logistique-lome.jpg",
-        "category": "LOGISTIQUE & FRET",
-        "badge_color": (245, 158, 11),
-        "title": "TRANSIT PORT DE LOMÉ & ENTREPOSAGE",
-        "subtitle": "Acheminement fiable et sécurisé de vos marchandises",
-        "bullets": [
-            "Enlèvement rapide de conteneurs & Zéro surestarie",
-            "Flotte de camions porte-conteneurs géolocalisés GPS",
-            "Espaces d'entreposage modernes & gardés 24h/24",
-            "Corridors régionaux vers le Burkina, Mali et Niger"
-        ],
-        "tag": "PORT AUTONOME DE LOMÉ (PAL)",
-        "cta": "COTATION EXPRESS WHATSAPP : +228 90 11 67 44",
-        "cta_color": (217, 119, 6),
-        "footer_left": "Port Autonome de Lomé, Togo",
-        "footer_right": "ayegroupe.com/fr/togo/logistique"
-    },
-    {
-        "bg": f"{brain_dir}/bg_import_export_clean_1790984900206.jpg",
-        "out": "public/images/tiktok/tiktok-11-import-export.jpg",
-        "category": "IMPORT-EXPORT",
-        "badge_color": (245, 158, 11),
-        "title": "SOURCING MONDIAL & DÉDOUANEMENT",
-        "subtitle": "Votre passerelle d'affaires Chine, Dubaï et Europe",
-        "bullets": [
-            "Sourcing & audit d'usines certifiées (Chine, Turquie, Dubaï)",
-            "Fret maritime conteneurs (FCL) & Groupage sécurisé (LCL)",
-            "Dédouanement rapide sur le Guichet Unique (GUCE)",
-            "Zéro risque fournisseur & conformité douanière totale"
-        ],
-        "tag": "0 RISQUE FOURNISSEUR • GUCE CONFORME",
-        "cta": "CONTACTEZ NOS EXPERTS : +228 90 11 67 44",
-        "cta_color": (217, 119, 6),
-        "footer_left": "Hub Lomé, Togo & International",
-        "footer_right": "ayegroupe.com/fr/togo/import-export"
-    },
-    {
-        "bg": f"{brain_dir}/bg_it_bureautique_clean_1790984930525.jpg",
-        "out": "public/images/tiktok/tiktok-15-it-bureautique.jpg",
-        "category": "IT & BUREAUTIQUE",
-        "badge_color": (37, 99, 235),
-        "title": "MATÉRIEL INFORMATIQUE & MOBILIER PRO",
-        "subtitle": "Équipez vos bureaux avec du matériel certifié",
-        "bullets": [
-            "PC Portables Dell, HP, Lenovo neufs sous garantie constructeur",
-            "Câblage structuré réseau Cat6/Cat7, Baies & Wi-Fi pro",
-            "Mobilier ergonomique de bureau & fauteuils de direction",
-            "Contrat de maintenance informatique & infogérance PME"
-        ],
-        "tag": "MATÉRIEL GARANTI AVEC SAV À LOMÉ",
-        "cta": "WHATSAPP CATALOGUE : +228 90 11 67 44",
-        "cta_color": (0, 168, 89),
-        "footer_left": "Sièges & Bureaux à Lomé, Togo",
-        "footer_right": "ayegroupe.com/fr/togo/it-bureautique"
-    },
-    {
-        "bg": f"{brain_dir}/bg_ayeprep_saas_clean_1790984980813.jpg",
-        "out": "public/images/tiktok/tiktok-20-ayeprep-saas.jpg",
-        "category": "EDTECH • AYEPREP.COM",
-        "badge_color": (16, 185, 129),
-        "title": "RÉUSSISSEZ LE TCF & TEF CANADA AVEC L'IA",
-        "subtitle": "La 1ère plateforme EdTech d'entraînement par IA",
-        "bullets": [
-            "Simulateur d'expression orale avec IA vocale interactive",
-            "Corrections instantanées de vos expressions écrites",
-            "Des centaines d'examens blancs conformes aux vrais tests",
-            "Atteignez le niveau C1/C2 (CLB 10) pour votre immigration"
-        ],
-        "tag": "PLATEFORME OFFICIELLE • 100% EN LIGNE",
-        "cta": "TESTEZ GRATUITEMENT SUR AYEPREP.COM",
-        "cta_color": (16, 185, 129),
-        "footer_left": "Produit SaaS édité par AYEGROUPE",
-        "footer_right": "ayeprep.com"
-    }
-]
+# Les 24 affiches sont generees depuis public/tiktok-visuals.json : meme source
+# que le studio, pour que le texte publie corresponde toujours a ce qui est
+# affiche a l'ecran. Les visuels sans photo recoivent un degrade thematique,
+# afin que la serie reste homogene.
 
-for cfg in configs:
+PHOTOS = {
+    1:  f"{brain_dir}/bg_studio_creatif_clean_1790984870355.jpg",
+    6:  f"{brain_dir}/bg_logistique_lome_clean_1790984885824.jpg",
+    11: f"{brain_dir}/bg_import_export_clean_1790984900206.jpg",
+    15: f"{brain_dir}/bg_it_bureautique_clean_1790984930525.jpg",
+    20: f"{brain_dir}/bg_ayeprep_saas_clean_1790984980813.jpg",
+}
+
+SLUGS = {
+    "creative": "studio-creatif", "logistics": "logistique", "trade": "import-export",
+    "it_hardware": "it-bureautique", "saas_tech": "saas", "contact": "contact",
+}
+
+
+def hex_to_rgb(value):
+    value = value.lstrip('#')
+    return tuple(int(value[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def gradient_from_theme(theme):
+    """Extrait les arrets de couleur de la classe Tailwind du visuel."""
+    stops = [hex_to_rgb(m) for m in re.findall(r'#([0-9A-Fa-f]{6})', theme or '')]
+    return stops if len(stops) >= 2 else None
+
+
+with io.open('public/tiktok-visuals.json', encoding='utf-8') as fh:
+    visuals = json.load(fh)
+
+os.makedirs('public/images/tiktok', exist_ok=True)
+
+for v in visuals:
+    accent = hex_to_rgb(v.get('accentColor') or '#2563EB')
+    slug = SLUGS.get(v['category'], 'visuel')
+    out = f"public/images/tiktok/tiktok-{v['id']:02d}-{slug}.jpg"
+
     generate_tiktok_poster(
-        bg_path=cfg["bg"],
-        output_path=cfg["out"],
-        category_badge=cfg["category"],
-        badge_color=cfg["badge_color"],
-        main_title=cfg["title"],
-        subtitle=cfg["subtitle"],
-        bullets=cfg["bullets"],
-        tag_text=cfg["tag"],
-        cta_text=cfg["cta"],
-        cta_color=cfg["cta_color"],
-        footer_left=cfg["footer_left"],
-        footer_right=cfg["footer_right"]
+        bg_path=PHOTOS.get(v['id']),
+        output_path=out,
+        category_badge=(v.get('badge') or v['categoryName']).upper(),
+        badge_color=accent,
+        main_title=v['hook'].upper(),
+        subtitle=v.get('subtitle', ''),
+        bullets=v.get('points', []),
+        tag_text=(v.get('tag') or '').upper(),
+        cta_text=(v.get('ctaText') or '').upper(),
+        # Vert de marque pour TOUS les appels a l'action : c'est la couleur
+        # d'action sur l'ensemble du site, elle ne doit pas varier par theme.
+        cta_color=(0, 168, 89),
+        footer_left="Lomé, Togo & Surrey, Canada",
+        footer_right=v.get('website', 'ayegroupe.com'),
+        theme_accent=accent,
+        gradient_stops=gradient_from_theme(v.get('themeGradient')),
     )
-    fname = os.path.basename(cfg["out"])
-    brain_copy = f"{brain_dir}/{fname}"
-    Image.open(cfg["out"]).save(brain_copy)
-    print(f"Copied to brain: {brain_copy}")
+
+print(f"\n{len(visuals)} affiches generees.")
