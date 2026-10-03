@@ -44,6 +44,34 @@ def draw_mini_star(draw, cx, cy, size=8, fill=(245, 158, 11)):
               (cx - size, cy), (cx - size * 0.4, cy - size * 0.4)]
     draw.polygon(points, fill=fill)
 
+
+FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fonts')
+FONT_FILES = {
+    'jakarta': os.path.join(FONT_DIR, 'PlusJakartaSans.ttf'),
+    'inter': os.path.join(FONT_DIR, 'Inter.ttf'),
+}
+
+
+def wide(text):
+    """Elargit l'espace entre les mots.
+
+    Plus Jakarta Sans a un espace tres etroit (0,17 em) : en capitales et en
+    graisse lourde, les mots se collent et deviennent penibles a lire. On
+    double l'espace pour revenir a une chasse normale.
+    """
+    return text.replace(' ', '  ')
+
+
+def load_font(family, size, weight='Bold'):
+    """Charge une graisse precise d'une police variable."""
+    font = ImageFont.truetype(FONT_FILES[family], size)
+    try:
+        font.set_variation_by_name(weight)
+    except Exception:
+        pass  # graisse absente : on garde le reglage par defaut
+    return font
+
+
 def generate_tiktok_poster(
     bg_path,
     output_path,
@@ -100,20 +128,18 @@ def generate_tiktok_poster(
     draw = ImageDraw.Draw(canvas)
     
     # Fonts
-    font_bold = "C:/Windows/Fonts/segoeuib.ttf"
-    font_reg = "C:/Windows/Fonts/segoeui.ttf"
-    font_mono = "C:/Windows/Fonts/tahomabd.ttf"
-    
-    f_brand = ImageFont.truetype(font_bold, 44)
-    f_baseline = ImageFont.truetype(font_reg, 23)
-    f_badge = ImageFont.truetype(font_bold, 24)
-    f_title = ImageFont.truetype(font_bold, 54)
-    f_sub = ImageFont.truetype(font_reg, 32)
-    f_card_hdr = ImageFont.truetype(font_bold, 28)
-    f_bullet = ImageFont.truetype(font_bold, 30)
-    f_tag = ImageFont.truetype(font_bold, 27)
-    f_cta = ImageFont.truetype(font_bold, 38)
-    f_footer = ImageFont.truetype(font_bold, 25)
+    # Polices de la charte du site (Plus Jakarta Sans pour les titres, Inter
+    # pour le texte courant) plutot que la police systeme de Windows : memes
+    # fontes que ayegroupe.com, et dessinees pour la lecture a l'ecran.
+    f_brand = load_font('jakarta', 46, 'ExtraBold')
+    f_baseline = load_font('inter', 23, 'Medium')
+    f_badge = load_font('jakarta', 25, 'Bold')
+    f_sub = load_font('inter', 34, 'Medium')
+    f_card_hdr = load_font('jakarta', 29, 'Bold')
+    f_bullet = load_font('inter', 32, 'SemiBold')
+    f_tag = load_font('inter', 28, 'Bold')
+    f_cta = load_font('jakarta', 40, 'ExtraBold')
+    f_footer = load_font('inter', 26, 'SemiBold')
     
     # 4. Top Header & Official Logo
     logo_path = 'public/logo/logo-transparent-white.png'
@@ -128,7 +154,7 @@ def generate_tiktok_poster(
         canvas.paste(logo, (70, 75), logo)
     
     # Brand typography
-    draw.text((195, 78), "AYEGROUPE", fill=(255, 255, 255), font=f_brand)
+    draw.text((195, 78), wide("AYEGROUPE"), fill=(255, 255, 255), font=f_brand)
     draw.text((195, 134), "Technologie • Commerce • Logistique", fill=(148, 163, 184), font=f_baseline)
     
     # Top-right category badge pill
@@ -138,30 +164,36 @@ def generate_tiktok_poster(
     badge_y = 96
     draw_round_rect(draw, (badge_x, badge_y, badge_x + badge_w, badge_y + badge_h), radius=29, fill=(10, 25, 47, 240), outline=badge_color, width=2)
     
-    draw.text((badge_x + badge_w // 2, badge_y + 14), category_badge, fill=badge_color, font=f_badge, anchor="mt")
+    draw.text((badge_x + badge_w // 2, badge_y + 14), wide(category_badge), fill=badge_color, font=f_badge, anchor="mt")
     
     # Thin divider
     draw.line([(70, 205), (target_w - 70, 205)], fill=(255, 255, 255, 45), width=2)
     
-    # 5. Main Hook Title
-    title_words = main_title.split(' ')
-    lines = []
-    curr_line = ""
-    for w in title_words:
-        test = (curr_line + " " + w).strip()
-        bbox = f_title.getbbox(test)
-        if (bbox[2] - bbox[0]) > 940:
+    # 5. Accroche principale, en taille adaptative : une accroche longue doit
+    # retrecir plutot que de deborder sur le bloc d'arguments (qui commence a
+    # y=660).
+    TITLE_TOP, TITLE_LIMIT = 240, 600
+    for title_size in range(66, 39, -2):
+        f_title = load_font('jakarta', title_size, 'ExtraBold')
+        line_h = int(title_size * 1.22)
+        lines, curr_line = [], ""
+        for w in main_title.split(' '):
+            test = (curr_line + " " + w).strip()
+            probe = wide(test)
+            if (f_title.getbbox(probe)[2] - f_title.getbbox(probe)[0]) > 940 and curr_line:
+                lines.append(curr_line)
+                curr_line = w
+            else:
+                curr_line = test
+        if curr_line:
             lines.append(curr_line)
-            curr_line = w
-        else:
-            curr_line = test
-    if curr_line:
-        lines.append(curr_line)
-    
-    y_text = 240
+        if TITLE_TOP + len(lines) * line_h <= TITLE_LIMIT:
+            break
+
+    y_text = TITLE_TOP
     for l in lines:
-        draw.text((70, y_text), l, fill=(255, 255, 255), font=f_title)
-        y_text += 68
+        draw.text((70, y_text), wide(l), fill=(255, 255, 255), font=f_title)
+        y_text += line_h
     
     # Subtitle
     y_text += 8
@@ -179,7 +211,7 @@ def generate_tiktok_poster(
     # Card Header
     hdr_y = card_y + 40
     draw_mini_star(draw, card_x + 60, hdr_y + 16, size=12, fill=badge_color)
-    draw.text((card_x + 85, hdr_y), "CE QUE NOUS VOUS APPORTONS :", fill=badge_color, font=f_card_hdr)
+    draw.text((card_x + 85, hdr_y), wide("CE QUE NOUS VOUS APPORTONS :"), fill=badge_color, font=f_card_hdr)
     
     draw.line([(card_x + 45, hdr_y + 48), (card_x + card_w - 45, hdr_y + 48)], fill=(255, 255, 255, 35), width=1)
     
@@ -221,7 +253,7 @@ def generate_tiktok_poster(
     # Decorative star on left and right of tag
     draw_mini_star(draw, tag_x + 40, tag_y + 33, size=10, fill=(245, 158, 11))
     draw_mini_star(draw, tag_x + tag_w - 40, tag_y + 33, size=10, fill=(245, 158, 11))
-    draw.text((tag_x + tag_w // 2, tag_y + 17), tag_text, fill=(255, 255, 255), font=f_tag, anchor="mt")
+    draw.text((tag_x + tag_w // 2, tag_y + 17), wide(tag_text), fill=(255, 255, 255), font=f_tag, anchor="mt")
     
     # 8. CTA Button
     cta_y = tag_y + tag_h + 35
@@ -229,7 +261,7 @@ def generate_tiktok_poster(
     cta_h = 135
     cta_x = 70
     draw_round_rect(draw, (cta_x, cta_y, cta_x + cta_w, cta_y + cta_h), radius=35, fill=cta_color)
-    draw.text((cta_x + cta_w // 2, cta_y + 44), cta_text, fill=(255, 255, 255), font=f_cta, anchor="mt")
+    draw.text((cta_x + cta_w // 2, cta_y + 44), wide(cta_text), fill=(255, 255, 255), font=f_cta, anchor="mt")
     
     # 9. Footer Info Bar
     footer_y = cta_y + cta_h + 52
