@@ -42,11 +42,11 @@ const isActive = (href: string) => {
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+      <nav class="hidden xl:flex items-center gap-1">
         {navItems.map((item) => (
           <a
             href={item.href}
-            class={`px-3.5 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-150 ${
+            class={`whitespace-nowrap px-2.5 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-150 ${
               isActive(item.href)
                 ? 'text-[#00A859] bg-[#E6F7EF] border border-[#00A859]/30 shadow-xs'
                 : 'text-[#0C2340] hover:text-[#00A859] hover:bg-slate-100/80'
@@ -58,12 +58,12 @@ const isActive = (href: string) => {
       </nav>
 
       <!-- Right Action Bar (Lang Switcher + CTA) -->
-      <div class="hidden sm:flex items-center gap-4">
+      <div class="hidden xl:flex items-center gap-4">
         <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
 
         <a
           href={`/${lang}/contact`}
-          class="relative inline-flex items-center justify-center px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#00A859] hover:bg-[#008F4C] rounded-full shadow-sm shadow-[#00A859]/20 transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
+          class="relative inline-flex items-center justify-center whitespace-nowrap px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#00A859] hover:bg-[#008F4C] rounded-full shadow-sm shadow-[#00A859]/20 transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0"
         >
           {t.quote}
           <svg class="w-3.5 h-3.5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,7 +73,7 @@ const isActive = (href: string) => {
       </div>
 
       <!-- Mobile Hamburger Button -->
-      <div class="flex items-center gap-3 lg:hidden">
+      <div class="flex items-center gap-3 xl:hidden">
         <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
 
         <button
@@ -96,7 +96,7 @@ const isActive = (href: string) => {
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-2 shadow-lg">
+  <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-2 shadow-lg">
     {navItems.map((item) => (
       <a
         href={item.href}
