@@ -141,7 +141,7 @@ def generate_tiktok_poster(
     f_footer = load_font('inter', 26, 'SemiBold')
     
     # 4. Top Header & Official Logo
-    logo_path = 'public/logo/logo-transparent-white.png'
+    logo_path = 'public/logo/logo-mark-tiktok.png'
     if os.path.exists(logo_path):
         logo = Image.open(logo_path).convert('RGBA')
         bbox = logo.getbbox()
@@ -154,7 +154,7 @@ def generate_tiktok_poster(
     
     # Brand typography
     draw.text((195, 78), wide("AYEGROUPE"), fill=(255, 255, 255), font=f_brand)
-    draw.text((195, 134), "Technologie • Commerce • Logistique", fill=(148, 163, 184), font=f_baseline)
+    draw.text((195, 134), "Technologies • Logistique • Commerce", fill=(148, 163, 184), font=f_baseline)
     
     # Top-right category badge pill
     # Largeur calculee sur le texte : un libelle long debordait du cadre.
