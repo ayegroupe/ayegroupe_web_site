@@ -1,20 +1,19 @@
 ---
+import { altPath, type Lang } from '../lib/i18n';
+
 interface Props {
-  currentLang: 'fr' | 'en';
+  currentLang: Lang;
   currentPath?: string;
 }
 
 const { currentLang, currentPath = '' } = Astro.props;
 
-// Determine target path when switching
-let targetPath = '';
-if (currentLang === 'fr') {
-  targetPath = currentPath.replace(/^\/fr(\/|$)/, '/en$1');
-  if (!targetPath.startsWith('/en')) targetPath = '/en';
-} else {
-  targetPath = currentPath.replace(/^\/en(\/|$)/, '/fr$1');
-  if (!targetPath.startsWith('/fr')) targetPath = '/fr';
-}
+// La substitution de prefixe faite ici auparavant fabriquait des 404 sur les
+// pages dont le slug change de langue (/fr/services-creatifs ->
+// /en/services-creatifs). altPath connait les paires ; sans traduction, on
+// renvoie vers l'accueil de la langue cible plutot que vers une page absente.
+const targetLang: Lang = currentLang === 'fr' ? 'en' : 'fr';
+const targetPath = altPath(currentPath, targetLang) ?? `/${targetLang}`;
 ---
 
 <div class="inline-flex items-center rounded-full bg-slate-100 border border-slate-200 p-0.5 text-[11px] font-bold tracking-wider">

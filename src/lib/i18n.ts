@@ -78,3 +78,29 @@ export const translations = {
     }
   }
 };
+
+/** Pages dont le slug change selon la langue : une simple substitution de
+ *  prefixe y fabrique une URL inexistante. */
+const SLUG_PAIRS: ReadonlyArray<readonly [string, string]> = [
+  ['/fr/services-creatifs', '/en/creative-services'],
+];
+
+/** Pages qui n'existent que dans une langue (outils internes). */
+const SANS_EQUIVALENT = new Set(['/fr/tiktok-visuels']);
+
+/**
+ * Chemin equivalent dans l'autre langue, ou null si la page n'a pas de
+ * traduction. Source unique pour le commutateur de langue et les hreflang :
+ * les deux divergeaient, et le commutateur pointait vers des 404.
+ */
+export function altPath(currentPath: string, target: Lang): string | null {
+  const p = currentPath.replace(/\/+$/, '') || `/${target}`;
+  if (SANS_EQUIVALENT.has(p)) return null;
+
+  for (const [fr, en] of SLUG_PAIRS) {
+    if (p === fr || p === en) return target === 'fr' ? fr : en;
+  }
+
+  const swapped = p.replace(/^\/(fr|en)(\/|$)/, `/${target}$2`);
+  return swapped.startsWith(`/${target}`) ? swapped : `/${target}`;
+}
