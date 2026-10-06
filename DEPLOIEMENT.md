@@ -22,8 +22,10 @@ Référence des paramètres mis en place. À garder à jour si un élément chan
 | Paramètre | Valeur |
 |---|---|
 | Compte / Team | `ayegroupe` (team slug interne : `ayegroupes-projects`) |
+| Plan | **Pro** depuis le 6 octobre 2026. L'offre Hobby interdit l'usage commercial : trois domaines de production y tournaient, dont deux SaaS monétisés. |
 | Projet actif (à utiliser) | `ayegroupe_web_site` |
-| Anciens projets (à ignorer) | `ayegroupe-web-site` (doublon créé par erreur), et tout projet sous l'équipe `ayegroupe_studio` (Pro) — jamais correctement relié |
+| Anciens projets (à ignorer) | `ayegroupe-web-site` (doublon créé par erreur), et tout projet sous l'équipe `ayegroupe_studio` — jamais correctement relié |
+| Équipe `ayegroupe_studio` | À supprimer. Elle était en Pro et facturée ~32 $/mois alors qu'elle n'hébergeait que trois déploiements d'essai sans domaine. Les quatre domaines et les quatre vrais projets ont toujours été sur `ayegroupes-projects`. Montée en gamme faite sur place plutôt que par transfert : déplacer un projet oblige à détacher son domaine, ce qui coupe le site jusqu'à réémission du certificat. |
 | URL de déploiement Vercel | `https://ayegroupe-web-site.vercel.app` |
 | Domaines personnalisés | `https://ayegroupe.com` et `https://www.ayegroupe.com` |
 | Connexion Git | Repo `ayegroupe/ayegroupe_web_site`, branche `main` → chaque push déclenche un build + déploiement Production automatique |
