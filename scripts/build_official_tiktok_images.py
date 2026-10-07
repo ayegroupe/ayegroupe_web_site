@@ -1,5 +1,6 @@
 import io
 import json
+from pathlib import Path
 import os
 import re
 from PIL import Image, ImageDraw, ImageFont
@@ -297,7 +298,14 @@ def generate_tiktok_poster(
     # Decorative star on left and right of tag
     draw_mini_star(draw, tag_x + 40, tag_y + 33, size=10, fill=(245, 158, 11))
     draw_mini_star(draw, tag_x + tag_w - 40, tag_y + 33, size=10, fill=(245, 158, 11))
-    draw.text((tag_x + tag_w // 2, tag_y + 17), wide(tag_text), fill=(255, 255, 255), font=f_tag, anchor="mt")
+    # L'etiquette n'avait pas d'ajustement, contrairement au titre et au CTA :
+    # les libelles longs debordaient de la pastille et passaient sous les
+    # etoiles. On reserve la place des deux etoiles de chaque cote.
+    tag_label = wide(tag_text)
+    tag_max = tag_w - 2 * 62
+    while f_tag.getbbox(tag_label)[2] > tag_max and f_tag.size > 16:
+        f_tag = load_font('inter', f_tag.size - 1, 'Bold')
+    draw.text((tag_x + tag_w // 2, tag_y + 17), tag_label, fill=(255, 255, 255), font=f_tag, anchor="mt")
     
     # 8. CTA Button
     cta_y = tag_y + tag_h + 35
@@ -326,20 +334,33 @@ def generate_tiktok_poster(
     final_img.convert('RGB').save(output_path, quality=96)
     print(f"Generated: {output_path}")
 
-brain_dir = "C:/Users/HP/.gemini/antigravity-ide/brain/85fa634b-7d53-4338-b68e-8e6f2a90fa64"
+# Les decors vivent dans le depot, comme les polices : le generateur doit
+# rester reproductible. Ils pointaient vers un cache de l'IDE — si ce dossier
+# disparaissait, la generation retombait en silence sur les degrades.
+PHOTOS_DIR = Path(__file__).resolve().parent / "photos"
 
-# Les 24 affiches sont generees depuis public/tiktok-visuals.json : meme source
-# que le studio, pour que le texte publie corresponde toujours a ce qui est
-# affiche a l'ecran. Les visuels sans photo recoivent un degrade thematique,
-# afin que la serie reste homogene.
-
-PHOTOS = {
-    1:  f"{brain_dir}/bg_studio_creatif_clean_1790984870355.jpg",
-    6:  f"{brain_dir}/bg_logistique_lome_clean_1790984885824.jpg",
-    11: f"{brain_dir}/bg_import_export_clean_1790984900206.jpg",
-    15: f"{brain_dir}/bg_it_bureautique_clean_1790984930525.jpg",
-    20: f"{brain_dir}/bg_ayeprep_saas_clean_1790984980813.jpg",
+# Une photo par pole. Les affiches d'une meme categorie partagent son decor :
+# cela leur donne une signature visuelle commune et evite 19 fonds plats.
+# `contact` n'en a pas et garde son degrade, ce qui la detache du lot.
+PHOTOS_PAR_CATEGORIE = {
+    "creative":    "creative.jpg",
+    "logistics":   "logistics.jpg",
+    "trade":       "trade.jpg",
+    "it_hardware": "it_hardware.jpg",
+    "saas_tech":   "saas_tech.jpg",
 }
+
+
+def photo_de(categorie):
+    """Chemin du decor de la categorie, ou None si elle n'en a pas / fichier absent."""
+    nom = PHOTOS_PAR_CATEGORIE.get(categorie)
+    if not nom:
+        return None
+    chemin = PHOTOS_DIR / nom
+    if not chemin.exists():
+        raise FileNotFoundError(f"decor manquant : {chemin}")
+    return str(chemin)
+
 
 SLUGS = {
     "creative": "studio-creatif", "logistics": "logistique", "trade": "import-export",
@@ -369,7 +390,7 @@ for v in visuals:
     out = f"public/images/tiktok/tiktok-{v['id']:02d}-{slug}.jpg"
 
     generate_tiktok_poster(
-        bg_path=PHOTOS.get(v['id']),
+        bg_path=photo_de(v['category']),
         output_path=out,
         category_badge=(v.get('badge') or v['categoryName']).upper(),
         badge_color=accent,
