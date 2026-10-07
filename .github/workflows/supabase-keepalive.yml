@@ -1,0 +1,46 @@
+# Les projets Supabase gratuits sont mis en pause apres 7 jours sans activite
+# sur la base. Le formulaire de contact casserait alors en silence : la page
+# s'afficherait normalement et l'envoi echouerait.
+#
+# Deux pings par semaine laissent 4 jours d'ecart au maximum, soit une marge
+# confortable sous la limite.
+#
+# Aucune cle n'est stockee ici : la cle anon est publique par conception et
+# deja servie dans le bundle du site, le job va donc la lire a la source. Si
+# elle change un jour, rien a mettre a jour.
+name: Supabase keepalive
+
+on:
+  schedule:
+    - cron: '0 6 * * 1,4'   # lundi et jeudi, 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Interroger la base via l'API publique
+        run: |
+          set -euo pipefail
+
+          page=$(curl -fsS https://ayegroupe.com/fr/contact/)
+          chunk=$(printf '%s' "$page" | grep -oE '/_astro/[A-Za-z0-9._-]+\.js' | head -1)
+          [ -n "$chunk" ] || { echo "::error::script du formulaire introuvable sur la page contact"; exit 1; }
+
+          sb=$(curl -fsS "https://ayegroupe.com$chunk" | grep -oE 'supabase\.[A-Za-z0-9_-]+\.js' | head -1)
+          [ -n "$sb" ] || { echo "::error::chunk supabase introuvable depuis $chunk"; exit 1; }
+
+          bundle=$(curl -fsS "https://ayegroupe.com/_astro/$sb")
+          url=$(printf '%s' "$bundle" | grep -oE 'https://[a-z0-9]+\.supabase\.co' | head -1)
+          key=$(printf '%s' "$bundle" | grep -oE 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9[A-Za-z0-9._-]+' | head -1)
+          [ -n "$url" ] && [ -n "$key" ] || { echo "::error::URL ou cle anon absente du bundle"; exit 1; }
+
+          # RLS ne laisse rien lire a anon : la reponse est [], mais la requete
+          # est bien executee par Postgres — c'est elle qui compte comme activite.
+          code=$(curl -fsS -o response.json -w '%{http_code}' \
+            "$url/rest/v1/contact_submissions?select=id&limit=1" \
+            -H "apikey: $key" -H "Authorization: Bearer $key")
+
+          echo "HTTP $code — $(cat response.json)"
+          [ "$code" = "200" ] || { echo "::error::ping echoue (HTTP $code)"; exit 1; }
+          echo "Base active."
