@@ -266,7 +266,10 @@ import visuals from '../../../public/tiktok-visuals.json';
   <canvas id="export-canvas" width="1080" height="1920" class="hidden"></canvas>
 
   <!-- Client-side Interactive Logic -->
-  <script is:inline>
+  <!-- Pas de is:inline : Astro ne traite pas ces scripts, il ne peut donc pas
+       en calculer l'empreinte et la CSP les rejette. Le code est autonome et
+       ne lit que le DOM, il supporte sans probleme d'etre differe. -->
+  <script>
     // Filtering logic
     const filterButtons = document.querySelectorAll('.filter-btn');
     const visualItems = document.querySelectorAll('.visual-item');

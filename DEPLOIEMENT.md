@@ -31,6 +31,25 @@ Référence des paramètres mis en place. À garder à jour si un élément chan
 | Connexion Git | Repo `ayegroupe/ayegroupe_web_site`, branche `main` → chaque push déclenche un build + déploiement Production automatique |
 | Variables d'environnement | `PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_ANON_KEY` — définies pour Production **et** Preview, en mode **Non-sensitive / Config** (⚠️ ne jamais les remettre en "Sensitive", ça les vide silencieusement au build pour les variables à préfixe `PUBLIC_`) |
 
+### Deux politiques CSP, pas une
+
+Le site en sert **deux en même temps**, et une ressource doit être autorisée par les deux :
+
+| Où | Portée | Rôle |
+|---|---|---|
+| `<meta>` généré par Astro (`experimental.csp`) | les 23 pages Astro | porte les **empreintes** de chaque script/style en ligne — c'est la vraie contrainte |
+| En-tête envoyé par Vercel (`vercel.json`) | toutes les réponses | `frame-ancestors`, `connect-src`, etc. — impossibles en `<meta>` |
+
+⚠️ **L'en-tête doit garder `'unsafe-inline'` dans `script-src`.** Le lui retirer paraît logique mais casse tout : il rejette alors les scripts que le `<meta>` autorise par empreinte, et le site perd son JavaScript **sans erreur visible** (testé : le menu mobile cesse de répondre).
+
+⚠️ **Un `<script is:inline>` n'est pas haché par Astro** et sera donc rejeté. Si un script doit rester inline, ajouter son empreinte dans `experimental.csp.scriptDirective.hashes`.
+
+⚠️ **Toute source externe doit être déclarée aux deux endroits** : dans `resources` côté Astro *et* dans l'en-tête. Omise d'un seul côté, elle est bloquée en silence.
+
+`/tiktok-studio.html` est un HTML brut de `public/` : Astro ne lui pose pas de `<meta>`, et il compile Tailwind dans le navigateur. Il a donc sa propre règle d'en-tête, plus permissive, au lieu d'ouvrir la CDN sur tout le site.
+
+`experimental.csp` est un drapeau **expérimental** d'Astro : à revérifier à chaque montée de version, le `<meta>` pourrait disparaître sans prévenir.
+
 **Si tu dois régénérer un accès CLI** : `vercel login` dans un terminal (pas besoin de token si tu es déjà connecté), puis dans le dossier du projet, la liaison est déjà enregistrée dans `.vercel/project.json`.
 
 ## 3. Supabase
