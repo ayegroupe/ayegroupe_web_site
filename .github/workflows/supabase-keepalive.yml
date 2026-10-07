@@ -15,6 +15,10 @@ on:
     - cron: '0 6 * * 1,4'   # lundi et jeudi, 06:00 UTC
   workflow_dispatch:
 
+# Le job n'appelle que des URL publiques : il n'a besoin d'aucun droit sur le
+# depot. Sans cette ligne il heriterait du jeton par defaut.
+permissions: {}
+
 jobs:
   ping:
     runs-on: ubuntu-latest
