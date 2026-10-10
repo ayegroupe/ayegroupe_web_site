@@ -1,0 +1,996 @@
+---
+// Accueil immersif : le visiteur « traverse » les lieux où AYEGROUPE exerce.
+// Chaque lieu correspond à une activité et mène à sa page. Les visuels sont
+// générés avec Higgsfield (scripts/build_journey_images.mjs les optimise).
+import type { Lang } from '../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const isFr = lang === 'fr';
+
+const scenes = [
+  {
+    slug: 'lome-hq',
+    place: isFr ? 'Lomé · Surrey' : 'Lomé · Surrey',
+    chapter: isFr ? 'Bienvenue' : 'Welcome',
+    title: isFr ? 'Entrez chez AYEGROUPE' : 'Step inside AYEGROUPE',
+    text: isFr
+      ? 'Un groupe, plusieurs métiers : logiciel, création, négoce, logistique et équipement IT. Suivez la visite, lieu par lieu.'
+      : 'One group, many trades: software, design, trade, logistics and IT equipment. Follow the tour, place by place.',
+    cta: isFr ? 'Commencer la visite' : 'Start the tour',
+    href: '#next',
+    alt: isFr
+      ? 'Entrée vitrée d’un siège moderne bordé de palmiers à Lomé, au lever du soleil'
+      : 'Glass entrance of a modern headquarters lined with palm trees in Lomé at sunrise',
+  },
+  {
+    slug: 'software-studio',
+    place: isFr ? 'Studio d’ingénierie' : 'Engineering studio',
+    chapter: isFr ? 'Logiciel' : 'Software',
+    title: isFr ? 'Nous concevons vos logiciels' : 'We build your software',
+    text: isFr
+      ? 'Applications web et mobiles sur mesure, architecture cloud, intégration d’API et de bases de données.'
+      : 'Custom web and mobile apps, cloud architecture, API and database integration.',
+    cta: isFr ? 'Services IT' : 'IT services',
+    href: `/${lang}/services-it`,
+    alt: isFr
+      ? 'Plateau d’ingénieurs logiciels devant des écrans de code, de nuit'
+      : 'Software engineers at screens full of code, at night',
+  },
+  {
+    slug: 'saas-ops',
+    place: isFr ? 'Salle des opérations' : 'Operations room',
+    chapter: 'SaaS',
+    title: isFr ? 'Nos plateformes tournent en production' : 'Our platforms run in production',
+    text: isFr
+      ? 'AyePrep prépare au TCF et au TEF Canada, AyeJob rapproche talents et recruteurs. Nous les concevons et les exploitons.'
+      : 'AyePrep prepares candidates for TCF and TEF Canada, AyeJob matches talent with employers. We build and run them.',
+    cta: isFr ? 'Nos SaaS' : 'Our SaaS',
+    href: `/${lang}/saas`,
+    alt: isFr
+      ? 'Mur d’écrans affichant des tableaux de bord d’applications dans une salle sombre'
+      : 'Wall of screens showing application dashboards in a dark room',
+  },
+  {
+    slug: 'creative-studio',
+    place: isFr ? 'Studio créatif' : 'Design studio',
+    chapter: isFr ? 'Création' : 'Design',
+    title: isFr ? 'Nous dessinons votre image' : 'We shape your image',
+    text: isFr
+      ? 'Sites web, logos et identité visuelle, flyers, affiches, roll-ups et cartes de visite.'
+      : 'Websites, logos and brand identity, flyers, posters, roll-ups and business cards.',
+    cta: isFr ? 'Studio créatif' : 'Design studio',
+    href: isFr ? '/fr/services-creatifs' : '/en/creative-services',
+    alt: isFr
+      ? 'Studio de design ensoleillé avec mur d’affiches, nuanciers et maquette de site'
+      : 'Sunlit design studio with a poster wall, colour swatches and a website mockup',
+  },
+  {
+    slug: 'port-lome',
+    place: isFr ? 'Port de Lomé' : 'Port of Lomé',
+    chapter: isFr ? 'Import-Export' : 'Import-Export',
+    title: isFr ? 'Nous faisons venir vos marchandises' : 'We bring in your goods',
+    text: isFr
+      ? 'Négoce général et import-export depuis le port de Lomé, porte d’entrée de l’Afrique de l’Ouest.'
+      : 'General trade and import-export through the port of Lomé, gateway to West Africa.',
+    cta: isFr ? 'Import-Export' : 'Import-Export',
+    href: `/${lang}/togo/import-export`,
+    alt: isFr
+      ? 'Grues et porte-conteneurs au port de Lomé au coucher du soleil'
+      : 'Cranes and a container ship at the port of Lomé at sunset',
+  },
+  {
+    slug: 'logistics-warehouse',
+    place: isFr ? 'Entrepôt & flotte' : 'Warehouse & fleet',
+    chapter: isFr ? 'Logistique' : 'Logistics',
+    title: isFr ? 'Nous stockons et livrons' : 'We store and deliver',
+    text: isFr
+      ? 'Entreposage, gestion des stocks, transport de marchandises et location de véhicules de société à Lomé.'
+      : 'Warehousing, inventory management, freight transport and company vehicle rental in Lomé.',
+    cta: isFr ? 'Logistique' : 'Logistics',
+    href: `/${lang}/togo/logistique`,
+    alt: isFr
+      ? 'Allée d’entrepôt menant à un quai ouvert sur une flotte de fourgons'
+      : 'Warehouse aisle leading to an open loading bay and a fleet of vans',
+  },
+  {
+    slug: 'it-showroom',
+    place: isFr ? 'Showroom & atelier' : 'Showroom & workshop',
+    chapter: isFr ? 'IT & Bureautique' : 'IT & Office',
+    title: isFr ? 'Nous équipons et réparons vos bureaux' : 'We equip and repair your offices',
+    text: isFr
+      ? 'Ordinateurs, imprimantes, mobilier et consommables, avec un atelier de maintenance sur place.'
+      : 'Computers, printers, furniture and supplies, with an on-site maintenance workshop.',
+    cta: isFr ? 'IT & Bureautique' : 'IT & Office',
+    href: `/${lang}/togo/it-bureautique`,
+    alt: isFr
+      ? 'Showroom de matériel informatique avec un technicien à l’établi au fond'
+      : 'IT equipment showroom with a technician at the workbench in the back',
+  },
+  {
+    slug: 'founder',
+    // Portrait animé dans un cadre vertical ; le bureau, flouté, sert de fond.
+    video: true,
+    place: isFr ? 'Fondateur & dirigeant' : 'Founder & CEO',
+    chapter: 'Contact',
+    title: isFr ? 'Parlons de votre projet' : 'Let’s talk about your project',
+    text: isFr
+      ? 'Un logiciel à créer, des marchandises à importer, des bureaux à équiper : échangez directement avec la direction d’AYEGROUPE.'
+      : 'Software to build, goods to import, offices to equip: talk directly with AYEGROUPE’s leadership.',
+    cta: isFr ? 'Nous contacter' : 'Contact us',
+    href: `/${lang}/contact`,
+    alt: isFr
+      ? 'Portrait du fondateur et dirigeant d’AYEGROUPE dans son bureau, la ville de Lomé derrière lui'
+      : 'Portrait of AYEGROUPE’s founder and CEO in his office, with Lomé behind him',
+  },
+];
+
+const t = {
+  label: isFr ? 'Visite des lieux AYEGROUPE' : 'AYEGROUPE places tour',
+  place: isFr ? 'Lieu' : 'Place',
+  prev: isFr ? 'Lieu précédent' : 'Previous place',
+  next: isFr ? 'Lieu suivant' : 'Next place',
+  pause: isFr ? 'Mettre la visite en pause' : 'Pause the tour',
+  play: isFr ? 'Reprendre la visite' : 'Resume the tour',
+  skip: isFr ? 'Passer la visite' : 'Skip the tour',
+  intro: isFr ? 'Ouverture des portes' : 'Opening the doors',
+  chapters: isFr ? 'Choisir un lieu' : 'Choose a place',
+};
+
+const img = (slug: string, w: number | string) => `/images/journey/${slug}-${w}.webp`;
+const total = String(scenes.length).padStart(2, '0');
+---
+
+<section
+  id="visite"
+  class="journey"
+  aria-roledescription="carousel"
+  aria-label={t.label}
+  data-journey
+>
+  <div class="journey__stage">
+    {scenes.map((s, i) => {
+      const num = String(i + 1).padStart(2, '0');
+      // Seul le premier lieu se charge d'emblée : les suivants arrivent juste
+      // avant d'être visités, pour ne pas imposer toutes les photos au mobile.
+      const srcAttr = i === 0 ? 'src' : 'data-src';
+      const srcsetAttr = i === 0 ? 'srcset' : 'data-srcset';
+      return (
+        <article
+          class:list={['journey__scene', { 'is-active': i === 0 }]}
+          data-scene={i}
+          aria-roledescription="slide"
+          aria-label={`${t.place} ${num} / ${total} — ${s.chapter}`}
+          aria-hidden={i === 0 ? 'false' : 'true'}
+        >
+          <picture class:list={['journey__media', { 'journey__media--backdrop': s.video }]}>
+            <source
+              media="(max-aspect-ratio: 4/5)"
+              {...{ [srcsetAttr]: `${img(s.slug, 'm900')} 900w, ${img(s.slug, 'm1300')} 1300w` }}
+              sizes="100vw"
+            />
+            <img
+              {...{ [srcAttr]: img(s.slug, 1920) }}
+              {...{ [srcsetAttr]: `${img(s.slug, 1280)} 1280w, ${img(s.slug, 1920)} 1920w, ${img(s.slug, 2560)} 2560w` }}
+              sizes="100vw"
+              width="1920"
+              height="1086"
+              alt={s.alt}
+              decoding="async"
+              fetchpriority={i === 0 ? 'high' : 'low'}
+            />
+          </picture>
+          <div class="journey__veil" aria-hidden="true"></div>
+          {s.video && (
+            <figure class="journey__portrait">
+              <img
+                {...{ [srcAttr]: img(s.slug, 'm900') }}
+                width="900"
+                height="1592"
+                alt=""
+                decoding="async"
+              />
+              <video
+                class="journey__video"
+                muted
+                loop
+                playsinline
+                preload="none"
+                aria-hidden="true"
+                data-video={`/videos/journey/${s.slug}-portrait.mp4`}
+              ></video>
+            </figure>
+          )}
+
+          <div class="journey__copy">
+            <p class="journey__kicker">
+              <span class="journey__num">{num}</span>
+              <span class="journey__sep" aria-hidden="true"></span>
+              <span>{s.place}</span>
+            </p>
+            {i === 0
+              ? <h1 class="journey__title">{s.title}</h1>
+              : <h2 class="journey__title">{s.title}</h2>}
+            <p class="journey__text">{s.text}</p>
+            <div class="journey__actions">
+              {s.href === '#next'
+                ? <button type="button" class="journey__cta" data-journey-next tabindex={i === 0 ? 0 : -1}>{s.cta} <span aria-hidden="true">→</span></button>
+                : <a href={s.href} class="journey__cta" tabindex={i === 0 ? 0 : -1}>{s.cta} <span aria-hidden="true">→</span></a>}
+            </div>
+          </div>
+        </article>
+      );
+    })}
+
+    <div class="journey__flash" aria-hidden="true"></div>
+  </div>
+
+  <!-- Commandes -->
+  <div class="journey__hud">
+    <div class="journey__topbar">
+      <p class="journey__counter" aria-live="polite">
+        <span data-journey-current>01</span><span class="journey__counter-total">/{total}</span>
+      </p>
+      <div class="journey__buttons">
+        <button type="button" class="journey__btn" data-journey-prev aria-label={t.prev}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+        </button>
+        <button type="button" class="journey__btn" data-journey-toggle aria-label={t.pause} data-label-pause={t.pause} data-label-play={t.play}>
+          <svg class="journey__icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12" /></svg>
+          <svg class="journey__icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+        </button>
+        <button type="button" class="journey__btn" data-journey-next aria-label={t.next}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="journey__chapters" aria-label={t.chapters}>
+      {scenes.map((s, i) => (
+        <button
+          type="button"
+          class:list={['journey__chapter', { 'is-active': i === 0 }]}
+          data-journey-goto={i}
+          aria-label={`${t.place} ${i + 1} — ${s.chapter}`}
+          aria-current={i === 0 ? 'step' : undefined}
+        >
+          <span class="journey__bar"><span class="journey__fill"></span></span>
+          <span class="journey__chapter-label">{s.chapter}</span>
+        </button>
+      ))}
+    </nav>
+  </div>
+
+  <a href="#apres-visite" class="journey__skip">
+    {t.skip}
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+  </a>
+
+  <!-- Ouverture : deux battants s'écartent sur le premier lieu -->
+  <div class="journey__intro" aria-hidden="true" data-journey-intro>
+    <div class="journey__door journey__door--left"></div>
+    <div class="journey__door journey__door--right"></div>
+    <div class="journey__intro-mark">
+      <img src="/logo/logo-mark.svg" alt="" width="56" height="56" />
+      <span>{t.intro}</span>
+    </div>
+  </div>
+</section>
+<div id="apres-visite" class="scroll-mt-20"></div>
+
+<style>
+  .journey {
+    --navy: #07172b;
+    --green: #00a859;
+    --amber: #f59e0b;
+    --dur: 7000ms;
+    position: relative;
+    height: calc(100svh - 5rem);
+    min-height: 34rem;
+    max-height: 62rem;
+    overflow: hidden;
+    background: var(--navy);
+    color: #fff;
+    isolation: isolate;
+    touch-action: pan-y;
+  }
+
+  .journey__stage,
+  .journey__scene,
+  .journey__media,
+  .journey__media img,
+  .journey__veil {
+    position: absolute;
+    inset: 0;
+  }
+
+  .journey__media img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    transform-origin: 50% 55%;
+    will-change: transform;
+  }
+
+  /* Un lieu inactif est invisible ; l'actif avance lentement, comme si l'on
+     marchait vers le fond de la pièce. */
+  .journey__scene {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1100ms ease, visibility 0s linear 1100ms;
+  }
+
+  .journey__scene.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1100ms ease 150ms, visibility 0s;
+    z-index: 2;
+  }
+
+  .journey__scene.is-active .journey__media img {
+    animation: journey-walk calc(var(--dur) + 1600ms) cubic-bezier(.25,.1,.3,1) forwards;
+  }
+
+  /* Le lieu quitté file vers la caméra : on le « traverse ». */
+  .journey__scene.is-leaving {
+    z-index: 3;
+    opacity: 0;
+    visibility: visible;
+    transition: opacity 1100ms ease-in, visibility 0s linear 1100ms;
+  }
+
+  .journey__scene.is-leaving .journey__media img {
+    animation: journey-through 1100ms cubic-bezier(.55,0,.8,.4) forwards;
+  }
+
+  .journey.is-reverse .journey__scene.is-leaving .journey__media img {
+    animation-name: journey-back;
+  }
+
+  @keyframes journey-walk {
+    from { transform: scale(1.02); }
+    to   { transform: scale(1.14); }
+  }
+
+  @keyframes journey-through {
+    from { transform: scale(var(--from, 1.14)); filter: blur(0); }
+    to   { transform: scale(1.75); filter: blur(10px); }
+  }
+
+  @keyframes journey-back {
+    from { transform: scale(var(--from, 1.14)); filter: blur(0); }
+    to   { transform: scale(0.9); filter: blur(8px); }
+  }
+
+  /* Lieu « portrait » : le bureau flouté en fond, le dirigeant dans un cadre
+     vertical aux 3/4 de la hauteur. */
+  /* Fond cadré sur le décor (lampe, bibliothèque), pas sur le visage. */
+  .journey__scene .journey__media--backdrop img,
+  .journey .journey__scene.is-active .journey__media--backdrop img {
+    filter: blur(14px) brightness(.6) saturate(1.1);
+    transform-origin: 10% 60%;
+    animation: none;
+    transform: scale(1.8);
+  }
+
+  .journey__portrait {
+    position: absolute;
+    z-index: 5;
+    top: 5.5rem;
+    right: max(1rem, calc((100vw - 80rem) / 2 + 4rem));
+    /* 3/4 de la hauteur, sans empiéter sur les chapitres du bas. */
+    height: min(75%, calc(100% - 14.5rem), calc(34vw * 16 / 9));
+    aspect-ratio: 9 / 16;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 1.5rem;
+    background: var(--navy);
+    box-shadow:
+      0 0 0 6px rgba(245, 158, 11, .12),
+      0 40px 80px -20px rgba(0, 0, 0, .7);
+    opacity: 0;
+    transform: scale(.92);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  .is-active .journey__portrait {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 900ms ease 350ms, transform 1100ms cubic-bezier(.2,.7,.2,1) 350ms;
+  }
+
+  .journey__portrait img,
+  .journey__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  /* La vidéo n'apparaît qu'une fois lancée : la photo reste l'affiche. */
+  .journey__video {
+    opacity: 0;
+    transition: opacity 600ms ease;
+  }
+
+  .journey__video.is-playing { opacity: 1; }
+
+  /* Le voile appartient à chaque lieu : il assombrit l'image, jamais le texte. */
+  .journey__veil {
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(7, 23, 43, .82) 0%, rgba(7, 23, 43, .45) 38%, rgba(7, 23, 43, 0) 65%),
+      linear-gradient(0deg, rgba(7, 23, 43, .85) 0%, rgba(7, 23, 43, 0) 32%),
+      linear-gradient(180deg, rgba(7, 23, 43, .55) 0%, rgba(7, 23, 43, 0) 18%);
+  }
+
+  .journey__flash {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(circle at 55% 50%, rgba(255, 236, 200, .55), rgba(255, 236, 200, 0) 55%);
+  }
+
+  .journey.is-moving .journey__flash {
+    animation: journey-flash 1100ms ease-out;
+  }
+
+  @keyframes journey-flash {
+    0%, 100% { opacity: 0; }
+    40% { opacity: 1; }
+  }
+
+  /* Texte du lieu */
+  .journey__copy {
+    position: absolute;
+    z-index: 6;
+    left: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+    right: 1rem;
+    bottom: clamp(9rem, 18vh, 11.5rem);
+    max-width: 38rem;
+  }
+
+  .journey__copy > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 500ms ease, transform 500ms ease;
+  }
+
+  .is-active .journey__copy > * {
+    opacity: 1;
+    transform: none;
+    transition: opacity 800ms ease, transform 800ms cubic-bezier(.2,.7,.2,1);
+  }
+
+  .is-active .journey__copy > :nth-child(1) { transition-delay: 500ms; }
+  .is-active .journey__copy > :nth-child(2) { transition-delay: 620ms; }
+  .is-active .journey__copy > :nth-child(3) { transition-delay: 760ms; }
+  .is-active .journey__copy > :nth-child(4) { transition-delay: 900ms; }
+
+  .journey__kicker {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin: 0 0 1rem;
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+
+  .journey__num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--amber);
+  }
+
+  .journey__sep {
+    width: 2rem;
+    height: 1px;
+    background: rgba(255, 255, 255, .6);
+  }
+
+  .journey__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2rem, 1.2rem + 3.6vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, .35);
+  }
+
+  .journey__text {
+    margin: 1rem 0 0;
+    max-width: 32rem;
+    color: rgba(255, 255, 255, .88);
+    font-size: clamp(1rem, .95rem + .3vw, 1.15rem);
+    line-height: 1.55;
+  }
+
+  .journey__actions {
+    margin-top: 1.75rem;
+  }
+
+  .journey__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    min-height: 3rem;
+    padding: 0 1.75rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--green);
+    color: #fff;
+    font: inherit;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 10px 30px -8px rgba(0, 168, 89, .6);
+    transition: background-color 150ms, transform 150ms;
+  }
+
+  .journey__cta:hover { background: #008f4c; transform: translateY(-2px); }
+  .journey__cta:focus-visible,
+  .journey__btn:focus-visible,
+  .journey__chapter:focus-visible,
+  .journey__skip:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  /* Commandes */
+  .journey__hud {
+    position: absolute;
+    inset: 0;
+    z-index: 7;
+    pointer-events: none;
+  }
+
+  .journey__hud > * { pointer-events: auto; }
+
+  .journey__topbar {
+    position: absolute;
+    top: 1.25rem;
+    left: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+    right: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .journey__counter {
+    margin: 0;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .journey__counter-total { color: rgba(255, 255, 255, .55); }
+
+  .journey__buttons { display: flex; gap: .5rem; }
+
+  .journey__btn {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: 999px;
+    background: rgba(7, 23, 43, .35);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 150ms, border-color 150ms;
+  }
+
+  .journey__btn:hover { background: rgba(255, 255, 255, .18); border-color: #fff; }
+
+  .journey__btn svg,
+  .journey__skip svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .journey__icon-play { display: none; }
+  .journey.is-paused .journey__icon-play { display: block; fill: currentColor; }
+  .journey.is-paused .journey__icon-pause { display: none; }
+
+  .journey__chapters {
+    position: absolute;
+    left: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+    right: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+    bottom: 4.75rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: .5rem;
+  }
+
+  .journey__chapter {
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    padding: .6rem 0;
+    border: 0;
+    background: none;
+    color: rgba(255, 255, 255, .6);
+    font: inherit;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 200ms;
+  }
+
+  .journey__chapter:hover,
+  .journey__chapter.is-active { color: #fff; }
+
+  .journey__bar {
+    position: relative;
+    display: block;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, .28);
+  }
+
+  .journey__fill {
+    position: absolute;
+    inset: 0;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .journey__chapter.is-done .journey__fill { transform: scaleX(1); background: rgba(255, 255, 255, .85); }
+
+  .journey__chapter-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .journey__skip {
+    position: absolute;
+    z-index: 7;
+    left: 50%;
+    bottom: .75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .4rem .75rem;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, .75);
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .journey__skip:hover { color: #fff; }
+  .journey__skip svg { animation: journey-bob 1.8s ease-in-out infinite; }
+
+  @keyframes journey-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+
+  /* Ouverture des portes, une fois par session */
+  .journey__intro {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    pointer-events: none;
+  }
+
+  .journey.has-intro .journey__intro { display: block; }
+
+  .journey__door {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50.5%;
+    background: linear-gradient(90deg, #0a192f, #10284a);
+    transition: transform 1300ms cubic-bezier(.7,0,.2,1) 700ms;
+  }
+
+  .journey__door--left { left: 0; box-shadow: inset -1px 0 0 rgba(245, 158, 11, .6); }
+  .journey__door--right { right: 0; transform-origin: right; background: linear-gradient(270deg, #0a192f, #10284a); box-shadow: inset 1px 0 0 rgba(245, 158, 11, .6); }
+
+  .journey__intro-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .9rem;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, .8);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: opacity 400ms ease 500ms;
+  }
+
+  .journey.is-open .journey__door--left { transform: translateX(-101%); }
+  .journey.is-open .journey__door--right { transform: translateX(101%); }
+  .journey.is-open .journey__intro-mark { opacity: 0; }
+
+  /* Pendant l'ouverture, le premier lieu attend derrière les portes. */
+  .journey.has-intro:not(.is-open) .journey__scene.is-active .journey__media img { animation: none; transform: scale(1.02); }
+  .journey.has-intro:not(.is-open) .is-active .journey__copy > * { opacity: 0; transform: translateY(18px); }
+
+  /* Tablette : le texte laisse sa colonne au cadre du portrait. */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .journey__copy { max-width: 52vw; }
+  }
+
+  /* Téléphone : texte en bas, chapitres réduits à des barres */
+  @media (max-width: 767px) {
+    .journey {
+      height: calc(100svh - 5rem);
+      min-height: 32rem;
+    }
+
+    .journey__veil {
+      background:
+        linear-gradient(0deg, rgba(7, 23, 43, .95) 0%, rgba(7, 23, 43, .7) 30%, rgba(7, 23, 43, 0) 58%),
+        linear-gradient(180deg, rgba(7, 23, 43, .6) 0%, rgba(7, 23, 43, 0) 20%);
+    }
+
+    .journey__copy { bottom: 5.5rem; }
+
+    .journey__portrait {
+      top: 5.75rem;
+      right: 50%;
+      height: clamp(12rem, calc(100% - 27.5rem), 75%);
+      border-radius: 1.1rem;
+      transform: translateX(50%) scale(.92);
+    }
+
+    .is-active .journey__portrait { transform: translateX(50%) scale(1); }
+    .journey__kicker { margin-bottom: .75rem; font-size: .68rem; }
+    .journey__text { margin-top: .75rem; font-size: .98rem; }
+    .journey__actions { margin-top: 1.25rem; }
+    .journey__cta { width: 100%; justify-content: center; }
+
+    /* Barres de progression en haut, façon « stories » : le bas reste au
+       texte et au bouton WhatsApp. */
+    .journey__chapters { top: .25rem; bottom: auto; gap: .35rem; }
+    .journey__chapter { padding: .6rem 0; }
+    .journey__chapter-label { display: none; }
+    .journey__topbar { top: 2.5rem; }
+    .journey__btn { width: 2.5rem; height: 2.5rem; }
+    .journey__skip { left: 1rem; bottom: .75rem; transform: none; padding-left: 0; }
+  }
+
+  /* Écran bas (téléphone à l'horizontale) */
+  @media (max-height: 560px) and (orientation: landscape) {
+    .journey { min-height: 0; height: calc(100svh - 5rem); }
+    .journey__copy { bottom: 2.5rem; }
+    .journey__text { display: none; }
+    .journey__chapters { top: .25rem; bottom: auto; }
+    .journey__topbar { top: 2rem; }
+    .journey__chapter-label, .journey__skip { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .journey__scene.is-active .journey__media img,
+    .journey__scene.is-leaving .journey__media img { animation: none; transform: none; }
+    .journey__portrait { transition: none; }
+    .journey.is-moving .journey__flash { animation: none; }
+    .journey__copy > *, .journey__skip svg { transition: none; animation: none; }
+  }
+</style>
+
+<script>
+  const DURATION = 7000;
+  const TRANSITION = 1100;
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-journey]')) {
+    const scenes = [...root.querySelectorAll<HTMLElement>('.journey__scene')];
+    const chapters = [...root.querySelectorAll<HTMLButtonElement>('[data-journey-goto]')];
+    const counter = root.querySelector<HTMLElement>('[data-journey-current]');
+    const toggle = root.querySelector<HTMLButtonElement>('[data-journey-toggle]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let current = 0;
+    let elapsed = 0;
+    let lastTick = 0;
+    let userPaused = reduceMotion;
+    let hovered = false;
+    let visible = true;
+    let ready = false;
+    let leavingTimer = 0;
+
+    // Charge le visuel d'un lieu juste avant sa visite.
+    const load = (index: number) => {
+      const scene = scenes[(index + scenes.length) % scenes.length];
+      scene.querySelectorAll<HTMLElement>('[data-srcset], [data-src]').forEach((el) => {
+        if (el.dataset.srcset) { el.setAttribute('srcset', el.dataset.srcset); delete el.dataset.srcset; }
+        if (el.dataset.src) { el.setAttribute('src', el.dataset.src); delete el.dataset.src; }
+      });
+    };
+
+    // Une vidéo ne se charge et ne tourne que pendant la visite de son lieu.
+    const playVideo = (scene: HTMLElement) => {
+      const video = scene.querySelector<HTMLVideoElement>('.journey__video');
+      if (!video || reduceMotion) return;
+      const src = video.dataset.video;
+      if (src && video.getAttribute('src') !== src) video.src = src;
+      video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
+      video.play().catch(() => { /* lecture refusée : la photo reste affichée */ });
+    };
+    const stopVideo = (scene: HTMLElement) => {
+      const video = scene.querySelector<HTMLVideoElement>('.journey__video');
+      if (!video) return;
+      window.setTimeout(() => {
+        if (scene.classList.contains('is-active')) return;
+        video.pause();
+        video.classList.remove('is-playing');
+      }, TRANSITION);
+    };
+
+    const setFocusable = (scene: HTMLElement, on: boolean) => {
+      scene.querySelectorAll<HTMLElement>('a, button').forEach((el) => { el.tabIndex = on ? 0 : -1; });
+    };
+
+    const paint = () => {
+      chapters.forEach((c, i) => {
+        c.classList.toggle('is-active', i === current);
+        c.classList.toggle('is-done', i < current);
+        if (i === current) c.setAttribute('aria-current', 'step');
+        else c.removeAttribute('aria-current');
+        const fill = c.querySelector<HTMLElement>('.journey__fill');
+        if (fill && i !== current) fill.style.transform = '';
+      });
+      if (counter) counter.textContent = String(current + 1).padStart(2, '0');
+    };
+
+    const go = (target: number, direction = 1) => {
+      const next = (target + scenes.length) % scenes.length;
+      if (next === current) return;
+      const from = scenes[current];
+      const to = scenes[next];
+
+      load(next);
+      load(next + 1);
+
+      // Le lieu quitté repart de l'échelle où il était arrivé, sans à-coup.
+      const img = from.querySelector('img');
+      if (img) {
+        const m = getComputedStyle(img).transform.match(/matrix\(([^,]+)/);
+        from.style.setProperty('--from', m ? m[1] : '1.14');
+      }
+
+      window.clearTimeout(leavingTimer);
+      scenes.forEach((s) => s.classList.remove('is-leaving'));
+      root.classList.toggle('is-reverse', direction < 0);
+      from.classList.remove('is-active');
+      from.classList.add('is-leaving');
+      from.setAttribute('aria-hidden', 'true');
+      setFocusable(from, false);
+      stopVideo(from);
+
+      to.classList.add('is-active');
+      to.setAttribute('aria-hidden', 'false');
+      setFocusable(to, true);
+      playVideo(to);
+
+      root.classList.remove('is-moving');
+      void root.offsetWidth;
+      root.classList.add('is-moving');
+      leavingTimer = window.setTimeout(() => {
+        from.classList.remove('is-leaving');
+        root.classList.remove('is-moving');
+      }, TRANSITION + 50);
+
+      current = next;
+      elapsed = 0;
+      paint();
+    };
+
+    const running = () => ready && !userPaused && !hovered && visible && !document.hidden;
+
+    const tick = (now: number) => {
+      const dt = lastTick ? now - lastTick : 0;
+      lastTick = now;
+      if (running()) {
+        elapsed += dt;
+        const fill = chapters[current]?.querySelector<HTMLElement>('.journey__fill');
+        if (fill) fill.style.transform = `scaleX(${Math.min(elapsed / DURATION, 1)})`;
+        if (elapsed >= DURATION) go(current + 1);
+      }
+      requestAnimationFrame(tick);
+    };
+
+    const setPaused = (paused: boolean) => {
+      userPaused = paused;
+      root.classList.toggle('is-paused', paused);
+      if (toggle) toggle.setAttribute('aria-label', (paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause) ?? '');
+    };
+
+    root.querySelectorAll<HTMLElement>('[data-journey-next]').forEach((b) => b.addEventListener('click', () => go(current + 1, 1)));
+    root.querySelector('[data-journey-prev]')?.addEventListener('click', () => go(current - 1, -1));
+    toggle?.addEventListener('click', () => setPaused(!userPaused));
+    chapters.forEach((c, i) => c.addEventListener('click', () => go(i, i > current ? 1 : -1)));
+
+    // Le texte se lit sans que la visite file : pause au survol du bloc texte.
+    root.querySelectorAll<HTMLElement>('.journey__copy').forEach((el) => {
+      el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovered = true; });
+      el.addEventListener('pointerleave', () => { hovered = false; });
+    });
+    root.addEventListener('focusin', (e) => { if ((e.target as HTMLElement).closest('.journey__copy')) hovered = true; });
+    root.addEventListener('focusout', () => { hovered = false; });
+
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1, 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1, -1); }
+    });
+
+    // Glisser du doigt pour changer de lieu.
+    let startX = 0;
+    let startY = 0;
+    root.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    root.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(current + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+    }, { passive: true });
+
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0.35 }).observe(root);
+
+    setPaused(userPaused);
+    load(1);
+
+    // Ouverture des portes à la première visite de la session seulement.
+    let seen = false;
+    try { seen = sessionStorage.getItem('aye-journey-intro') === '1'; } catch { /* stockage indisponible */ }
+    if (!seen && !reduceMotion) {
+      root.classList.add('has-intro');
+      try { sessionStorage.setItem('aye-journey-intro', '1'); } catch { /* stockage indisponible */ }
+      const firstImg = scenes[0].querySelector('img');
+      const open = () => requestAnimationFrame(() => root.classList.add('is-open'));
+      if (firstImg && !firstImg.complete) {
+        firstImg.addEventListener('load', open, { once: true });
+        window.setTimeout(open, 1500);
+      } else {
+        open();
+      }
+      window.setTimeout(() => { root.classList.remove('has-intro'); ready = true; }, 2200);
+    } else {
+      ready = true;
+    }
+
+    requestAnimationFrame(tick);
+  }
+</script>

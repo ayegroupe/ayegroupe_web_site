@@ -5,6 +5,7 @@ import SaasShowcase from '../../components/SaasShowcase.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import LegalAccordion from '../../components/LegalAccordion.astro';
 import CreativeServicesSlide from '../../components/CreativeServicesSlide.astro';
+import PlacesJourney from '../../components/PlacesJourney.astro';
 
 const metrics = [
   { value: '02', label: 'Pôles d\'Excellence', sub: 'IT Global & Hub Togo' },
@@ -20,66 +21,20 @@ const metrics = [
   lang="fr"
   canonicalPath="/fr"
 >
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-b from-[#F4F6F9] via-white to-white overflow-hidden pt-16 pb-24 lg:pt-24 lg:pb-36 border-b border-slate-200/80">
-    <!-- Ambient Technical Grid -->
-    <div class="absolute inset-0 bg-grid-sky opacity-40 pointer-events-none"></div>
-    
-    <!-- Subtle Forex Glow -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-emerald-100/30 rounded-full blur-[130px] pointer-events-none"></div>
+  <!-- Visite des lieux : chaque lieu est une activité du groupe -->
+  <PlacesJourney lang="fr" />
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center space-y-8">
-        
-        <!-- Status Pill (Forex.com Live Indicator Style) -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-[11px] font-bold uppercase tracking-wider text-[#0C2340]">
-          <span class="w-2 h-2 rounded-full bg-[#00A859] animate-pulse"></span>
-          <span>Ingénierie Logicielle · Surrey, Canada & Hub Togo</span>
-        </div>
-
-        <!-- Main H1 Title -->
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#0C2340] leading-[1.08]">
-          L'Excellence <span class="text-gradient-tech">Technologique</span> & la Puissance <span class="text-[#0C2340]">Logistique</span>
-        </h1>
-
-        <!-- Subtitle / Value proposition -->
-        <p class="text-base sm:text-lg text-[#2C3E50] leading-relaxed max-w-3xl mx-auto font-normal">
-          <strong class="text-[#0C2340] font-semibold">AYEGROUPE</strong> orchestre une synergie d'affaires éprouvée : la conception et l'exploitation de solutions logicielles de pointe à l'échelle internationale et des opérations physiques de référence au Togo (Négoce, Fourniture IT et Logistique d'entreprise).
-        </p>
-
-        <!-- CTAs - Forex.com Pill Action Buttons -->
-        <div class="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="/fr/services-it"
-            class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#00A859] hover:bg-[#008F4C] text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center"
-          >
-            Découvrir le Pôle IT & Logiciel
-          </a>
-          <a
-            href="/fr/togo"
-            class="w-full sm:w-auto px-8 py-3 rounded-full bg-white hover:bg-[#0C2340] text-[#0C2340] hover:text-white font-bold text-xs uppercase tracking-wider border-2 border-[#0C2340] transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 text-center"
-          >
-            Explorer le Pôle Togo & Logistique
-          </a>
-          <a
-            href="/fr/saas"
-            class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-[#0C2340] font-bold text-xs uppercase tracking-wider transition-all duration-150 hover:-translate-y-0.5 text-center"
-          >
-            Nos SaaS en ligne &rarr;
-          </a>
-        </div>
-
-        <!-- Metrics ribbon (Forex.com High Precision Trading Metric Style) -->
-        <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-slate-200 mt-12">
-          {metrics.map((m) => (
-            <div class="p-5 rounded-2xl bg-white border border-slate-200 text-center shadow-xs hover:border-[#00A859]/50 hover:shadow-sm transition-all">
-              <div class="text-3xl sm:text-4xl font-bold font-mono text-[#00A859] mb-1 tracking-tight">{m.value}</div>
-              <div class="text-xs font-bold uppercase tracking-wider text-[#0C2340]">{m.label}</div>
-              <div class="text-[11px] text-slate-500 font-medium mt-0.5">{m.sub}</div>
-            </div>
-          ))}
-        </div>
-
+  <!-- Chiffres clés -->
+  <section class="bg-[#07172B] border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 sm:gap-6">
+        {metrics.map((m) => (
+          <div class="border-l-2 border-[#F59E0B] pl-3 sm:pl-4">
+            <div class="text-2xl sm:text-4xl font-bold font-mono text-white tracking-tight">{m.value}</div>
+            <div class="mt-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white">{m.label}</div>
+            <div class="text-[11px] sm:text-xs text-slate-400 font-medium mt-0.5">{m.sub}</div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
